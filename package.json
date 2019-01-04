@@ -1,0 +1,35 @@
+{
+  "name": "thimble-bot",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/jozsefsallai/thimble-bot",
+  "author": "József Sallai @jozsefsallai",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "chalk": "^2.4.1",
+    "cheerio": "^1.0.0-rc.2",
+    "cross-env": "^5.2.0",
+    "date-fns": "^1.30.1",
+    "discord.js": "^11.4.2",
+    "discord.js-commando": "^0.10.0",
+    "inquirer": "^6.2.1",
+    "node-schedule": "^1.3.1",
+    "slugify": "^1.3.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
+  },
+  "scripts": {
+    "setup": "node bin/setup",
+    "setup:prod": "cross-env NODE_ENV=production yarn setup",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  }
+}

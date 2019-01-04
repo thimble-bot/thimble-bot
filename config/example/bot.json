@@ -1,0 +1,7 @@
+{
+  "token": "your bot token",
+  "activity": null,
+  "prefix": ".",
+  "guild": "your guild ID",
+  "owner": "owner ID"
+}
