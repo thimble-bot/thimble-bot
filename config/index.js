@@ -5,7 +5,7 @@ const env = process.env.NODE_ENV || 'development';
 const config = {};
 const envConfig = {};
 
-if (!fs.existsSync(path.resolve(__dirname, 'development'))) {
+if (!fs.existsSync(path.resolve(__dirname, 'development')) && env !== 'production') {
   throw new Error('Development config doesnt exist. Did you make a copy of the example folder?');
 }
 
