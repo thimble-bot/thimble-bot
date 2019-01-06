@@ -9,6 +9,7 @@ class Purge extends Command {
       memberName: 'purge',
       description: 'Purge messages.',
       examples: [ `${config.prefix}purge 2-100` ],
+      aliases: [ 'clean', 'clear' ],
       userPermissions: [ 'MANAGE_MESSAGES' ],
       args: [
         {
@@ -26,7 +27,7 @@ class Purge extends Command {
     }
 
     await message.channel.bulkDelete(qty);
-    const success = await message.say(`:recycle: Successfully deleted ${qty} messages.`);
+    const success = await message.say(`:recycle: Successfully deleted up to ${qty} messages.`);
 
     setTimeout(() => success.delete(), 2000);
 
