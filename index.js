@@ -19,7 +19,8 @@ client
   .registerDefaultTypes()
   .registerGroups([
     [ 'utils', 'Utilities' ],
-    [ 'moderation', 'Moderation' ]
+    [ 'moderation', 'Moderation' ],
+    [ 'fun', 'Fun commands' ]
   ])
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
