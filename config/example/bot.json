@@ -3,5 +3,9 @@
   "activity": null,
   "prefix": ".",
   "guild": "your guild ID",
-  "owner": "owner ID"
+  "owner": "owner ID",
+  "logging": {
+    "enabled": true,
+    "channel": "logging channel ID"
+  }
 }

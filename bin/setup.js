@@ -54,8 +54,25 @@ const setup = async () => {
       type: 'input',
       name: 'owner',
       message: 'Your user ID:'
+    },
+    {
+      type: 'input',
+      name: 'logging',
+      message: 'Log channel ID (leave empty if you dont want logging):',
+      default: null
     }
   ]);
+
+  if (bot.logging) {
+    bot.logging = {
+      enabled: true,
+      channel: bot.logging
+    };
+  } else {
+    bot.logging = {
+      enabled: false
+    }
+  }
 
   section('2. StatusTracker settings');
 
