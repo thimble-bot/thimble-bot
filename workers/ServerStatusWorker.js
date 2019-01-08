@@ -10,14 +10,16 @@ const send = (client, result) => {
 };
 
 const Worker = (client) => {
-  setInterval(async () => {
-    try {
-      const result = await tracker.track();
-      send(client, result);
-    } catch (err) {
-      send(client, ':warning: Something bad happened.');
-    }
-  }, 60 * 60 * 1000 * config.StatusTracker.refreshInterval);
+  if (config.StatusTracker) {
+    setInterval(async () => {
+      try {
+        const result = await tracker.track();
+        send(client, result);
+      } catch (err) {
+        send(client, ':warning: Something bad happened.');
+      }
+    }, 60 * 60 * 1000 * config.StatusTracker.refreshInterval);
+  }
 };
 
 module.exports = Worker;

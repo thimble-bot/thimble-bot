@@ -1,9 +1,15 @@
 #!/usr/bin/env node
 
 const { prompt } = require('inquirer');
+const program = require('commander');
 const chalk = require('chalk');
 const fs = require('fs');
 const path = require('path');
+
+program
+  .option('-s, --statustracker', 'Include configs for StatusChecker in the setup process.')
+  .option('-m, --movietracker', 'Include configs for MovieTracker in the setup process.')
+  .parse(process.argv);
 
 const env = process.env.NODE_ENV || 'development';
 
@@ -25,9 +31,12 @@ const writeConfig = (key, config) => {
 };
 
 console.log(`Generating configs for "${env}" environment.`);
-section('1. Common bot settings');
 
 const setup = async () => {
+  let StatusTracker, MovieTracker;
+  let step = 1;
+
+  section(`${step}. Common bot settings`);
   const bot = await prompt([
     {
       type: 'input',
@@ -74,88 +83,96 @@ const setup = async () => {
     };
   }
 
-  section('2. StatusTracker settings');
+  step++;
 
-  const StatusTracker = await prompt([
-    {
-      type: 'input',
-      name: 'channel',
-      message: 'StatusTracker channel ID'
-    },
-    {
-      type: 'number',
-      name: 'refreshInterval',
-      message: 'Check interval (hours):',
-      default: 1
-    },
-    {
-      type: 'number',
-      name: 'timeout',
-      message: 'Timeout (seconds):',
-      default: 5
-    },
-    {
-      type: 'confirm',
-      name: 'quiet',
-      message: 'Quiet mode?',
-      default: true
-    },
-    {
-      type: 'input',
-      name: 'domains',
-      message: 'Domains, separated by comma:'
-    }
-  ]);
+  if (program.statustracker) {
+    section(`${step}. StatusTracker settings`);
 
-  StatusTracker.domains = StatusTracker.domains
-    ? StatusTracker.domains.split(',').map(d => d.trim())
-    : [];
+    StatusTracker = await prompt([
+      {
+        type: 'input',
+        name: 'channel',
+        message: 'StatusTracker channel ID'
+      },
+      {
+        type: 'number',
+        name: 'refreshInterval',
+        message: 'Check interval (hours):',
+        default: 1
+      },
+      {
+        type: 'number',
+        name: 'timeout',
+        message: 'Timeout (seconds):',
+        default: 5
+      },
+      {
+        type: 'confirm',
+        name: 'quiet',
+        message: 'Quiet mode?',
+        default: true
+      },
+      {
+        type: 'input',
+        name: 'domains',
+        message: 'Domains, separated by comma:'
+      }
+    ]);
 
-  section('3. MovieTracker settings');
+    StatusTracker.domains = StatusTracker.domains
+      ? StatusTracker.domains.split(',').map(d => d.trim())
+      : [];
 
-  const MovieTracker = await prompt([
-    {
-      type: 'confirm',
-      name: 'debug',
-      message: 'Debug mode?',
-      default: true
-    },
-    {
-      type: 'input',
-      name: 'channel',
-      message: 'Channel ID:'
-    },
-    {
-      type: 'input',
-      name: 'time',
-      message: 'Time of automated checking (24-hour format):',
-      default: '6:00'
-    }
-  ]);
+    step++;
+  }
 
-  MovieTracker.portdothu = {
-    channels: [],
-    genres: []
-  };
+  if (program.movietracker) {
+    section(`${step}. MovieTracker settings`);
 
-  MovieTracker.cinemagia = {
-    channels: [],
-    genre: ''
-  };
+    MovieTracker = await prompt([
+      {
+        type: 'confirm',
+        name: 'debug',
+        message: 'Debug mode?',
+        default: true
+      },
+      {
+        type: 'input',
+        name: 'channel',
+        message: 'Channel ID:'
+      },
+      {
+        type: 'input',
+        name: 'time',
+        message: 'Time of automated checking (24-hour format):',
+        default: '6:00'
+      }
+    ]);
 
-  const MovieTrackerConfigPath = env === 'production'
-    ? `(../temp/thimble-bot.json).MovieTracker`
-    : `config/${env}/MovieTracker.json`;
+    MovieTracker.portdothu = {
+      channels: [],
+      genres: []
+    };
 
-  console.log(chalk.blue(`Make sure to edit the channels and genres in ${chalk.bold(MovieTrackerConfigPath)}`));
+    MovieTracker.cinemagia = {
+      channels: [],
+      genre: ''
+    };
+
+    const MovieTrackerConfigPath = env === 'production'
+      ? `(../temp/thimble-bot.json).MovieTracker`
+      : `config/${env}/MovieTracker.json`;
+
+    console.log(chalk.blue(`Make sure to edit the channels and genres in ${chalk.bold(MovieTrackerConfigPath)}`));
+  }
 
   section('Generating configs. Please wait...');
 
   if (env === 'production') {
     const config = {
       bot,
-      StatusTracker,
-      MovieTracker
+      StatusTracker: program.statustracker && StatusTracker,
+      MovieTracker: program.movietracker && MovieTracker
     };
 
     const configJSON = JSON.stringify(config, null, 2);
@@ -172,8 +189,8 @@ const setup = async () => {
   fs.mkdirSync(path.resolve(__dirname, '..', 'config', env));
 
   writeConfig('bot', bot);
-  writeConfig('StatusTracker', StatusTracker);
-  writeConfig('MovieTracker', MovieTracker);
+  program.statustracker && writeConfig('StatusTracker', StatusTracker);
+  program.movietracker && writeConfig('MovieTracker', MovieTracker);
 
   console.log('Done.');
   process.exit(0);

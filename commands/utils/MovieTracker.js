@@ -14,6 +14,10 @@ class MovieTracker extends Command {
   }
 
   async run(message) {
+    if (!config.MovieTracker) {
+      return message.say('The `.movies` command is disabled because it is not configured properly.');
+    }
+
     if (message.channel.id !== config.MovieTracker.channel) {
       const channel = this.client.guilds.get(config.bot.guild).channels.get(config.MovieTracker.channel).toString();
       const notice = await message.say(`:warning: You can not use this command outside ${channel}`);

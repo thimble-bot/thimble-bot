@@ -16,6 +16,14 @@ yarn
 yarn setup
 ```
 
+By default, the bot will disable the `.serverstatus` and `.movies` commands, assuming that most people will not need them. If you want to enable them, you need to configure them properly. Or let the app configure it for you during the initial setup:
+
+```sh
+node bin/setup -s   # for serverstatus
+node bin/setup -m   # for movies
+node bin/setup -sm  # for both
+```
+
 ## Before committing
 
 Make sure lint passes.

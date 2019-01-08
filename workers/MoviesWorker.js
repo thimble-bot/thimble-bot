@@ -20,10 +20,12 @@ const send = (client, results) => {
 };
 
 const Worker = (client) => {
-  schedule.scheduleJob(getTime(config.MovieTracker.time), async () => {
-    const results = await tracker();
-    send(client, results);
-  });
+  if (config.MovieTracker) {
+    schedule.scheduleJob(getTime(config.MovieTracker.time), async () => {
+      const results = await tracker();
+      send(client, results);
+    });
+  }
 };
 
 module.exports = Worker;

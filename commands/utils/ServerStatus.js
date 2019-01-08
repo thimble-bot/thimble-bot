@@ -15,6 +15,10 @@ class ServerStatus extends Command {
   }
 
   async run(message) {
+    if (!config.StatusTracker) {
+      return message.say('The `.serverstatus` command is disabled because it is not configured properly.');
+    }
+
     if (message.channel.id !== config.StatusTracker.channel) {
       return;
     }

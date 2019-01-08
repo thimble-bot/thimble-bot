@@ -27,7 +27,7 @@ class Kick extends Command {
           type: 'string'
         }
       ]
-    })
+    });
   };
 
   run(message, { user, reason }) {
