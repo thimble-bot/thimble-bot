@@ -64,7 +64,7 @@ class UserInfo extends Command {
       user = message.author;
     } else {
       user = message.mentions.users.first();
-      
+
       if (!user) {
         return message.say('You need to tag the user to make sure you get the correct results.');
       }

@@ -71,7 +71,7 @@ const setup = async () => {
   } else {
     bot.logging = {
       enabled: false
-    }
+    };
   }
 
   section('2. StatusTracker settings');
