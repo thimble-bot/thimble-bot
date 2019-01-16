@@ -1,5 +1,4 @@
 const StatusTracker = require('../lib/StatusTracker');
-const tracker = new StatusTracker();
 
 const config = require('../config');
 
@@ -13,6 +12,7 @@ const Worker = (client) => {
   if (config.StatusTracker) {
     setInterval(async () => {
       try {
+        const tracker = new StatusTracker();
         const result = await tracker.track();
         send(client, result);
       } catch (err) {
