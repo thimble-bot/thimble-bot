@@ -1,5 +1,6 @@
 const Commando = require('discord.js-commando');
 const path = require('path');
+const Raven = require('raven');
 
 const config = require('./config');
 
@@ -7,6 +8,11 @@ const log = require('./lib/Logger');
 
 const ServerStatusWorker = require('./workers/ServerStatusWorker');
 const MoviesWorker = require('./workers/MoviesWorker');
+
+if (config.bot.sentry.secret && config.bot.sentry.id) {
+  const dsn = `https://${config.bot.sentry.public}:${config.bot.sentry.secret}@sentry.io/${config.bot.sentry.id}`;
+  Raven.config(dsn).install();
+}
 
 const client = new Commando.Client({
   commandPrefix: config.bot.prefix,

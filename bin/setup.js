@@ -69,6 +69,12 @@ const setup = async () => {
       name: 'logging',
       message: 'Log channel ID (leave empty if you dont want logging):',
       default: null
+    },
+    {
+      type: 'input',
+      name: 'sentry',
+      message: 'Sentry details (public, secret, id, separated by comma)\nLeave empty if you don\'t want to configure Sentry.',
+      default: null
     }
   ]);
 
@@ -80,6 +86,21 @@ const setup = async () => {
   } else {
     bot.logging = {
       enabled: false
+    };
+  }
+
+  if (bot.sentry) {
+    const sentryData = bot.sentry.split(',').map(d => d.trim());
+    bot.sentry = {
+      public: sentryData[0],
+      secret: sentryData[1],
+      id: sentryData[2]
+    };
+  } else {
+    bot.sentry = {
+      public: null,
+      secret: null,
+      id: null
     };
   }
 

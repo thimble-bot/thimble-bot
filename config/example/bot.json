@@ -7,5 +7,10 @@
   "logging": {
     "enabled": true,
     "channel": "logging channel ID"
+  },
+  "sentry": {
+    "public": null,
+    "secret": null,
+    "id": null
   }
 }
