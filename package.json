@@ -1,6 +1,6 @@
 {
   "name": "thimble-bot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "main": "index.js",
   "repository": "https://github.com/jozsefsallai/thimble-bot",
   "author": "József Sallai @jozsefsallai",
@@ -15,11 +15,14 @@
     "date-fns": "^1.30.1",
     "discord.js": "^11.4.2",
     "discord.js-commando": "^0.10.0",
+    "emoji-dictionary": "^1.0.10",
     "inquirer": "^6.2.1",
     "node-schedule": "^1.3.1",
     "pretty-ms": "^4.0.0",
     "raven": "^2.6.4",
-    "slugify": "^1.3.4"
+    "sharp": "^0.21.3",
+    "slugify": "^1.3.4",
+    "twemoji-parser": "^11.0.2"
   },
   "devDependencies": {
     "eslint": "^4.19.1",
