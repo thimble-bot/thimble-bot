@@ -8,6 +8,8 @@ class EmojiUpload extends Command {
       group: 'utils',
       memberName: 'emojiupload',
       description: 'Upload an emoji to the server',
+      userPermissions: [ 'MANAGE_EMOJIS' ],
+      clientPermissions: [ 'MANAGE_EMOJIS' ],
       args: [
         {
           key: 'name',
