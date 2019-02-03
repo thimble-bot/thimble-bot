@@ -21,7 +21,7 @@ class EmojiDelete extends Command {
   }
 
   async run(message, { emote }) {
-    if (emote.match(/<a?:([a-zA-Z])+\w:([0-9])+\w>/g)) {
+    if (emote.match(/<a?:([a-zA-Z0-9_])+\w:([0-9])+\w>/g)) {
       // matches: <:emotename:12345>, <a:emotename:12345>
       emote = emote.split(':')[1];
     }
