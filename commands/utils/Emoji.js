@@ -66,7 +66,7 @@ class Emoji extends Command {
             return fs.unlinkSync(filePath);
           })
           .then(() => null)
-          .catch(function (err) {
+          .catch(function () {
             return message.say(':x: Something bad happened while fetching the emote.');
           });
       }

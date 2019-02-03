@@ -34,7 +34,7 @@ class EmojiDelete extends Command {
 
     message.guild.deleteEmoji(target);
 
-    return message.say('Emote deleted successfully!');    
+    return message.say('Emote deleted successfully!');
   }
 };
 
