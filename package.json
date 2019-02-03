@@ -36,6 +36,7 @@
     "setup": "node bin/setup",
     "setup:prod": "cross-env NODE_ENV=production yarn setup",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "nodemon": "nodemon --config nodemon.json"
   }
 }
