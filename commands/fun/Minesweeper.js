@@ -28,12 +28,18 @@ class MinesweeperCommand extends Command {
           prompt: 'How many mines?',
           type: 'integer',
           min: 1
+        },
+        {
+          key: 'plaintext',
+          prompt: 'Do you want a copiable version?',
+          type: 'integer',
+          default: 0
         }
       ]
     });
   }
 
-  async run(message, { height, width, mines }) {
+  async run(message, { height, width, mines, plaintext }) {
     if (height * width <= mines * 2) {
       return message.say(':warning: You have provided too many mines for this field.');
     }
@@ -42,10 +48,10 @@ class MinesweeperCommand extends Command {
 
     try {
       const output = `Rows: \`${height}\`, columns: \`${width}\` (cells: \`${height * width}\`), mines: \`${mines}\`\n\n${minesweeper.start()}`;
-      return message.say(output);
+      return plaintext ? message.say(`\`\`\`${output}\`\`\``) : message.say(output);
     } catch (err) {
-      console.error(err);
-      return message.say(':x: Something bad happened.');
+      message.say(':x: Something bad happened.');
+      throw new Error(err);
     }
   }
 };
