@@ -11,6 +11,7 @@
  * `reverse text` - Reverses a string.<br>Example: `reverse yrotS evaC`
  * `dog` - Sends a random picture, GIF, or video of a dog.<br>*Aliases: `randomdog`*
  * `cat` - Same as `dog`, but with cats.<br>*Aliases: `randomcat`*
+ * `minesweeper [rows(4-20)] [columns(4-20)] [mines(1+)]` - Generates a minesweeper mine field using Discord spoiler tags.<br>Example: `minesweeper 5 10 12`
  * `user @username#discrim?` - Prints out some information about a specified user. If no user is specified, the information will be about the author of the message.<br>*Aliases: `profile`, `userinfo`*<br>Example: `user @someone#1234`
 
 ## Utilities
