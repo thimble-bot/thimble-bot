@@ -1,5 +1,5 @@
 const { Command } = require('discord.js-commando');
-const Minesweeper = require('../../lib/Minesweeper');
+const Minesweeper = require('discord.js-minesweeper');
 
 class MinesweeperCommand extends Command {
   constructor(client) {
@@ -10,18 +10,18 @@ class MinesweeperCommand extends Command {
       description: 'Play Minesweeper using Discord spoiler tags.',
       args: [
         {
-          key: 'height',
+          key: 'rows',
           prompt: 'How many rows?',
           type: 'integer',
           min: 4,
-          max: 20
+          max: 12
         },
         {
-          key: 'width',
+          key: 'columns',
           prompt: 'How many columns?',
           type: 'integer',
           min: 4,
-          max: 20
+          max: 12
         },
         {
           key: 'mines',
@@ -39,19 +39,22 @@ class MinesweeperCommand extends Command {
     });
   }
 
-  async run(message, { height, width, mines, plaintext }) {
-    if (height * width <= mines * 2) {
+  async run(message, { rows, columns, mines, plaintext }) {
+    if (rows * columns <= mines * 2) {
       return message.say(':warning: You have provided too many mines for this field.');
     }
 
-    const minesweeper = new Minesweeper(width, height, mines);
+    const returnType = plaintext === 0
+      ? 'emoji'
+      : 'code';
+
+    const minesweeper = new Minesweeper({ rows, columns, mines, returnType });
 
     try {
-      const output = `Rows: \`${height}\`, columns: \`${width}\` (cells: \`${height * width}\`), mines: \`${mines}\`\n\n${minesweeper.start()}`;
-      return plaintext ? message.say(`\`\`\`${output}\`\`\``) : message.say(output);
+      const output = `Rows: \`${rows}\`, columns: \`${columns}\` (cells: \`${rows * columns}\`), mines: \`${mines}\`\n\n${minesweeper.start()}`;
+      return message.say(output);
     } catch (err) {
-      message.say(':x: Something bad happened.');
-      throw new Error(err);
+      return message.say(':x: Something bad happened.');
     }
   }
 };
