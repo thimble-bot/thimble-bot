@@ -31,6 +31,11 @@ node bin/setup -m   # for movies
 node bin/setup -sm  # for both
 ```
 
+You might also want to specify the path to the bot in the `THIMBLE_ROOT` environmental variable inside `/etc/profile`.
+```sh
+export THIMBLE_ROOT="/path/to/thimble-bot"
+```
+
 ## Before committing
 
 Contribution is welcome, but before opening a PR, make sure that your changes pass linting.

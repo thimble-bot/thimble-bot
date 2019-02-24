@@ -17,6 +17,6 @@ if [ $POST_UPDATE=="--post-update" ]; then
     exit 0
   else
     pm2 startOrRestart /var/ecosystems/thimble-bot.json --env production
-    NODE_ENV=production node "${0%/*}/post-update" -g $UPDATE_GUILD -c $UPDATE_CHANNEL
+    NODE_ENV=production node "${THIMBLE_ROOT}/bin/post-update" -g $UPDATE_GUILD -c $UPDATE_CHANNEL
   fi
 fi
