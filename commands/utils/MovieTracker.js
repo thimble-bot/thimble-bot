@@ -14,6 +14,10 @@ class MovieTracker extends Command {
   }
 
   async run(message) {
+    if (message.author.id !== config.bot.owner) {
+      return;
+    }
+
     if (!config.MovieTracker) {
       return message.say('The `.movies` command is disabled because it is not configured properly.');
     }
