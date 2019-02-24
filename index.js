@@ -24,9 +24,10 @@ client
   .registry
   .registerDefaultTypes()
   .registerGroups([
-    [ 'utils', 'Utilities' ],
+    [ 'fun', 'Fun commands' ],
+    [ 'maintenance', 'Maintenance features' ],
     [ 'moderation', 'Moderation' ],
-    [ 'fun', 'Fun commands' ]
+    [ 'utils', 'Utilities' ]
   ])
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
