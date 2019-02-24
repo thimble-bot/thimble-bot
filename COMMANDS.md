@@ -3,7 +3,7 @@
 ## Table of Contents
 
  * [Fun](#fun)<br>*cat, dog, minesweeper, reverse, user*
- * [Maintenance](#maintenance)<br>*update*
+ * [Maintenance](#maintenance)<br>*ssh*, *update*
  * [Moderation](#moderation)<br>*ban, kick, purge*
  * [Utilities](#utilities)<br>*activity, emoji, emojidelete, emojiupload, movies, ping, serverstatus, uptime, version*
 
@@ -16,7 +16,10 @@
  * `user @username#discrim?` - Prints out some information about a specified user. If no user is specified, the information will be about the author of the message.<br>*Aliases: `profile`, `userinfo`*<br>Example: `user @someone#1234`
 
 ## Maintenance
+ * `ssh [command]` - Send single SSH commands to the server.
  * `update` - Update Thimble Bot from GitHub.
+
+*Note: These commands can only be used by the bot's owner.*
 
 ## Moderation
 
