@@ -1,7 +1,6 @@
 const { Command } = require('discord.js-commando');
 const config = require('../../config');
-const path = require('path');
-const { exec } = require('child_process');
+const update = require('../../bin/update');
 
 class Update extends Command {
   constructor(client) {
@@ -20,13 +19,7 @@ class Update extends Command {
 
     message.say('Updating Thimble Bot...');
 
-    const postDeployScript = path.resolve(__dirname, '..', '..', 'bin', 'post-deploy.sh');
-    const args = `--post-update ${message.guild.id} ${message.channel.id}`;
-    exec(`sh ${postDeployScript} ${args}`, (err, stdout, stderr) => {
-      if (err) {
-        return message.say(':x: Failed to update.');
-      }
-    });
+    return update(message.guild.id, message.channel.id);
   }
 };
 
