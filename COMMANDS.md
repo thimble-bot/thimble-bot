@@ -4,7 +4,7 @@
 
  * [Fun](#fun)<br>*cat, dog, minesweeper, reverse, user*
  * [Maintenance](#maintenance)<br>*ssh*, *update*
- * [Moderation](#moderation)<br>*ban, kick, purge*
+ * [Moderation](#moderation)<br>*ban, kick, purge, purgefrom*
  * [Utilities](#utilities)<br>*activity, emoji, emojidelete, emojiupload, movies, ping, serverstatus, uptime, version*
 
 ## Fun
@@ -26,6 +26,7 @@
  * `ban [@user#discrim] [reason?]` - Ban a user from the server. Reason is optional.<br>Example: `kick @someone#1234`, `kick @someone#1234 they were still bad`
  * `kick [@user#discrim] [reason?]` - Kick a user from the server. Reason is optional.<br>Example: `kick @someone#1234`, `kick @someone#1234 they were bad`
  * `purge [2-100]` - Clear up to `n` messages.<br>*Aliases: `clean`, `clear`*<br>Example: `purge 20`
+ * `purgefrom [id]` - Delete all messages starting from a specific message ID.<br>*Aliases: `clearfrom`, `deletefrom`*<br>Example: `purgefrom 546619989147516948`
 
 ## Utilities
 
