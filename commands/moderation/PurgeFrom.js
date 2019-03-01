@@ -6,6 +6,7 @@ class PurgeFrom extends Command {
       name: 'purgefrom',
       group: 'moderation',
       memberName: 'purgefrom',
+      guildOnly: true,
       description: 'Purge all messages starting from a given message ID.',
       aliases: [ 'clearfrom', 'deletefrom' ],
       userPermissions: [ 'MANAGE_MESSAGES' ],

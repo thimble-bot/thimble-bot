@@ -14,6 +14,7 @@ class Emoji extends Command {
       aliases: [ 'e', 'getemoji', 'emote', 'getemote' ],
       group: 'utils',
       memberName: 'emoji',
+      guildOnly: true,
       description: 'Get the full size version of an emote.',
       args: [
         {

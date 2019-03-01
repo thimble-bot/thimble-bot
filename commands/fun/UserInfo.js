@@ -9,6 +9,7 @@ class UserInfo extends Command {
       group: 'fun',
       memberName: 'user',
       aliases: [ 'userinfo', 'profile' ],
+      guildOnly: true,
       description: 'Get info about a user.',
       examples: [ `${config.bot.prefix}user @username#discrim` ],
       args: [

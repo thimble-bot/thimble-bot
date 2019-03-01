@@ -7,6 +7,7 @@ class Purge extends Command {
       name: 'purge',
       group: 'moderation',
       memberName: 'purge',
+      guildOnly: true,
       description: 'Purge messages.',
       examples: [ `${config.prefix}purge 2-100` ],
       aliases: [ 'clean', 'clear' ],

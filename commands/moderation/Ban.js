@@ -7,6 +7,7 @@ class Kick extends Command {
       name: 'ban',
       group: 'moderation',
       memberName: 'ban',
+      guildOnly: true,
       description: 'Ban a member.',
       examples: [
         `${config.prefix}ban @user#discrim`,

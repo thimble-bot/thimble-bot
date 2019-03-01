@@ -23,7 +23,7 @@ class ServerStatus extends Command {
       return message.say('The `.serverstatus` command is disabled because it is not configured properly.');
     }
 
-    if (message.channel.id !== config.StatusTracker.channel) {
+    if (message.channel.name && message.channel.id !== config.StatusTracker.channel) {
       return;
     }
 

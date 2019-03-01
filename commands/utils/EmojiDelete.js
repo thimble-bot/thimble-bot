@@ -7,6 +7,7 @@ class EmojiDelete extends Command {
       aliases: [ 'emojidel', 'emotedel', 'emotedelete' ],
       group: 'utils',
       memberName: 'emojidelete',
+      guildOnly: true,
       description: 'Delete an emoji.',
       userPermissions: [ 'MANAGE_EMOJIS' ],
       clientPermissions: [ 'MANAGE_EMOJIS' ],

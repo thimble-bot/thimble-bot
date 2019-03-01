@@ -7,6 +7,7 @@ class EmojiUpload extends Command {
       aliases: [ 'emoteupload', 'emojiup', 'emoteup', 'addemoji', 'addemote' ],
       group: 'utils',
       memberName: 'emojiupload',
+      guildOnly: true,
       description: 'Upload an emoji to the server',
       userPermissions: [ 'MANAGE_EMOJIS' ],
       clientPermissions: [ 'MANAGE_EMOJIS' ],
