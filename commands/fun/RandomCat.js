@@ -15,13 +15,13 @@ class RandomCat extends Command {
   }
 
   run(message) {
-    return axios.get('https://aws.random.cat/meow', {
+    return axios.get('https://shibe.online/api/cats', {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }
     })
-      .then(({ data }) => message.say(data.file))
+      .then(({ data }) => message.say(data[0]))
       .catch(() => message.say('Failed to fetch kitty. :frowning:'));
   }
 };
