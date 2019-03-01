@@ -60,18 +60,30 @@ class UserInfo extends Command {
     };
   }
 
-  run(message, { user }) {
+  async run(message, { user }) {
     if (!user) {
-      user = message.author;
-    } else {
-      user = message.mentions.users.first();
-
-      if (!user) {
-        return message.say('You need to tag the user to make sure you get the correct results.');
-      }
+      return message.say(this.generateEmbed(message.author));
     }
 
-    return message.say(this.generateEmbed(user));
+    if (user && user.id) {
+      return message.say(this.generateEmbed(user));
+    }
+
+    try {
+      let targetUser;
+
+      if (isNaN(user)) {
+        targetUser = await message.guild.fetchMembers()
+          .then(members => members.filter(m => (m.user.username === user || m.nickname === user)))
+          .then(members => members.first());
+      } else {
+        targetUser = await message.guild.fetchMember(user);
+      }
+
+      return message.say(this.generateEmbed(targetUser));
+    } catch (err) {
+      return message.say(':x: User not found.');
+    }
   }
 };
 
