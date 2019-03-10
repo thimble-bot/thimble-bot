@@ -68,7 +68,7 @@ inquirer.prompt([
     const className = capitalize(name) + 'Command';
 
     let template = COMMAND_TEMPLATE;
-    template = replaceInTemplate(template, '{{name}}', name);
+    template = replaceInTemplate(template, '{{name}}', name.toLowerCase());
     template = replaceInTemplate(template, '{{className}}', className);
     template = replaceInTemplate(template, '{{group}}', group);
     template = replaceInTemplate(template, '{{description}}', description);

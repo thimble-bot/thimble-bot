@@ -9,9 +9,11 @@
 
 ## Fun
 
- * `cat` - Same as `dog`, but with cats.<br>*Aliases: `randomcat`*
- * `bird` - Same as `dog`, but with birds.<br>*Aliases: `birb`, `randombird`, `randombirb`*
+ * `avatar` - Get the avatar of a specified user.
+ * `cat` - Sends a random picture, GIF, or video of a cat.<br>*Aliases: `randomcat`*
+ * `bird` - Sends a random picture, GIF, or video of a bird.<br>*Aliases: `birb`, `randombird`, `randombirb`*
  * `boop [null|user|username|nickname]` - Boop someone or yourself.<br>*Example: `boop @someone#1234`, `boop someone`, `boop`*
+ * `bunny` - Sends a random picture, GIF, or video of a bunny.<br>*Aliases: `randombunny`, `rabbit`, `randomrabbit`*
  * `dog` - Sends a random picture, GIF, or video of a dog.<br>*Aliases: `randomdog`*
  * `minesweeper [rows(4-20)] [columns(4-20)] [mines(1+)] [copiable?]` - Generates a minesweeper mine field using Discord spoiler tags. The `copiable` argument specifies whether the generated mine field should be copiable (in a code block) or playable; it defaults to 0, and any other number will turn the setting on.<br>Example: `minesweeper 5 10 12`, `minesweeper 5 10 12 1`
  * `reverse [text]` - Reverses a string.<br>Example: `reverse yrotS evaC`
