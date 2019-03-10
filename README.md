@@ -36,6 +36,12 @@ You might also want to specify the path to the bot in the `THIMBLE_ROOT` environ
 export THIMBLE_ROOT="/path/to/thimble-bot"
 ```
 
+To create a new command you can run the included generator script:
+
+```sh
+node bin/createCommand
+```
+
 ## Before committing
 
 Contribution is welcome, but before opening a PR, make sure that your changes pass linting.
