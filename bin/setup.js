@@ -106,6 +106,46 @@ const setup = async () => {
 
   step++;
 
+  section(`${step}. Database settings`);
+
+  const db = await prompt([
+    {
+      type: 'input',
+      name: 'host',
+      message: 'Host'
+    },
+    {
+      type: 'input',
+      name: 'user',
+      message: 'Username'
+    },
+    {
+      type: 'input',
+      mask: '*',
+      name: 'password',
+      message: 'Password'
+    },
+    {
+      type: 'input',
+      name: 'database',
+      message: 'Database name'
+    },
+    {
+      type: 'list',
+      name: 'dialect',
+      choices: [
+        'mysql'
+      ],
+      message: 'Dialect'
+    },
+    {
+      type: 'confirm',
+      name: 'logging',
+      message: 'Enable logging?',
+      default: false
+    }
+  ]);
+
   if (program.statustracker) {
     section(`${step}. StatusTracker settings`);
 
@@ -192,6 +232,7 @@ const setup = async () => {
   if (env === 'production') {
     const config = {
       bot,
+      db,
       StatusTracker: program.statustracker && StatusTracker,
       MovieTracker: program.movietracker && MovieTracker
     };
@@ -210,6 +251,7 @@ const setup = async () => {
   fs.mkdirSync(path.resolve(__dirname, '..', 'config', env));
 
   writeConfig('bot', bot);
+  writeConfig('db', db);
   program.statustracker && writeConfig('StatusTracker', StatusTracker);
   program.movietracker && writeConfig('MovieTracker', MovieTracker);
 
