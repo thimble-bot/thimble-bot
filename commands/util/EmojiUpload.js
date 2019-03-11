@@ -5,7 +5,7 @@ class EmojiUpload extends Command {
     super(client, {
       name: 'emojiupload',
       aliases: [ 'emoteupload', 'emojiup', 'emoteup', 'addemoji', 'addemote' ],
-      group: 'utils',
+      group: 'util',
       memberName: 'emojiupload',
       guildOnly: true,
       description: 'Upload an emoji to the server',

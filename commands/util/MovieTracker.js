@@ -6,7 +6,7 @@ class MovieTracker extends Command {
   constructor(client) {
     super(client, {
       name: 'movies',
-      group: 'utils',
+      group: 'util',
       memberName: 'movies',
       description: 'Get a list of the movies that are airing today on the Romanian/Hungarian TV.',
       examples: [ `${config.bot.prefix}movies` ]

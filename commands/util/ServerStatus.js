@@ -7,7 +7,7 @@ class ServerStatus extends Command {
     super(client, {
       name: 'serverstatus',
       aliases: [ 'ss' ],
-      group: 'utils',
+      group: 'util',
       memberName: 'serverstatus',
       description: 'Checks whether all of my websites are up and running.',
       examples: [ `${config.bot.prefix}serverstatus` ]

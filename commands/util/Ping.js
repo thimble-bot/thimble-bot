@@ -3,9 +3,9 @@ const { Command } = require('discord.js-commando');
 class Ping extends Command {
   constructor(client) {
     super(client, {
-      name: 'ping',
-      group: 'utils',
-      memberName: 'ping',
+      name: 'pingggggg',
+      group: 'util',
+      memberName: 'pingggggg',
       description: 'Ping stats.',
       examples: [ 'ping' ]
     });

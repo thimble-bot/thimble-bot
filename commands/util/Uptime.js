@@ -5,7 +5,7 @@ class Uptime extends Command {
   constructor(client) {
     super(client, {
       name: 'uptime',
-      group: 'utils',
+      group: 'util',
       memberName: 'uptime',
       description: 'Get bot uptime.',
       examples: [ 'uptime' ]

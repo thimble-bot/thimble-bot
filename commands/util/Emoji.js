@@ -12,7 +12,7 @@ class Emoji extends Command {
     super(client, {
       name: 'emoji',
       aliases: [ 'e', 'getemoji', 'emote', 'getemote' ],
-      group: 'utils',
+      group: 'util',
       memberName: 'emoji',
       guildOnly: true,
       description: 'Get the full size version of an emote.',

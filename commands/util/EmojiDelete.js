@@ -5,7 +5,7 @@ class EmojiDelete extends Command {
     super(client, {
       name: 'emojidelete',
       aliases: [ 'emojidel', 'emotedel', 'emotedelete' ],
-      group: 'utils',
+      group: 'util',
       memberName: 'emojidelete',
       guildOnly: true,
       description: 'Delete an emoji.',

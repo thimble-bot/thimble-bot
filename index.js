@@ -26,9 +26,10 @@ client
   .registerGroups([
     [ 'fun', 'Fun commands' ],
     [ 'maintenance', 'Maintenance features' ],
-    [ 'moderation', 'Moderation' ],
-    [ 'utils', 'Utilities' ]
+    [ 'moderation', 'Moderation' ]
   ])
+  .registerDefaultGroups()
+  .registerDefaultCommands()
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.on('ready', () => {

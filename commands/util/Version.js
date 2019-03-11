@@ -5,7 +5,7 @@ class Version extends Command {
   constructor(client) {
     super(client, {
       name: 'version',
-      group: 'utils',
+      group: 'util',
       memberName: 'version',
       description: 'ThimbleBot version.',
       examples: [ 'version' ]

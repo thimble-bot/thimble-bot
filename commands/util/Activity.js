@@ -5,7 +5,7 @@ class Activity extends Command {
   constructor(client) {
     super(client, {
       name: 'activity',
-      group: 'utils',
+      group: 'util',
       memberName: 'activity',
       description: 'Change bot activity.',
       examples: [ `${config.bot.prefix}activity with an owl beanie` ],
