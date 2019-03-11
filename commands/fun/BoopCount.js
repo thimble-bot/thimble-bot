@@ -11,7 +11,7 @@ class BoopCountCommand extends Command {
       args: [
         {
           key: 'user',
-          type: 'user|string',
+          type: 'user',
           default: '',
           prompt: ''
         }
@@ -46,30 +46,15 @@ class BoopCountCommand extends Command {
         return message.say('I cannot be booped, remember? :stuck_out_tongue:');
       }
 
-      const count = await this.getBoopCount(user, message.guild.id);
-      return message.say(this.formatMessage(user, count));
+      try {
+        const count = await this.getBoopCount(user, message.guild.id);
+        return message.say(this.formatMessage(user, count));
+      } catch (err) {
+        return message.say(':x: Failed to retrieve the number of boops.');
+      }
     }
 
-    try {
-      let targetUser;
-
-      if (isNaN(user)) {
-        targetUser = await message.guild.fetchMembers()
-          .then(members => members.filter(m => (m.user.username === user || m.user.nickname === user)))
-          .then(members => members.first());
-      } else {
-        targetUser = await message.guild.fetchMember(user);
-      }
-
-      if (user.id === this.client.user.id) {
-        return message.say('I cannot be booped, remember? :stuck_out_tongue:');
-      }
-
-      const count = await this.getBoopCount(targetUser, message.guild.id);
-      return message.say(this.formatMessage(user, count));
-    } catch (err) {
-      return message.say(':x: Failed to retrieve the number of boops.');
-    }
+    return message.say(':x: Could not find member.');
   }
 };
 

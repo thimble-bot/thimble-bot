@@ -11,7 +11,7 @@ class BoopCommand extends Command {
       args: [
         {
           key: 'user',
-          type: 'user|string',
+          type: 'user',
           default: '',
           prompt: 'Who do you want to boop?'
         }
@@ -106,27 +106,7 @@ class BoopCommand extends Command {
         });
     }
 
-    try {
-      const targetUser = await message.guild.fetchMembers()
-        .then(members => members.filter(m => (m.user.username === user || m.nickname === user)))
-        .then(members => members.first());
-
-      if (targetUser.id === this.client.user.id) {
-        return message.say('Don\'t boop me, silly! :flushed:');
-      }
-
-      if (targetUser.id === message.author.id) {
-        return message.say('Naww, don\'t boop yourself!');
-      }
-
-      return this.boop(message.author.id, targetUser.id, message.guild.id)
-        .then(ct => message.say(this.formatMessage(message.author, targetUser, ct)))
-        .catch(function () {
-          return message.say(':x: Failed to boop the member.');
-        });
-    } catch (err) {
-      return message.say(':x: Could not find member to boop.');
-    }
+    return message.say(':x: Could not find member to boop.');
   }
 };
 

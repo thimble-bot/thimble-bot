@@ -11,7 +11,7 @@ class AvatarCommand extends Command {
         {
           key: 'user',
           prompt: 'Please provide a user.',
-          type: 'user|string',
+          type: 'user',
           default: ''
         }
       ]
@@ -44,21 +44,7 @@ class AvatarCommand extends Command {
       return message.say('', this.generateAttachment(user));
     }
 
-    try {
-      let targetUser;
-
-      if (isNaN(user)) {
-        targetUser = await message.guild.fetchMembers()
-          .then(members => members.filter(m => (m.user.username === user || m.nickname === user)))
-          .then(members => members.first);
-      } else {
-        targetUser = await message.guild.fetchMember(user);
-      }
-
-      return message.say('', this.generateAttachment(targetUser));
-    } catch (err) {
-      return message.say(':x: User not found.');
-    }
+    return message.say(':x: User not found.');
   }
 };
 
