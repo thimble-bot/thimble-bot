@@ -4,7 +4,15 @@ A fast and small general-purpose bot, mainly for my own uses. List of commands c
 
 ## Requirements
 
-At the moment, the only requirement is Node.js (preferably 8.6.x or higher).
+At the moment, the only requirements are Node.js (preferably 8.6.x or higher) and MySQL.
+
+Before installing the bot, make sure you have a user created for it, which you will configure properly in the config file.
+
+```sql
+CREATE USER username@localhost IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON database_name.* TO username@localhost;
+FLUSH PRIVILEGES;
+```
 
 ## Installation
 
@@ -29,6 +37,13 @@ By default, the bot will disable the `serverstatus` and `movies` commands, assum
 node bin/setup -s   # for serverstatus
 node bin/setup -m   # for movies
 node bin/setup -sm  # for both
+```
+
+Create and configure the database:
+
+```sh
+node bin/createDatabase
+node bin/migrate
 ```
 
 You might also want to specify the path to the bot in the `THIMBLE_ROOT` environmental variable inside `/etc/profile`.

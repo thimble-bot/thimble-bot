@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.0 - 2019-03-11
+### Added
+- Database
+- Database creator script
+- Migration creator script
+- Migration script
+- Boopcount command
+- Default Commando commands
+
+### Changed
+- Made commands that require a user as an argument a little tidier
+- Renamed "utils" group to "util"
+- Updated command descriptions and examples
+- Better security for owner-only commands
+- Made boop and boopcount commands guild-only
+- Readme now contains database-specific configuration steps
+- Updated `post-deploy.sh` to run the migrations after deployment
+
+### Deleted
+- Deprecated `ping` command (using commando's built-in one now)
+
 ## 0.2.1 - 2019-03-10
 ### Added
 - Avatar command

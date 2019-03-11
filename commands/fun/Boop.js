@@ -7,6 +7,7 @@ class BoopCommand extends Command {
       name: 'boop',
       group: 'fun',
       memberName: 'boop',
+      guildOnly: true,
       description: 'Boop someone or yourself.',
       examples: [
         '`boop @someone#1234` - Boop someone based on their DiscordTag',

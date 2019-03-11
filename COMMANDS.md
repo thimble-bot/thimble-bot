@@ -13,6 +13,7 @@
  * `cat` - Sends a random picture, GIF, or video of a cat.<br>*Aliases: `randomcat`*
  * `bird` - Sends a random picture, GIF, or video of a bird.<br>*Aliases: `birb`, `randombird`, `randombirb`*
  * `boop [null|user|username|nickname]` - Boop someone or yourself.<br>*Example: `boop @someone#1234`, `boop someone`, `boop`*
+ * `boopcount [null|user|username|nickname]` - Get the number of boops someone has received.
  * `bunny` - Sends a random picture, GIF, or video of a bunny.<br>*Aliases: `randombunny`, `rabbit`, `randomrabbit`*
  * `dog` - Sends a random picture, GIF, or video of a dog.<br>*Aliases: `randomdog`*
  * `minesweeper [rows(4-20)] [columns(4-20)] [mines(1+)] [copiable?]` - Generates a minesweeper mine field using Discord spoiler tags. The `copiable` argument specifies whether the generated mine field should be copiable (in a code block) or playable; it defaults to 0, and any other number will turn the setting on.<br>Example: `minesweeper 5 10 12`, `minesweeper 5 10 12 1`
