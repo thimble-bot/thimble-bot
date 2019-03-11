@@ -17,6 +17,7 @@ if (config.bot.sentry.secret && config.bot.sentry.id) {
 const client = new Commando.Client({
   commandPrefix: config.bot.prefix,
   disableEveryone: true,
+  owner: config.bot.owner,
   unknownCommandResponse: false
 });
 

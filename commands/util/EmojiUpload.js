@@ -9,6 +9,9 @@ class EmojiUpload extends Command {
       memberName: 'emojiupload',
       guildOnly: true,
       description: 'Upload an emoji to the server',
+      examples: [
+        '`addemoji thonk` (+ attached image) - Will upload the attached image as an emoji called "thonk"'
+      ],
       userPermissions: [ 'MANAGE_EMOJIS' ],
       clientPermissions: [ 'MANAGE_EMOJIS' ],
       args: [

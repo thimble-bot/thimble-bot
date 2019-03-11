@@ -8,7 +8,7 @@ class RandomBird extends Command {
       group: 'fun',
       aliases: [ 'randombird', 'birb', 'randombirb' ],
       memberName: 'randombird',
-      description: 'Get a random bird.'
+      description: 'Get a random picture, GIF, or video of a bird.'
     });
   }
 

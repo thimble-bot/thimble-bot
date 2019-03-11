@@ -8,6 +8,10 @@ class MinesweeperCommand extends Command {
       group: 'fun',
       memberName: 'minesweeper',
       description: 'Play Minesweeper using Discord spoiler tags.',
+      examples: [
+        '`minesweeper 8 8 20` - Generate an 8x8 Minesweeper field with 20 mines',
+        '`minesweeper 8 8 20 1` - Generate the code for an 8x8 Minesweeper field with 20 mines'
+      ],
       args: [
         {
           key: 'rows',

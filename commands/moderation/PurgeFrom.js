@@ -9,6 +9,7 @@ class PurgeFrom extends Command {
       guildOnly: true,
       description: 'Purge all messages starting from a given message ID.',
       aliases: [ 'clearfrom', 'deletefrom' ],
+      examples: [ '`purgefrom 123456`' ],
       userPermissions: [ 'MANAGE_MESSAGES' ],
       args: [
         {

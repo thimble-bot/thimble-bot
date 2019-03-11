@@ -16,6 +16,7 @@ class Emoji extends Command {
       memberName: 'emoji',
       guildOnly: true,
       description: 'Get the full size version of an emote.',
+      examples: [ '`e :stuck_out_tongue:`' ],
       args: [
         {
           key: 'emote',

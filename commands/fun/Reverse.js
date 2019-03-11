@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const config = require('../../config');
 
 class Reverse extends Command {
   constructor(client) {
@@ -7,8 +6,8 @@ class Reverse extends Command {
       name: 'reverse',
       group: 'fun',
       memberName: 'reverse',
-      description: 'Reverse text.',
-      examples: [ `${config.bot.prefix}reverse [something]` ],
+      description: 'Get the reverse of a given string.',
+      examples: [ '`reverse Thimble` - will return "elbmihT"' ],
       args: [
         {
           key: 'text',

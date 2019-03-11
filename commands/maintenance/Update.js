@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const config = require('../../config');
 const update = require('../../bin/update');
 
 class Update extends Command {
@@ -8,15 +7,13 @@ class Update extends Command {
       name: 'update',
       group: 'maintenance',
       memberName: 'update',
-      description: 'Update the bot via git.'
+      description: 'Update the bot via git.',
+      ownerOnly: true,
+      guarded: true
     });
   }
 
   run(message) {
-    if (message.author.id !== config.bot.owner) {
-      return;
-    }
-
     message.say('Updating Thimble Bot...');
 
     return update(message.guild.id, message.channel.id);

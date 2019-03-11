@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const config = require('../../config');
 const dateFormat = require('date-fns').format;
 
 class UserInfo extends Command {
@@ -10,8 +9,12 @@ class UserInfo extends Command {
       memberName: 'user',
       aliases: [ 'userinfo', 'profile' ],
       guildOnly: true,
-      description: 'Get info about a user.',
-      examples: [ `${config.bot.prefix}user @username#discrim` ],
+      description: 'Get some basic information about the specified user.',
+      examples: [
+        '`user @someone#1234` - Retrieve the information based on a DiscordTag',
+        '`user someone` - Retrieve the information based on a username/nickname',
+        '`user` - Retrieve information about your own account'
+      ],
       args: [
         {
           key: 'user',

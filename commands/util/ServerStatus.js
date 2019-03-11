@@ -10,15 +10,12 @@ class ServerStatus extends Command {
       group: 'util',
       memberName: 'serverstatus',
       description: 'Checks whether all of my websites are up and running.',
-      examples: [ `${config.bot.prefix}serverstatus` ]
+      guarded: true,
+      ownerOnly: true
     });
   }
 
   async run(message) {
-    if (message.author.id !== config.bot.owner) {
-      return;
-    }
-
     if (!config.StatusTracker) {
       return message.say('The `.serverstatus` command is disabled because it is not configured properly.');
     }

@@ -7,8 +7,7 @@ class Version extends Command {
       name: 'version',
       group: 'util',
       memberName: 'version',
-      description: 'ThimbleBot version.',
-      examples: [ 'version' ]
+      description: 'Get ThimbleBot\'s version.'
     });
   }
 

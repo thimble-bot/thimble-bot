@@ -7,6 +7,11 @@ class AvatarCommand extends Command {
       group: 'fun',
       memberName: 'avatar',
       description: 'Get the avatar of a certain user.',
+      examples: [
+        '`avatar @someone#1234` - Get someone\'s avatar based on their DiscordTag',
+        '`avatar someone` - Get someone\'s avatar based on their username/nickname',
+        '`avatar` - Get your own avatar'
+      ],
       args: [
         {
           key: 'user',

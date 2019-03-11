@@ -8,6 +8,11 @@ class BoopCommand extends Command {
       group: 'fun',
       memberName: 'boop',
       description: 'Boop someone or yourself.',
+      examples: [
+        '`boop @someone#1234` - Boop someone based on their DiscordTag',
+        '`boop someone` - Boop someone based on their username/nickname',
+        '`boop` - Ask the bot to boop you'
+      ],
       args: [
         {
           key: 'user',

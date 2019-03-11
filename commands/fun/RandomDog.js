@@ -1,6 +1,5 @@
 const { Command } = require('discord.js-commando');
 const axios = require('axios');
-const config = require('../../config');
 
 class RandomDog extends Command {
   constructor(client) {
@@ -9,8 +8,7 @@ class RandomDog extends Command {
       group: 'fun',
       aliases: [ 'randomdog' ],
       memberName: 'randomdog',
-      description: 'Get a random dog.',
-      examples: [ `${config.bot.prefix}dog` ]
+      description: 'Get a random picture, GIF, or video of a dog.'
     });
   }
 

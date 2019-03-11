@@ -9,6 +9,7 @@ class EmojiDelete extends Command {
       memberName: 'emojidelete',
       guildOnly: true,
       description: 'Delete an emoji.',
+      examples: [ '`emojidel :some_emoji:` - Will delete "some_emoji" from the server' ],
       userPermissions: [ 'MANAGE_EMOJIS' ],
       clientPermissions: [ 'MANAGE_EMOJIS' ],
       args: [

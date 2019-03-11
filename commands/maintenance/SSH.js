@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const config = require('../../config');
 const { exec } = require('child_process');
 
 const splitOutput = (str, len) => {
@@ -15,6 +14,8 @@ class SSHCommand extends Command {
       group: 'maintenance',
       memberName: 'ssh',
       description: 'Send single SSH commands to the server.',
+      guarded: true,
+      ownerOnly: true,
       args: [
         {
           key: 'command',
@@ -26,10 +27,6 @@ class SSHCommand extends Command {
   }
 
   run(message, { command }) {
-    if (message.author.id !== config.bot.owner) {
-      return;
-    }
-
     exec(command, (err, stdout, stderr) => {
       const returnedOutput = [];
 

@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const config = require('../../config').bot;
 
 class Purge extends Command {
   constructor(client) {
@@ -8,8 +7,10 @@ class Purge extends Command {
       group: 'moderation',
       memberName: 'purge',
       guildOnly: true,
-      description: 'Purge messages.',
-      examples: [ `${config.prefix}purge 2-100` ],
+      description: 'Purge the last `n` (2-100) messages.',
+      examples: [
+        '`purge 20` - Will purge up to the last 20 messages'
+      ],
       aliases: [ 'clean', 'clear' ],
       userPermissions: [ 'MANAGE_MESSAGES' ],
       args: [

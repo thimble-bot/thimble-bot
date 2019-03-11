@@ -1,5 +1,4 @@
 const { Command } = require('discord.js-commando');
-const config = require('../../config').bot;
 
 class Kick extends Command {
   constructor(client) {
@@ -10,8 +9,8 @@ class Kick extends Command {
       guildOnly: true,
       description: 'Ban a member.',
       examples: [
-        `${config.prefix}ban @user#discrim`,
-        `${config.prefix}ban @user#discrim reason`
+        '`ban @someone#1234` - Ban a user',
+        '`ban @someone#1234 reason` - Ban a user with a reason'
       ],
       userPermissions: [ 'BAN_MEMBERS' ],
       clientPermissions: [ 'BAN_MEMBERS' ],

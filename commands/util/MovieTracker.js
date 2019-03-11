@@ -9,15 +9,12 @@ class MovieTracker extends Command {
       group: 'util',
       memberName: 'movies',
       description: 'Get a list of the movies that are airing today on the Romanian/Hungarian TV.',
-      examples: [ `${config.bot.prefix}movies` ]
+      guarded: true,
+      ownerOnly: true
     });
   }
 
   async run(message) {
-    if (message.author.id !== config.bot.owner) {
-      return;
-    }
-
     if (!config.MovieTracker) {
       return message.say('The `.movies` command is disabled because it is not configured properly.');
     }

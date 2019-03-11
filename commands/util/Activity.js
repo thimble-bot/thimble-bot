@@ -8,7 +8,8 @@ class Activity extends Command {
       group: 'util',
       memberName: 'activity',
       description: 'Change bot activity.',
-      examples: [ `${config.bot.prefix}activity with an owl beanie` ],
+      guarded: true,
+      ownerOnly: true,
       args: [
         {
           key: 'input',
@@ -20,10 +21,6 @@ class Activity extends Command {
   }
 
   async run(message, { input }) {
-    if (message.author.id !== config.bot.owner) {
-      return message.say(':warning: Only the bot owner can perform this action.');
-    }
-
     if (input === 'reset') {
       input = config.bot.activity;
     }

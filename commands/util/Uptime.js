@@ -7,8 +7,7 @@ class Uptime extends Command {
       name: 'uptime',
       group: 'util',
       memberName: 'uptime',
-      description: 'Get bot uptime.',
-      examples: [ 'uptime' ]
+      description: 'Get the bot\'s uptime.'
     });
   }
 

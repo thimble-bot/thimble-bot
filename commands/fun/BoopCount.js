@@ -8,6 +8,11 @@ class BoopCountCommand extends Command {
       group: 'fun',
       memberName: 'boopcount',
       description: 'Check your or someone else\'s current boop count.',
+      examples: [
+        '`boopcount @someone#1234` - Get someone\'s boop count based on their DiscordTag)',
+        '`boopcount someone` - Get someone\'s boop count based on their username/nickname',
+        '`boopcount` - Get your own boop count'
+      ],
       args: [
         {
           key: 'user',
