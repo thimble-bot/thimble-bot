@@ -40,7 +40,7 @@ class BoopCommand extends Command {
   }
 
   ordinal(n) {
-    if (n % 100 === 11 || n % 100 === 12) {
+    if (n % 100 > 10 && n % 100 < 14) {
       return `${n}th`;
     }
 
