@@ -40,6 +40,10 @@ class BoopCommand extends Command {
   }
 
   ordinal(n) {
+    if (n % 100 === 11 || n % 100 === 12) {
+      return `${n}th`;
+    }
+
     if (n % 10 === 1) {
       return `${n}st`;
     }
