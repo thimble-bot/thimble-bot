@@ -20,7 +20,7 @@ class BeeMovieCommand extends Command {
     const paragraphs = contents.split('\n\n');
     const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
 
-    return message.say(`${randomParagraph}.`);
+    return message.say(randomParagraph);
   }
 };
 
