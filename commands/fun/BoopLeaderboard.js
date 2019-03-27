@@ -13,13 +13,12 @@ class BoopLeaderboardCommand extends Command {
       description: 'Get the boop leaderboard for the current server.'
     });
 
-    this.members = [];
+    this.boopers = [];
+    this.booped = [];
   }
 
-  async generateEmbed(guild) {
-    const client = this.client;
-
-    return Promise.all(this.members.map(async (member, idx) => {
+  mapMembers(arr, guild) {
+    return Promise.all(arr.map(async (member, idx) => {
       const memberData = await guild.members.find(m => parseInt(m.id, 10) === parseInt(member.id, 10));
 
       if (memberData) {
@@ -29,27 +28,38 @@ class BoopLeaderboardCommand extends Command {
       }
     }))
       .then(membersMap => membersMap.join('\n'))
-      .then(body => {
-        return {
-          embed: {
-            title: `${guild.name} Boop Leaderboard`,
-            author: {
-              name: client.user.tag,
-              icon_url: client.user.avatarURL
-            },
-            fields: [
-              {
-                name: 'TOP Booped Members',
-                value: body || 'Error'
-              }
-            ],
-            timestamp: new Date(),
-            footer: {
-              text: '<3'
-            }
-          }
-        };
+      .catch(err => {
+        console.error(err);
+        return err;
       });
+  }
+
+  async generateEmbed(guild) {
+    return {
+      embed: {
+        title: `${guild.name}'s Boop Leaderboard`,
+        author: {
+          name: this.client.user.tag,
+          icon_url: this.client.user.avatarURL
+        },
+        fields: [
+          {
+            name: 'Top Booped Members',
+            value: await this.mapMembers(this.booped, guild),
+            inline: true
+          },
+          {
+            name: 'Top Boopers',
+            value: await this.mapMembers(this.boopers, guild),
+            inline: true
+          }
+        ],
+        timestamp: new Date(),
+        footer: {
+          text: '<3'
+        }
+      }
+    };
   }
 
   fill(guild) {
@@ -57,18 +67,30 @@ class BoopLeaderboardCommand extends Command {
 
     return Boop.findAll({ where: { guild } })
       .then(records => records.forEach(record => {
-        const idx = findIndex(this.members, m => m.id === record.receiver);
+        const boopedIdx = findIndex(this.booped, m => m.id === record.receiver);
+        const booperIdx = findIndex(this.boopers, m => m.id === record.sender);
 
-        if (idx === -1) {
-          return this.members.push({ id: record.receiver, count: 1 });
+        if (boopedIdx === -1) {
+          this.booped.push({ id: record.receiver, count: 1 });
+        } else {
+          this.booped[boopedIdx].count++;
         }
 
-        return this.members[idx].count++;
+        if (booperIdx === -1) {
+          this.boopers.push({ id: record.sender, count: 1 });
+        } else {
+          this.boopers[booperIdx].count++;
+        }
       }));
   }
 
-  sort() {
-    return this.members.sort((a, b) => b.count - a.count);
+  sort(arr) {
+    return arr.sort((a, b) => b.count - a.count).slice(0, 10);
+  }
+
+  cleanup() {
+    this.booped = [];
+    this.boopers = [];
   }
 
   async run(message) {
@@ -76,9 +98,12 @@ class BoopLeaderboardCommand extends Command {
 
     try {
       await this.fill(guild.id);
-      this.members = await this.sort();
-      this.members = this.members.slice(0, 10);
+      this.booped = await this.sort(this.booped);
+      this.boopers = await this.sort(this.boopers);
       const contents = await this.generateEmbed(guild);
+
+      this.cleanup();
+
       return message.say(contents);
     } catch (err) {
       console.error(err);
