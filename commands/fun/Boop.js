@@ -27,6 +27,9 @@ class BoopCommand extends Command {
   }
 
   areBoopsDisabled(guild, userId) {
+    guild = parseInt(guild, 10);
+    userId = parseInt(userId, 10);
+
     return BoopOptout.count({ where: { guild, userId } });
   }
 
