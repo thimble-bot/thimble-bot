@@ -1,5 +1,6 @@
 const { Command } = require('discord.js-commando');
 const Boop = require('../../db/models/boops/Boop');
+const BoopOptout = require('../../db/models/boops/Optout');
 
 class BoopCountCommand extends Command {
   constructor(client) {
@@ -25,6 +26,10 @@ class BoopCountCommand extends Command {
     });
   }
 
+  areBoopsDisabled(guild, userId) {
+    return BoopOptout.count({ where: { guild, userId } });
+  }
+
   getBoopCount(user, guild) {
     return new Promise((resolve, reject) => {
       return Boop.count({
@@ -45,6 +50,15 @@ class BoopCountCommand extends Command {
   async run(message, { user }) {
     if (!user) {
       user = message.author;
+    }
+
+    try {
+      const areBoopsDisabled = await this.areBoopsDisabled(message.guild.id, user.id);
+      if (areBoopsDisabled) {
+        return message.say(':warning: Cannot view the boop count of this user because they have opted out of getting booped.');
+      }
+    } catch (err) {
+      return message.say(':x: Failed to fetch boop state.');
     }
 
     if (user && user.id) {
