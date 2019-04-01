@@ -17,7 +17,7 @@ client.on('message', async message => {
   if (message.content.startsWith('.')) {
     const rand = Math.floor(Math.random() * 1e6);
 
-    if (rand % 2 === 1 && `${rand}`.length === 5) {
+    if (rand % 2 === 1 && `${rand}`.length === 5 && parseInt(`${rand}`[0], 10) % 2 === 0) {
       const image = await dinky().search([ 'safe' ]).random();
       return message.channel.send('', {
         file: {
