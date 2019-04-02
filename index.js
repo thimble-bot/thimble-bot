@@ -1,43 +1,56 @@
-const Discord = require('discord.js');
-const dinky = require('dinky.js');
+const Commando = require('discord.js-commando');
+const path = require('path');
+const Raven = require('raven');
 
 const config = require('./config');
 
-const client = new Discord.Client();
+const log = require('./lib/Logger');
 
-client.on('ready', () => {
-  console.log('Bot started...');
+const ServerStatusWorker = require('./workers/ServerStatusWorker');
+const MoviesWorker = require('./workers/MoviesWorker');
 
-  if (config.bot.activity) {
-    client.setActivity('zzzzZzZZZzzZZzzZZzzZZZ');
-  }
+if (config.bot.sentry.secret && config.bot.sentry.id) {
+  const dsn = `https://${config.bot.sentry.public}:${config.bot.sentry.secret}@sentry.io/${config.bot.sentry.id}`;
+  Raven.config(dsn).install();
+}
+
+const client = new Commando.Client({
+  commandPrefix: config.bot.prefix,
+  disableEveryone: true,
+  owner: config.bot.owner,
+  unknownCommandResponse: false
 });
 
-client.on('message', async message => {
-  if (message.content.startsWith('.')) {
-    const rand = Math.floor(Math.random() * 1e6);
+client
+  .registry
+  .registerDefaultTypes()
+  .registerGroups([
+    [ 'fun', 'Fun commands' ],
+    [ 'maintenance', 'Maintenance features' ],
+    [ 'moderation', 'Moderation' ]
+  ])
+  .registerDefaultGroups()
+  .registerDefaultCommands()
+  .registerCommandsIn(path.join(__dirname, 'commands'));
 
-    if (rand % 2 === 1 && `${rand}`.length === 5 && parseInt(`${rand}`[0], 10) % 2 === 0) {
-      const image = await dinky().search([ 'safe' ]).random();
-      return message.channel.send('', {
-        file: {
-          attachment: `https:${image.image}`,
-          name: `happy-april-1st.${image.image.split('.').pop()}`
-        }
-      });
+client.on('ready', () => {
+  console.log('Bot started.');
+
+  if (config.bot.activity) {
+    client.setActivity(config.bot.activity);
+  }
+
+  ServerStatusWorker(client);
+  MoviesWorker(client);
+});
+
+client.on('message', message => {
+  if (message.guild && message.content.startsWith(config.bot.prefix)) {
+    const command = message.content.slice(1).split(' ')[0].toLowerCase();
+
+    if (client.registry.commands.array().find(cmd => cmd.name === command || cmd.aliases.includes(command))) {
+      log(client, message, command);
     }
-
-    const messages = [
-      'Nooooo, i\'m tired, leave me alone :(',
-      'Can\'t you do it yourself though? Learn how here: <https://thimblebot.xyz/custom-commands>',
-      'No.',
-      'just 5 more minutes, please........',
-      'stop that.',
-      'do you not have anything better to do?',
-      'jesus christ, i cant get a moment\'s peace around here, can i?'
-    ];
-
-    return message.channel.send(messages[Math.floor(Math.random() * messages.length)]);
   }
 });
 
