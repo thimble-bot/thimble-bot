@@ -13,10 +13,6 @@ class ServerInfoCommand extends Command {
     });
   }
 
-  mapEmojis(emojis) {
-    return emojis.array().map(e => e.toString()).join('');
-  }
-
   generateEmbed(guild) {
     return {
       embed: {
@@ -61,10 +57,6 @@ class ServerInfoCommand extends Command {
             name: 'Owner:',
             value: guild.owner.user.tag,
             inline: true
-          },
-          {
-            name: 'Emojis:',
-            value: this.mapEmojis(guild.emojis) || 'This server does not have emojis.'
           }
         ],
         timestamp: new Date(),
