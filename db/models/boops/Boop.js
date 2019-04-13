@@ -10,15 +10,15 @@ const Boop = db.define('boop', {
     defaultValue: db.Sequelize.NOW
   },
   sender: {
-    type: db.Sequelize.BIGINT,
+    type: db.Sequelize.STRING,
     allowNull: false
   },
   receiver: {
-    type: db.Sequelize.BIGINT,
+    type: db.Sequelize.STRING,
     allowNull: false
   },
   guild: {
-    type: db.Sequelize.BIGINT,
+    type: db.Sequelize.STRING,
     allowNull: false
   }
 });

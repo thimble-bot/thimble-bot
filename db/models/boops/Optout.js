@@ -10,11 +10,11 @@ const Optout = db.define('optouts', {
     defaultValue: db.Sequelize.NOW
   },
   guild: {
-    type: db.Sequelize.BIGINT,
+    type: db.Sequelize.STRING,
     allowNull: false
   },
   userId: {
-    type: db.Sequelize.BIGINT,
+    type: db.Sequelize.STRING,
     allowNull: false
   }
 }, {
