@@ -27,6 +27,9 @@ class BoopCommand extends Command {
   }
 
   areBoopsDisabled(guild, userId) {
+    guild = parseInt(guild, 10);
+    userId = parseInt(userId, 10);
+
     return BoopOptout.count({ where: { guild, userId } });
   }
 
@@ -75,6 +78,10 @@ class BoopCommand extends Command {
   }
 
   boop(sender, receiver, guild) {
+    sender = parseInt(sender, 10);
+    receiver = parseInt(receiver, 10);
+    guild = parseInt(guild, 10);
+
     return new Promise((resolve, reject) => {
       return Boop.create({
         sender,

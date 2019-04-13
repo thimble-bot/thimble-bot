@@ -46,8 +46,8 @@ class ToggleBoopCommand extends Command {
   }
 
   async run(message) {
-    const userId = message.author.id;
-    const guild = message.guild.id;
+    const userId = parseInt(message.author.id, 10);
+    const guild = parseInt(message.guild.id, 10);
 
     try {
       this.currentState = await this.getCurrentState(userId, guild);

@@ -27,6 +27,9 @@ class BoopCountCommand extends Command {
   }
 
   areBoopsDisabled(guild, userId) {
+    guild = parseInt(guild, 10);
+    userId = parseInt(userId, 10);
+
     return BoopOptout.count({ where: { guild, userId } });
   }
 
@@ -34,8 +37,8 @@ class BoopCountCommand extends Command {
     return new Promise((resolve, reject) => {
       return Boop.count({
         where: {
-          receiver: user.id,
-          guild
+          receiver: parseInt(user.id, 10),
+          guild: parseInt(guild, 10)
         }
       })
         .then(ct => resolve(ct))
