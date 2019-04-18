@@ -27,7 +27,8 @@ client
   .registerGroups([
     [ 'fun', 'Fun commands' ],
     [ 'maintenance', 'Maintenance features' ],
-    [ 'moderation', 'Moderation' ]
+    [ 'moderation', 'Moderation' ],
+    [ 'boop', 'Boop commands' ]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands()
