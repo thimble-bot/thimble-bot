@@ -22,7 +22,11 @@ class BoopCommand extends Command {
           default: '',
           prompt: 'Who do you want to boop?'
         }
-      ]
+      ],
+      throttling: {
+        usages: 10,
+        duration: 60
+      }
     });
   }
 

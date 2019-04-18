@@ -5,11 +5,15 @@ class ToggleBoopCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'toggleboop',
-      group: 'fun',
+      group: 'boop',
       memberName: 'toggleboop',
       aliases: [ 'toggleboops' ],
       guildOnly: true,
-      description: 'Allow or disable getting booped.'
+      description: 'Allow or disable getting booped.',
+      throttling: {
+        usages: 2,
+        duration: 30 * 60
+      }
     });
   }
 
@@ -46,8 +50,10 @@ class ToggleBoopCommand extends Command {
   }
 
   async run(message) {
-    const userId = parseInt(message.author.id, 10);
-    const guild = parseInt(message.guild.id, 10);
+    console.log(this.throttle(message.author.id));
+
+    const userId = message.author.id;
+    const guild = message.guild.id;
 
     try {
       this.currentState = await this.getCurrentState(userId, guild);
