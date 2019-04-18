@@ -22,7 +22,7 @@ class RandomPonyCommand extends Command {
     this.filteredKeywords = [
       'explicit',
       'questionable',
-      'suggesitve',
+      'suggestive',
       'notsafe',
       '!safe',
       'abuse',
