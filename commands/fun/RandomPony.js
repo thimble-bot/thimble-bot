@@ -18,13 +18,27 @@ class RandomPonyCommand extends Command {
         }
       ]
     });
+
+    this.filteredKeywords = [
+      'explicit',
+      'questionable',
+      'suggesitve',
+      'notsafe',
+      '!safe',
+      'abuse',
+      'nazi',
+      'communism',
+      'grimdark',
+      'semi-grimdark',
+      'grotesque'
+    ];
   }
 
   queryHasNSFW(query) {
     query = query.split(' ').join('').toLowerCase();
 
     return new Promise(resolve => {
-      [ 'explicit', 'questionable', 'suggestive', 'notsafe', '!safe' ].forEach(keyword => {
+      this.filteredKeywords.forEach(keyword => {
         if (query.toLowerCase().includes(keyword)) {
           return resolve(true);
         }
@@ -75,7 +89,7 @@ class RandomPonyCommand extends Command {
 
       return waiting.delete();
     } catch (err) {
-      return waiting.edit(':x: Failed to fetch message.');
+      return waiting.edit(':x: Failed to fetch image.');
     }
   }
 };
