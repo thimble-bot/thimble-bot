@@ -6,7 +6,7 @@ class BoopLeaderboardCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'boopleaderboard',
-      group: 'fun',
+      group: 'boop',
       memberName: 'boopleaderboard',
       aliases: [ 'bl', 'boopstats', 'boopstat' ],
       guildOnly: true,
@@ -19,7 +19,7 @@ class BoopLeaderboardCommand extends Command {
 
   mapMembers(arr, guild) {
     return Promise.all(arr.map(async (member, idx) => {
-      const memberData = await guild.members.find(m => parseInt(m.id, 10) === parseInt(member.id, 10));
+      const memberData = await guild.members.find(m => m.id === member.id);
 
       if (memberData) {
         return `${idx + 1}. ${memberData.user.username} (${member.count})`;
@@ -63,8 +63,6 @@ class BoopLeaderboardCommand extends Command {
   }
 
   fill(guild) {
-    guild = parseInt(guild, 10);
-
     return Boop.findAll({ where: { guild } })
       .then(records => records.forEach(record => {
         const boopedIdx = findIndex(this.booped, m => m.id === record.receiver);
