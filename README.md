@@ -1,4 +1,4 @@
-# Thimble Bot
+<img src="assets/avatar.png" align="right" width="180px"> <h1>Thimble Bot</h1>
 
 A fast and small general-purpose bot, mainly for my own uses. List of commands can be found [here](https://github.com/jozsefsallai/thimble-bot/blob/master/COMMANDS.md).
 
@@ -70,3 +70,5 @@ yarn lint
 All rights reserved. (for now)
 
 *If you want to use this bot on your Discord server, let me know first by contacting me via email or other mediums.*
+
+*(avatar by [Ch-Chau](https://www.deviantart.com/ch-chau/))*
