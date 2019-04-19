@@ -5,6 +5,7 @@ const Raven = require('raven');
 const config = require('./config');
 
 const log = require('./lib/Logger');
+const Guild = require('./db/models/guilds/Guild');
 
 const ServerStatusWorker = require('./workers/ServerStatusWorker');
 const MoviesWorker = require('./workers/MoviesWorker');
@@ -53,6 +54,16 @@ client.on('message', message => {
       log(client, message, command);
     }
   }
+});
+
+client.on('guildCreate', guild => {
+  return Guild.create({ guildId: guild.id })
+    .catch(err => console.error(err));
+});
+
+client.on('guildDelete', guild => {
+  return Guild.destroy({ where: { guildId: guild.id } })
+    .catch(err => console.error(err));
 });
 
 client.login(config.bot.token);
