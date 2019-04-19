@@ -564,6 +564,13 @@ doctrine@^2.1.0:
   dependencies:
     esutils "^2.0.2"
 
+dogeify-js@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/dogeify-js/-/dogeify-js-1.1.0.tgz#c176614b12b039edefb70ce6324c934c4cc11106"
+  integrity sha512-V9WFYszyEEciGMg5CoeVlAhQoz7rDOP6pw9E3q6mouBAZ66Gn5Z7v2aSTa9r3tYId9kOcL0kaC19SBILQCtfXQ==
+  dependencies:
+    pos "^0.4.2"
+
 dom-serializer@0, dom-serializer@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
@@ -1639,6 +1646,11 @@ pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
   integrity sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==
+
+pos@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/pos/-/pos-0.4.2.tgz#20e9c77fbeedcc356823cea63c7585cace93be2a"
+  integrity sha1-IOnHf77tzDVoI86mPHWFys6Tvio=
 
 prebuild-install@^5.2.2:
   version "5.2.3"
