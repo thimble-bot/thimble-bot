@@ -48,8 +48,11 @@ class RandomPonyCommand extends Command {
     });
   }
 
-  generateKeywords(query) {
-    return query.split(/[,(&&)]+/).map(k => k.trim());
+  generateKeywords(query, isChannelNSFW) {
+    const split = query.split(/[,(&&)]+/).map(k => k.trim());
+    return isChannelNSFW
+      ? split
+      : [ 'safe', ...split ];
   }
 
   getFileName(src) {
@@ -67,7 +70,7 @@ class RandomPonyCommand extends Command {
     const waiting = await message.say('Fetching cartoon horses...');
 
     const keywords = query
-      ? this.generateKeywords(query)
+      ? this.generateKeywords(query, isChannelNSFW)
       : [ 'safe' ];
 
     // search uses "Everything" filter to include NSFW results where necessary
