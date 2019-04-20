@@ -1,0 +1,350 @@
+{
+  "util": {
+    "meta": {
+      "name": "Utilities",
+      "description": "Mostly useful commands."
+    },
+    "commands": [
+      {
+        "name": "activity",
+        "description": "Change bot activity.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "ascii",
+        "description": "Convert text into ASCII.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "emoji",
+        "description": "Get the full size version of an emote.",
+        "aliases": [
+          "e",
+          "getemoji",
+          "emote",
+          "getemote"
+        ],
+        "examples": [
+          "`e :stuck_out_tongue:`"
+        ]
+      },
+      {
+        "name": "emojidelete",
+        "description": "Delete an emoji.",
+        "aliases": [
+          "emojidel",
+          "emotedel",
+          "emotedelete"
+        ],
+        "examples": [
+          "`emojidel :some_emoji:` - Will delete \"some_emoji\" from the server"
+        ]
+      },
+      {
+        "name": "emojiupload",
+        "description": "Upload an emoji to the server",
+        "aliases": [
+          "emoteupload",
+          "emojiup",
+          "emoteup",
+          "addemoji",
+          "addemote"
+        ],
+        "examples": [
+          "`addemoji thonk` (+ attached image) - Will upload the attached image as an emoji called \"thonk\""
+        ]
+      },
+      {
+        "name": "imageresize",
+        "description": "Proportionally resize an image based on a new width (px). Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.",
+        "aliases": [
+          "ir"
+        ],
+        "examples": [
+          "`upscale 700` - proportionally resize an image, new width is 700 pixels"
+        ]
+      },
+      {
+        "name": "lmgtfy",
+        "description": "Generate a \"Let Me Google That For You\" link.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "movies",
+        "description": "Get a list of the movies that are airing today on the Romanian/Hungarian TV.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "remoteecho",
+        "description": "Echo something to a server from a different server.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "serverinfo",
+        "description": "Get some information about the current server.",
+        "aliases": [
+          "server",
+          "guild",
+          "guildinfo"
+        ],
+        "examples": null
+      },
+      {
+        "name": "serverstatus",
+        "description": "Checks whether all of my websites are up and running.",
+        "aliases": [
+          "ss"
+        ],
+        "examples": null
+      },
+      {
+        "name": "upscale",
+        "description": "Upscale an image by a certain amount. Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.",
+        "aliases": [],
+        "examples": [
+          "`upscale 3` - upscale an image 3 times its original size"
+        ]
+      },
+      {
+        "name": "uptime",
+        "description": "Get the bot's uptime.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "version",
+        "description": "Get ThimbleBot's version.",
+        "aliases": [],
+        "examples": null
+      }
+    ]
+  },
+  "fun": {
+    "meta": {
+      "name": "Fun",
+      "description": "Fun/meme commands."
+    },
+    "commands": [
+      {
+        "name": "8ball",
+        "description": "Ask the 8-Ball any question.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "avatar",
+        "description": "Get the avatar of a certain user.",
+        "aliases": [],
+        "examples": [
+          "`avatar @someone#1234` - Get someone's avatar based on their DiscordTag",
+          "`avatar someone` - Get someone's avatar based on their username/nickname",
+          "`avatar` - Get your own avatar"
+        ]
+      },
+      {
+        "name": "beemovie",
+        "description": "Get a random sentence from the Bee Movie script.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "beemovie",
+        "description": "Get a random sentence from the Bee Movie script.",
+        "aliases": [],
+        "examples": null
+      },
+      {
+        "name": "doge",
+        "description": "Dogeifies a given string.",
+        "aliases": [
+          "dogeify"
+        ],
+        "examples": null
+      },
+      {
+        "name": "hyphen",
+        "description": "Place the hyphen one word to the right in every [adjective]-ass [noun] sequence. https://xkcd.com/37/",
+        "aliases": [
+          "xkcd37"
+        ],
+        "examples": null
+      },
+      {
+        "name": "minesweeper",
+        "description": "Play Minesweeper using Discord spoiler tags.",
+        "aliases": [],
+        "examples": [
+          "`minesweeper 8 8 20` - Generate an 8x8 Minesweeper field with 20 mines",
+          "`minesweeper 8 8 20 1` - Generate the code for an 8x8 Minesweeper field with 20 mines"
+        ]
+      },
+      {
+        "name": "bird",
+        "description": "Get a random picture, GIF, or video of a bird.",
+        "aliases": [
+          "randombird",
+          "birb",
+          "randombirb"
+        ],
+        "examples": null
+      },
+      {
+        "name": "randombunny",
+        "description": "Get a random GIF of a bunny.",
+        "aliases": [
+          "bunny",
+          "randomrabbit",
+          "rabbit"
+        ],
+        "examples": null
+      },
+      {
+        "name": "cat",
+        "description": "Get a random picture, GIF, or video of a cat.",
+        "aliases": [
+          "randomcat"
+        ],
+        "examples": null
+      },
+      {
+        "name": "dog",
+        "description": "Get a random picture, GIF, or video of a dog.",
+        "aliases": [
+          "randomdog"
+        ],
+        "examples": null
+      },
+      {
+        "name": "randompony",
+        "description": "Get a random pony picture or GIF. Uses the Derpibooru search syntax: https://derpibooru.org/search/syntax",
+        "aliases": [
+          "pony",
+          "randommlp",
+          "mlprandom",
+          "mlp"
+        ],
+        "examples": null
+      },
+      {
+        "name": "reverse",
+        "description": "Get the reverse of a given string.",
+        "aliases": [],
+        "examples": [
+          "`reverse Thimble` - will return \"elbmihT\""
+        ]
+      },
+      {
+        "name": "user",
+        "description": "Get some basic information about the specified user.",
+        "aliases": [
+          "userinfo",
+          "profile"
+        ],
+        "examples": [
+          "`user @someone#1234` - Retrieve the information based on a DiscordTag",
+          "`user someone` - Retrieve the information based on a username/nickname",
+          "`user` - Retrieve information about your own account"
+        ]
+      }
+    ]
+  },
+  "moderation": {
+    "meta": {
+      "name": "Moderation",
+      "description": "Commands for server moderation."
+    },
+    "commands": [
+      {
+        "name": "ban",
+        "description": "Ban a member.",
+        "aliases": [],
+        "examples": [
+          "`ban @someone#1234` - Ban a user",
+          "`ban @someone#1234 reason` - Ban a user with a reason"
+        ]
+      },
+      {
+        "name": "kick",
+        "description": "Kick a member.",
+        "aliases": [],
+        "examples": [
+          "`kick @someone#1234` - Kick someone",
+          "`kick @someone#1234 reason` - Kick someone with a reason"
+        ]
+      },
+      {
+        "name": "purge",
+        "description": "Purge the last `n` (2-100) messages.",
+        "aliases": [
+          "clean",
+          "clear"
+        ],
+        "examples": [
+          "`purge 20` - Will purge up to the last 20 messages"
+        ]
+      },
+      {
+        "name": "purgefrom",
+        "description": "Purge all messages starting from a given message ID.",
+        "aliases": [
+          "clearfrom",
+          "deletefrom"
+        ],
+        "examples": [
+          "`purgefrom 123456`"
+        ]
+      }
+    ]
+  },
+  "boop": {
+    "meta": {
+      "name": "Boop",
+      "description": "The boop command and the commands related to it."
+    },
+    "commands": [
+      {
+        "name": "boop",
+        "description": "Boop someone or yourself.",
+        "aliases": [],
+        "examples": [
+          "`boop @someone#1234` - Boop someone based on their DiscordTag",
+          "`boop someone` - Boop someone based on their username/nickname",
+          "`boop` - Ask the bot to boop you"
+        ]
+      },
+      {
+        "name": "boopcount",
+        "description": "Check your or someone else's current boop count.",
+        "aliases": [],
+        "examples": [
+          "`boopcount @someone#1234` - Get someone's boop count based on their DiscordTag)",
+          "`boopcount someone` - Get someone's boop count based on their username/nickname",
+          "`boopcount` - Get your own boop count"
+        ]
+      },
+      {
+        "name": "boopleaderboard",
+        "description": "Get the boop leaderboard for the current server.",
+        "aliases": [
+          "bl",
+          "boopstats",
+          "boopstat"
+        ],
+        "examples": null
+      },
+      {
+        "name": "toggleboop",
+        "description": "Allow or disable getting booped.",
+        "aliases": [
+          "toggleboops"
+        ],
+        "examples": null
+      }
+    ]
+  }
+}
