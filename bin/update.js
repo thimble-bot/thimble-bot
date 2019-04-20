@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
-const { version } = require('../package');
 const path = require('path');
+const fs = require('fs');
 const { exec } = require('child_process');
+const currentCommit = require('git-current-commit');
 
 const config = require('../config');
 
@@ -32,7 +33,17 @@ const update = (guild, channel) => {
       }
     });
 
-    say(client, `Updated successfully! The current version is: \`v${version}\``);
+    let version;
+
+    if (config.bot.isMasterBranch) {
+      version = currentCommit.sync();
+    } else {
+      const packageFile = fs.readFileSync(path.join(__dirname, '..', 'package.json'), { encoding: 'utf8' });
+      const packageContents = JSON.parse(packageFile);
+      version = 'v' + packageContents.version;
+    }
+
+    say(client, `Updated successfully! The current version is: \`${version}\``);
     client.destroy();
   });
 

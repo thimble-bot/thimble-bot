@@ -1,5 +1,7 @@
 const { Command } = require('discord.js-commando');
 const { version } = require('../../package');
+const config = require('../../config').bot;
+const currentCommit = require('git-current-commit');
 
 class Version extends Command {
   constructor(client) {
@@ -12,7 +14,10 @@ class Version extends Command {
   }
 
   run(message) {
-    const output = '`Thimble Bot v' + version + '`';
+    const thimbleVersion = config.isMasterBranch
+      ? currentCommit.sync()
+      : `v${version}`;
+    const output = '`Thimble Bot ' + thimbleVersion + '`';
     return message.say(output);
   }
 };
