@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.3 - 2019-04-20
+### Added
+- Boop command group
+- Avatar to README
+- Throttling for the `boop` and `toggleboop` commands
+- randompony command
+- 8ball command
+- Dogeify command
+- ASCII command
+- LMGTFY command
+- Hyphen/xkcd37 command
+- Guilds model (storing guild-specific settings in a database)
+- StalinSort command
+- Command list generator script
+
+### Changed
+- Refactored boop command
+- Better version output
+- README update
+- Updated travis requirement settings
+
 ## 0.3.2 - 2019-04-11
 ### Added
 - Boop leaderboard and command
