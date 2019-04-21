@@ -1,0 +1,159 @@
+@import './colors';
+@import './fonts';
+
+$md-break: 1110px;
+$mb-break: 1020px;
+
+body {
+  margin: 0;
+  font: 16px / 1.6 'rubik', sans-serif;
+  background: $thimble-white;
+}
+
+a {
+  text-decoration: none;
+  color: $thimble-green;
+
+  &:hover {
+    color: $thimble-light-green;
+  }
+}
+
+.wrapper {
+  width: 1020px;
+  margin: 0 auto;
+
+  @media only screen and ( max-width: $md-break ) {
+    width: 930px;
+  }
+
+  @media only screen and ( max-width: $mb-break ) {
+    width: auto;
+  }
+}
+
+header {
+  background: $thimble-dark-blue;
+
+  @media only screen and ( max-width: $mb-break ) {
+    padding: 7px;
+  }
+
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    @media only screen and ( max-width: $mb-break ) {
+      padding: 0 10px;
+    }
+
+    .main-navigation {
+      a {
+        display: inline-block;
+        margin-right: 2px;
+        padding: 20px 25px;
+        color: #fff;
+        transition: background .15s linear;
+
+        &:hover, &.router-link-exact-active {
+          background: $thimble-blue;
+        }
+
+        &.invite-button {
+          background: $thimble-green;
+          margin-left: 10px;
+          padding: 8px 30px;
+          border-radius: 4px;
+
+          &:hover {
+            background: $thimble-light-green;
+          }
+        }
+      }
+
+      @media only screen and ( max-width: $mb-break ) {
+        position: fixed;
+        top: 65px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: darken($thimble-dark-blue, 5%);
+        text-align: center;
+        display: none;
+
+        a {
+          display: block;
+          margin-right: 0;
+          margin-left: 0;
+          padding: 15px 20px;
+
+          &.invite-button {
+            margin-top: 30px;
+            display: inline-block;
+          }
+        }
+
+        &.hamburger-open {
+          display: block;
+        }
+      }
+    }
+
+    .logo-container {
+      a {
+        display: flex;
+        align-items: center;
+
+        .icon {
+          background: url('assets/logo-small.png');
+          background-size: 35px;
+          width: 35px;
+          height: 52px;
+          margin-right: 10px;
+        }
+
+        span {
+          font-size: 20px;
+          font-weight: 700;
+          color: #fff;
+        }
+      }
+    }
+
+    a.hamburger-icon {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 12px 20px;
+      background: none;
+      font-size: 26px;
+      color: #fff;
+      display: none;
+      z-index: 10000;
+
+      @media only screen and ( max-width: $mb-break ) {
+        display: block;
+      }
+    }
+  }
+}
+
+.page {
+  background: #fff;
+  padding: 20px 35px;
+  border-radius: 4px;
+  margin: 30px auto;
+
+  @media only screen and ( max-width: $mb-break ) {
+    padding: 15px 20px;
+    margin: 0 auto;
+  }
+}
+
+.error-message {
+  padding: 15px 20px;
+  background: $danger;
+  color: #fff;
+  margin: 10px 0;
+}
