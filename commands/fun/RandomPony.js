@@ -50,7 +50,7 @@ class RandomPonyCommand extends Command {
 
   generateKeywords(query, isChannelNSFW, isChannelDM, queryHasNSFW) {
     const split = query.split(/[,(&&)]+/).map(k => k.trim());
-    return isChannelNSFW || (isChannelDM && queryHasNSFW)
+    return (isChannelNSFW && !isChannelDM) || (isChannelDM && queryHasNSFW)
       ? split
       : [ 'safe', ...split ];
   }
