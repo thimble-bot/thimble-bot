@@ -57,6 +57,15 @@
         ]
       },
       {
+        "name": "help",
+        "description": "Get more information about the available commands or a specific command.",
+        "aliases": [],
+        "examples": [
+          "`help` - Get help about all the commands.",
+          "`help [command]` - Get help about a certain command."
+        ]
+      },
+      {
         "name": "imageresize",
         "description": "Proportionally resize an image based on a new width (px). Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.",
         "aliases": [
@@ -236,6 +245,14 @@
         "aliases": [],
         "examples": [
           "`reverse Thimble` - will return \"elbmihT\""
+        ]
+      },
+      {
+        "name": "stalinsort",
+        "description": "Sort numbers using the O(n) Stalin Sort algorithm. Numbers must be separated by space.",
+        "aliases": [],
+        "examples": [
+          "`stalinsort 7 6 2 1 9 2 4`"
         ]
       },
       {
