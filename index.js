@@ -32,7 +32,9 @@ client
     [ 'boop', 'Boop commands' ]
   ])
   .registerDefaultGroups()
-  .registerDefaultCommands()
+  .registerDefaultCommands({
+    help: false
+  })
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.on('ready', () => {
