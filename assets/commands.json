@@ -146,6 +146,16 @@
         "examples": null
       },
       {
+        "name": "anagram",
+        "description": "Get the anagrams of a word or expression.",
+        "aliases": [
+          "anagrams"
+        ],
+        "examples": [
+          "`anagram Curly Brace` - Will display the anagrams of \"Curly Brace\"."
+        ]
+      },
+      {
         "name": "avatar",
         "description": "Get the avatar of a certain user.",
         "aliases": [],
