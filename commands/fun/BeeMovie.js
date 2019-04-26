@@ -13,7 +13,7 @@ class BeeMovieCommand extends Command {
   }
 
   run(message) {
-    const contents = fs.readFileSync(path.join(__dirname, 'BeeMovie', 'script.txt'), {
+    const contents = fs.readFileSync(path.join(__dirname, '..', '..', 'assets', 'beemovie.txt'), {
       encoding: 'utf8'
     });
 

@@ -23,7 +23,7 @@ class AnagramCommand extends Command {
       ]
     });
   }
-  
+
   checkInput(input) {
     if (input.length > 20) {
       return {

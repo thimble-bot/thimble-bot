@@ -172,12 +172,6 @@
         "examples": null
       },
       {
-        "name": "beemovie",
-        "description": "Get a random sentence from the Bee Movie script.",
-        "aliases": [],
-        "examples": null
-      },
-      {
         "name": "doge",
         "description": "Dogeifies a given string.",
         "aliases": [
@@ -255,6 +249,14 @@
         "aliases": [],
         "examples": [
           "`reverse Thimble` - will return \"elbmihT\""
+        ]
+      },
+      {
+        "name": "ship",
+        "description": "Get the love compatibility of two people. The values must be separated by \" x \".",
+        "aliases": [],
+        "examples": [
+          "`ship Joe x Pizza`"
         ]
       },
       {
