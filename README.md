@@ -1,4 +1,4 @@
-# Thimble Bot Website
+# Thimble Bot Website [![Netlify Status](https://api.netlify.com/api/v1/badges/dc1605cb-28e8-43b2-b0f5-29ad1f824207/deploy-status)](https://app.netlify.com/sites/thimble-bot/deploys)
 
 The project is a Vue application.
 
