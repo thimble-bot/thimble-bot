@@ -6,13 +6,15 @@
     .command-aliases(v-if='command.aliases && command.aliases.length')
       strong Aliases:
       span.alias(v-for='alias in command.aliases') {{ alias }}
-    .command-description {{ command.description }}
+    vue-markdown.command-description {{ command.description }}
     .command-usage(v-if='command.examples && command.examples.length')
       strong Usage/examples:
-      .example(v-for='example in command.examples') {{ example }}
+      vue-markdown.example(v-for='example, idx in command.examples', :key='idx') {{ example }}
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown';
+
 export default {
   name: 'command-layout',
   props: {
@@ -20,6 +22,9 @@ export default {
       type: Object,
       required: true
     }
+  },
+  components: {
+    'vue-markdown': VueMarkdown
   }
 };
 </script>
@@ -84,12 +89,26 @@ export default {
 
       .example {
         margin-left: 25px;
-        
-        &::before {
-          font-family: FontAwesome;
-          content: '\f054';
-          margin-right: 10px;
-          color: $thimble-blue;
+
+        p {
+          margin: 0;
+
+          &::before {
+            font-family: FontAwesome;
+            content: '\f054';
+            margin-right: 10px;
+            color: $thimble-blue;
+          }
+
+          code {
+            padding: 2px 8px;
+            display: inline-block;
+            background: $thimble-dark-blue;
+            border-radius: 3px;
+            color: #fff;
+            font-size: .9rem;
+            margin-bottom: 2px;
+          }
         }
       }
     }
