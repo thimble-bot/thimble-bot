@@ -88,6 +88,19 @@
         "examples": null
       },
       {
+        "name": "randomcolor",
+        "description": "Generate a random color.",
+        "aliases": [
+          "color",
+          "colour",
+          "colors",
+          "colours",
+          "randomcolor",
+          "randomcolour"
+        ],
+        "examples": null
+      },
+      {
         "name": "remoteecho",
         "description": "Echo something to a server from a different server.",
         "aliases": [],
@@ -124,6 +137,19 @@
         "description": "Get the bot's uptime.",
         "aliases": [],
         "examples": null
+      },
+      {
+        "name": "user",
+        "description": "Get some basic information about the specified user.",
+        "aliases": [
+          "userinfo",
+          "profile"
+        ],
+        "examples": [
+          "`user @someone#1234` - Retrieve the information based on a DiscordTag",
+          "`user someone` - Retrieve the information based on a username/nickname",
+          "`user` - Retrieve information about your own account"
+        ]
       },
       {
         "name": "version",
@@ -265,19 +291,6 @@
         "aliases": [],
         "examples": [
           "`stalinsort 7 6 2 1 9 2 4`"
-        ]
-      },
-      {
-        "name": "user",
-        "description": "Get some basic information about the specified user.",
-        "aliases": [
-          "userinfo",
-          "profile"
-        ],
-        "examples": [
-          "`user @someone#1234` - Retrieve the information based on a DiscordTag",
-          "`user someone` - Retrieve the information based on a username/nickname",
-          "`user` - Retrieve information about your own account"
         ]
       }
     ]
