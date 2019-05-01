@@ -40,8 +40,8 @@ class RandomColorCommand extends Command {
 
   getHSL(r, g, b) {
     r = r / 255;
-    g = r / 255;
-    b = r / 255;
+    g = g / 255;
+    b = b / 255;
 
     const maximum = Math.max(r, g, b);
     const minimum = Math.min(r, g, b);
