@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.4 - 2019-05-02
+### Added
+- Anagram command
+- Ship command
+- Random color command
+- **Custom command support** (experimental)
+
+### Changed
+- Bee Movie command: small refactoring
+- Changed group of `userinfo` command from Fun to Utilities
+- Added badges to readme
+
 ## 0.3.3b - 2019-04-21
 ### Added
 - Custom help command

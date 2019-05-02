@@ -35,13 +35,15 @@ class HelpCommand extends Command {
     return commands;
   }
 
-  generateEmbed(data) {
+  generateEmbed(data, isCustom) {
     const fields = [];
 
-    fields.push({
-      name: 'Direct link to command help',
-      value: `<https://thimblebot.xyz/commands#${data.name}>`
-    });
+    if (!isCustom) {
+      fields.push({
+        name: 'Direct link to command help',
+        value: `<https://thimblebot.xyz/commands#${data.name}>`
+      });
+    }
 
     if (data.aliases && data.aliases.length) {
       fields.push({
@@ -57,9 +59,11 @@ class HelpCommand extends Command {
       });
     }
 
+    const prefix = isCustom ? 'Custom ' : '';
+
     return {
       embed: {
-        title: `Command "${data.name}"`,
+        title: `${prefix}Command "${data.name}"`,
         description: data.description,
         fields,
         timestamp: new Date(),
@@ -86,11 +90,18 @@ To send a command in a DM, simply use \`command\` without a prefix.`);
 
     const targetCommand = allCommands.find(c => c.name === command || (c.aliases && c.aliases.includes(command)));
 
-    if (!targetCommand) {
-      return message.say(':warning: Unknown command.');
+    if (targetCommand) {
+      return message.say(this.generateEmbed(targetCommand, false));
     }
 
-    return message.say(this.generateEmbed(targetCommand));
+    const allDefinedCommands = this.client.registry.findCommands(command, false, message);
+    const customCommand = allDefinedCommands[0];
+
+    if (customCommand && (customCommand.guilds.includes(message.guild.id) || customCommand.isGlobalCommand)) {
+      return message.say(this.generateEmbed(customCommand, true));
+    }
+
+    return message.say(':warning: Unknown command.');
   }
 };
 

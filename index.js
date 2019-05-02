@@ -29,7 +29,8 @@ client
     [ 'fun', 'Fun commands' ],
     [ 'maintenance', 'Maintenance features' ],
     [ 'moderation', 'Moderation' ],
-    [ 'boop', 'Boop commands' ]
+    [ 'boop', 'Boop commands' ],
+    [ 'custom', 'Custom commands' ]
   ])
   .registerDefaultGroups()
   .registerDefaultCommands({

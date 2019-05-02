@@ -4,19 +4,18 @@ const inquirer = require('inquirer');
 
 const commandsRoot = path.join(__dirname, '..', 'commands');
 
-const COMMAND_TEMPLATE = `const { Command } = require('discord.js-commando');
+const COMMAND_TEMPLATE = `const { Command } = require('{{requirePath}}');
 
 class {{className}} extends Command {
   constructor(client) {
     super(client, {
       name: '{{name}}',
-      group: '{{group}}',
       memberName: '{{name}}',
-      description: '{{description}}'
+      description: '{{description}}'{{extraOpts}}
     });
   }
 
-  run(message) {
+  {{runFunctionName}}(message) {
     // do something
   }
 };
@@ -29,6 +28,40 @@ const replaceInTemplate = (template, target, replaceWith) => {
 };
 
 const capitalize = str => str[0].toUpperCase() + str.slice(1);
+
+const parseExtraOpts = (template, isCustom, group) => {
+  return new Promise((resolve, reject) => {
+    if (!isCustom) {
+      return resolve(replaceInTemplate(template, '{{extraOpts}}', `,\n      group: '${group}'`));
+    }
+
+    return inquirer.prompt([
+      {
+        type: 'string',
+        name: 'guilds',
+        message: 'Guild IDs where the custom command is enabled, separated by comma (or leave empty for global commands).\n'
+      }
+    ])
+      .then(answers => {
+        if (!answers.guilds) {
+          return resolve(replaceInTemplate(template, '{{extraOpts}}', ',\n      isGlobalCommand: true'));
+        }
+
+        const guilds = answers.guilds
+          .split(',')
+          .map(g => g.trim())
+          .join("',\n        '");
+
+        const extraOpts = `,
+      guilds: [
+        '${guilds}'
+      ]`;
+
+        return resolve(replaceInTemplate(template, '{{extraOpts}}', extraOpts));
+      })
+      .catch(err => reject(err));
+  });
+};
 
 inquirer.prompt([
   {
@@ -47,7 +80,7 @@ inquirer.prompt([
     message: 'Command description:'
   }
 ])
-  .then((answers) => {
+  .then(async (answers) => {
     const { name, group, description } = answers;
 
     if (!name || !group || !description) {
@@ -65,13 +98,28 @@ inquirer.prompt([
       fs.mkdirSync(groupPath);
     }
 
+    const isCustom = group === 'custom';
+    const requirePath = isCustom
+      ? '../../lib/CustomCommand'
+      : 'discord.js-commando';
+
     const className = capitalize(name) + 'Command';
 
     let template = COMMAND_TEMPLATE;
+    template = replaceInTemplate(template, '{{requirePath}}', requirePath);
     template = replaceInTemplate(template, '{{name}}', name.toLowerCase());
     template = replaceInTemplate(template, '{{className}}', className);
-    template = replaceInTemplate(template, '{{group}}', group);
     template = replaceInTemplate(template, '{{description}}', description);
+
+    const runFunctionName = isCustom ? 'runCommand' : 'run';
+
+    template = replaceInTemplate(template, '{{runFunctionName}}', runFunctionName);
+
+    try {
+      template = await parseExtraOpts(template, isCustom, group);
+    } catch (err) {
+      throw new Error(err);
+    }
 
     return fs.writeFileSync(commandPath, template, { encoding: 'utf8' });
   })

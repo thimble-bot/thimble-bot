@@ -1,6 +1,6 @@
 {
   "name": "thimble-bot",
-  "version": "0.3.3b",
+  "version": "0.3.4",
   "main": "index.js",
   "repository": "https://github.com/jozsefsallai/thimble-bot",
   "author": "József Sallai @jozsefsallai",
