@@ -7,9 +7,6 @@ const config = require('./config');
 const log = require('./lib/Logger');
 const Guild = require('./db/models/guilds/Guild');
 
-const ServerStatusWorker = require('./workers/ServerStatusWorker');
-const MoviesWorker = require('./workers/MoviesWorker');
-
 if (config.bot.sentry.secret && config.bot.sentry.id) {
   const dsn = `https://${config.bot.sentry.public}:${config.bot.sentry.secret}@sentry.io/${config.bot.sentry.id}`;
   Raven.config(dsn).install();
@@ -36,7 +33,8 @@ client
   .registerDefaultCommands({
     help: false
   })
-  .registerCommandsIn(path.join(__dirname, 'commands'));
+  .registerCommandsIn(path.join(__dirname, 'commands'))
+  .registerCommandsIn(path.join(__dirname, 'custom', 'commands'));
 
 client.on('ready', () => {
   console.log('Bot started.');
@@ -45,8 +43,12 @@ client.on('ready', () => {
     client.setActivity(config.bot.activity);
   }
 
-  ServerStatusWorker(client);
-  MoviesWorker(client);
+  // invoking workers
+  const workers = path.join(__dirname, 'workers');
+  const customWorkers = path.join(__dirname, 'custom', 'workers');
+
+  Object.values(require('require-all')(workers)).forEach(worker => worker(client));
+  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
 });
 
 client.on('message', message => {

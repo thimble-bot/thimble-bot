@@ -32,7 +32,9 @@ const capitalize = str => str[0].toUpperCase() + str.slice(1);
 const parseExtraOpts = (template, isCustom, group) => {
   return new Promise((resolve, reject) => {
     if (!isCustom) {
-      return resolve(replaceInTemplate(template, '{{extraOpts}}', `,\n      group: '${group}'`));
+      return resolve({
+        template: replaceInTemplate(template, '{{extraOpts}}', `,\n      group: '${group}'`)
+      });
     }
 
     return inquirer.prompt([
@@ -40,6 +42,11 @@ const parseExtraOpts = (template, isCustom, group) => {
         type: 'string',
         name: 'guilds',
         message: 'Guild IDs where the custom command is enabled, separated by comma (or leave empty for global commands).\n'
+      },
+      {
+        type: 'string',
+        name: 'folder',
+        message: 'Folder name (for grouping):'
       }
     ])
       .then(answers => {
@@ -57,7 +64,10 @@ const parseExtraOpts = (template, isCustom, group) => {
         '${guilds}'
       ]`;
 
-        return resolve(replaceInTemplate(template, '{{extraOpts}}', extraOpts));
+        return resolve({
+          template: replaceInTemplate(template, '{{extraOpts}}', extraOpts),
+          folder: answers.folder
+        });
       })
       .catch(err => reject(err));
   });
@@ -87,20 +97,11 @@ inquirer.prompt([
       throw new Error('Please answer all questions.');
     }
 
-    const groupPath = path.join(commandsRoot, group);
-    const commandPath = path.join(groupPath, `${capitalize(name)}.js`);
-
-    if (fs.existsSync(commandPath)) {
-      throw new Error(`Command "${name}" already exists.`);
-    }
-
-    if (!fs.existsSync(groupPath)) {
-      fs.mkdirSync(groupPath);
-    }
+    let groupPath = path.join(commandsRoot, group);
 
     const isCustom = group === 'custom';
     const requirePath = isCustom
-      ? '../../lib/CustomCommand'
+      ? '../../../lib/CustomCommand'
       : 'discord.js-commando';
 
     const className = capitalize(name) + 'Command';
@@ -116,9 +117,24 @@ inquirer.prompt([
     template = replaceInTemplate(template, '{{runFunctionName}}', runFunctionName);
 
     try {
-      template = await parseExtraOpts(template, isCustom, group);
+      const extra = await parseExtraOpts(template, isCustom, group);
+      template = extra.template;
+
+      if (isCustom) {
+        groupPath = path.join(__dirname, '..', 'custom', 'commands', extra.folder);
+      }
     } catch (err) {
       throw new Error(err);
+    }
+
+    if (!fs.existsSync(groupPath)) {
+      fs.mkdirSync(groupPath);
+    }
+
+    const commandPath = path.join(groupPath, `${capitalize(name)}.js`);
+
+    if (fs.existsSync(commandPath)) {
+      throw new Error(`Command "${name}" already exists.`);
     }
 
     return fs.writeFileSync(commandPath, template, { encoding: 'utf8' });
