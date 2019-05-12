@@ -6,14 +6,14 @@
     },
     "commands": [
       {
-        "name": "activity",
-        "description": "Change bot activity.",
+        "name": "ascii",
+        "description": "Convert text into ASCII.",
         "aliases": [],
         "examples": null
       },
       {
-        "name": "ascii",
-        "description": "Convert text into ASCII.",
+        "name": "activity",
+        "description": "Change bot activity.",
         "aliases": [],
         "examples": null
       },
@@ -82,12 +82,6 @@
         "examples": null
       },
       {
-        "name": "movies",
-        "description": "Get a list of the movies that are airing today on the Romanian/Hungarian TV.",
-        "aliases": [],
-        "examples": null
-      },
-      {
         "name": "randomcolor",
         "description": "Generate a random color.",
         "aliases": [
@@ -113,14 +107,6 @@
           "server",
           "guild",
           "guildinfo"
-        ],
-        "examples": null
-      },
-      {
-        "name": "serverstatus",
-        "description": "Checks whether all of my websites are up and running.",
-        "aliases": [
-          "ss"
         ],
         "examples": null
       },
