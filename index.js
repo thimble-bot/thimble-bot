@@ -45,10 +45,10 @@ client.on('ready', () => {
 
   // invoking workers
   const workers = path.join(__dirname, 'workers');
-  const customWorkers = path.join(__dirname, 'custom', 'workers');
+  // const customWorkers = path.join(__dirname, 'custom', 'workers');
 
   Object.values(require('require-all')(workers)).forEach(worker => worker(client));
-  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
+  // Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
 });
 
 client.on('message', message => {

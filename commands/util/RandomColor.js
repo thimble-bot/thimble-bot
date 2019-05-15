@@ -1,4 +1,7 @@
+// WIP
+
 const { Command } = require('discord.js-commando');
+const color = require('../../lib/Color');
 
 class RandomColorCommand extends Command {
   constructor(client) {
@@ -7,75 +10,23 @@ class RandomColorCommand extends Command {
       group: 'util',
       memberName: 'randomcolor',
       description: 'Generate a random color.',
-      aliases: [ 'color', 'colour', 'colors', 'colours', 'randomcolor', 'randomcolour' ]
+      aliases: [ 'color', 'colour', 'colors', 'colours', 'randomcolour' ],
+      args: [
+        {
+          key: 'query',
+          type: 'string',
+          default: '',
+          prompt: 'What color'
+        }
+      ],
+      examples: [
+        '`color` - generates a random color and displays its RGB, hex, HSL, and CMYK values',
+        '`color #3e3e3e` or `color #2e2` - generates color data based on hex string',
+        '`color rgb(201, 29, 11)` or `color 201, 29, 11` - generates color data based on RGB values',
+        '`color hsl(5.68°, 89.62%, 41.57%)` or `color 5.68°, 89.62%, 41.57%` - generates color data based on HSL',
+        '`color cmyk(0.00%, 85.57%, 94.53%, 21.18%)` or `color 0.00%, 85.57%, 94.53%, 21.18%` - generates color data based on CMYK'
+      ]
     });
-  }
-
-  getHex(...components) {
-    return '#' + components.map(component => {
-      const hex = component.toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    }).join('');
-  }
-
-  getCMYK(r, g, b) {
-    if (!r && !g && !b) {
-      return '0, 0, 0, 1';
-    }
-
-    let c = 1 - (r / 255);
-    let m = 1 - (g / 255);
-    let y = 1 - (b / 255);
-
-    let minimum = Math.min(c, m, y);
-
-    c = ((c - minimum) / (1 - minimum) * 100).toFixed(2) + '%';
-    m = ((m - minimum) / (1 - minimum) * 100).toFixed(2) + '%';
-    y = ((y - minimum) / (1 - minimum) * 100).toFixed(2) + '%';
-
-    const k = (minimum * 100).toFixed(2) + '%';
-
-    return [ c, m, y, k ].join(', ');
-  }
-
-  getHSL(r, g, b) {
-    r = r / 255;
-    g = g / 255;
-    b = b / 255;
-
-    const maximum = Math.max(r, g, b);
-    const minimum = Math.min(r, g, b);
-
-    let [ h, s, l ] = Array(3).fill((maximum + minimum) / 2);
-
-    if (maximum === minimum) {
-      h = s = 0;
-    } else {
-      const div = maximum - minimum;
-      s = l > 0.5
-        ? div / (2 - maximum - minimum)
-        : div / (maximum + minimum);
-
-      switch (maximum) {
-        case r:
-          h = (g - b) / div + (g < b ? 6 : 0);
-          break;
-        case g:
-          h = (b - r) / div + 2;
-          break;
-        case b:
-          h = (r - g) / div + 4;
-          break;
-      }
-
-      h = h / 6;
-    }
-
-    h = (h * 360).toFixed(2) + '°';
-    s = (s * 100).toFixed(2) + '%';
-    l = (l * 100).toFixed(2) + '%';
-
-    return [ h, s, l ].join(', ');
   }
 
   generateEmbed(hex, cmyk, hsl, rgb) {
@@ -116,15 +67,102 @@ class RandomColorCommand extends Command {
     };
   }
 
-  run(message) {
-    const r = Math.floor(Math.random() * 255);
-    const g = Math.floor(Math.random() * 255);
-    const b = Math.floor(Math.random() * 255);
+  isRGB(query) {
+    if (query.startsWith('rgb')) {
+      return true;
+    }
 
-    const hex = this.getHex(r, g, b);
-    const cmyk = this.getCMYK(r, g, b);
-    const hsl = this.getHSL(r, g, b);
-    const rgb = [ r, g, b ].join(', ');
+    if (query.split(',').length !== 3) {
+      return false;
+    }
+
+    if (query.includes('%') || query.includes('°')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  isHex(query) {
+    return query.startsWith('#');
+  }
+
+  isHSL(query) {
+    if (query.startsWith('hsl')) {
+      return true;
+    }
+
+    if (query.split(',').length !== 3) {
+      return false;
+    }
+
+    if (!query.includes('%') || !query.includes('°')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  isCMYK(query) {
+    if (query.startsWith('cmyk')) {
+      return true;
+    }
+
+    if (query.split(',').length !== 4) {
+      return false;
+    }
+
+    if (!query.includes('%')) {
+      return false;
+    }
+
+    if (query.includes('°')) {
+      return false;
+    }
+
+    return true;
+  }
+
+  run(message, { query }) {
+    let result;
+
+    if (query) {
+      if (this.isRGB(query)) {
+        result = color().fromRGB(query);
+      }
+
+      if (this.isHex(query)) {
+        result = color().fromHex(query);
+      }
+
+      if (this.isHSL(query)) {
+        const splitQuery = query.split(',').map((c, idx) => {
+          const divider = idx === 0 ? 360.0 : 100.0;
+          return parseFloat(c.match(/\d+/)[0]) / divider;
+        });
+
+        result = color().fromHSL(splitQuery);
+      }
+
+      if (this.isCMYK(query)) {
+        const splitQuery = query.split(',').map(c => {
+          return parseFloat(c.match(/\d+/)[0]) / 100.0;
+        });
+
+        result = color().fromCMYK(splitQuery);
+      }
+    } else {
+      const r = Math.floor(Math.random() * 255);
+      const g = Math.floor(Math.random() * 255);
+      const b = Math.floor(Math.random() * 255);
+
+      result = color().fromRGB({ r, g, b });
+    }
+
+    const hex = result.hex(true);
+    const hsl = result.hsl(true);
+    const cmyk = result.cmyk(true);
+    const rgb = result.rgb(true);
 
     return message.say(this.generateEmbed(hex, cmyk, hsl, rgb));
   }
