@@ -32,7 +32,7 @@ class RandomColorCommand extends Command {
   generateEmbed(hex, cmyk, hsl, rgb) {
     return {
       embed: {
-        title: 'Random Color',
+        title: this.isRandomColor ? 'Random Color' : 'Color Stats',
         author: {
           name: this.client.user.tag,
           icon_url: this.client.user.avatarURL
@@ -127,6 +127,8 @@ class RandomColorCommand extends Command {
     let result;
 
     if (query) {
+      this.isRandomColor = false;
+
       if (this.isRGB(query)) {
         result = color().fromRGB(query);
       }
@@ -138,7 +140,7 @@ class RandomColorCommand extends Command {
       if (this.isHSL(query)) {
         const splitQuery = query.split(',').map((c, idx) => {
           const divider = idx === 0 ? 360.0 : 100.0;
-          return parseFloat(c.match(/\d+/)[0]) / divider;
+          return c.match(/[+-]?\d+(\.\d+)?/g)[0] / divider;
         });
 
         result = color().fromHSL(splitQuery);
@@ -146,12 +148,24 @@ class RandomColorCommand extends Command {
 
       if (this.isCMYK(query)) {
         const splitQuery = query.split(',').map(c => {
-          return parseFloat(c.match(/\d+/)[0]) / 100.0;
+          return c.match(/[+-]?\d+(\.\d+)?/g)[0] / 100.0;
         });
+
+        console.log(splitQuery);
 
         result = color().fromCMYK(splitQuery);
       }
+
+      if (result instanceof Error) {
+        return message.say(`:x: ${result.message}`);
+      }
+
+      if (!result) {
+        return message.say(':x: Invalid input.');
+      }
     } else {
+      this.isRandomColor = true;
+
       const r = Math.floor(Math.random() * 255);
       const g = Math.floor(Math.random() * 255);
       const b = Math.floor(Math.random() * 255);
