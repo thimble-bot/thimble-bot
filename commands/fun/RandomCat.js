@@ -8,7 +8,9 @@ class RandomCat extends Command {
       group: 'fun',
       aliases: [ 'randomcat' ],
       memberName: 'randomcat',
-      description: 'Get a random picture, GIF, or video of a cat.'
+      description: 'Get a random picture, GIF, or video of a cat.',
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
   }
 

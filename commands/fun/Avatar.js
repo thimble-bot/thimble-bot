@@ -19,7 +19,9 @@ class AvatarCommand extends Command {
           type: 'user',
           default: ''
         }
-      ]
+      ],
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
   }
 

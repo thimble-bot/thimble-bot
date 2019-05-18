@@ -16,7 +16,9 @@ class RandomPonyCommand extends Command {
           default: '',
           prompt: 'Provide query.'
         }
-      ]
+      ],
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
 
     this.filteredKeywords = [

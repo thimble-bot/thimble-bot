@@ -8,7 +8,9 @@ class RandomBunnyCommand extends Command {
       group: 'fun',
       memberName: 'randombunny',
       description: 'Get a random GIF of a bunny.',
-      aliases: [ 'bunny', 'randomrabbit', 'rabbit' ]
+      aliases: [ 'bunny', 'randomrabbit', 'rabbit' ],
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
   }
 

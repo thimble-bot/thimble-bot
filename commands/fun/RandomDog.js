@@ -8,7 +8,9 @@ class RandomDog extends Command {
       group: 'fun',
       aliases: [ 'randomdog' ],
       memberName: 'randomdog',
-      description: 'Get a random picture, GIF, or video of a dog.'
+      description: 'Get a random picture, GIF, or video of a dog.',
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
   }
 

@@ -23,7 +23,9 @@ class Emoji extends Command {
           prompt: 'What emote are you interested in?',
           type: 'string'
         }
-      ]
+      ],
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
   }
 

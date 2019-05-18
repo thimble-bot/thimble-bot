@@ -17,7 +17,9 @@ class ImageResizeCommand extends Command {
           type: 'integer',
           min: 2
         }
-      ]
+      ],
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
   }
 

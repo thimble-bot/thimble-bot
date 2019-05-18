@@ -20,7 +20,8 @@ class ScreenshotCommand extends Command {
         usages: 1,
         duration: 120
       },
-      clientPermissions: [ 'ATTACH_FILES' ]
+      clientPermissions: [ 'ATTACH_FILES' ],
+      userPermissions: [ 'ATTACH_FILES' ]
     });
   }
 
