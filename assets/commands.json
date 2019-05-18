@@ -106,6 +106,12 @@
         "examples": null
       },
       {
+        "name": "screenshot",
+        "description": "Create a screenshot of a website (height is limited to 6000px).",
+        "aliases": [],
+        "examples": null
+      },
+      {
         "name": "serverinfo",
         "description": "Get some information about the current server.",
         "aliases": [
