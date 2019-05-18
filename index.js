@@ -1,7 +1,6 @@
 const Commando = require('discord.js-commando');
 const path = require('path');
 const Raven = require('raven');
-const puppeteer = require('puppeteer');
 
 const config = require('./config');
 
@@ -37,7 +36,7 @@ client
   .registerCommandsIn(path.join(__dirname, 'commands'))
   .registerCommandsIn(path.join(__dirname, 'custom', 'commands'));
 
-client.on('ready', async () => {
+client.on('ready', () => {
   console.log('Bot started.');
 
   if (config.bot.activity) {
@@ -50,8 +49,6 @@ client.on('ready', async () => {
 
   Object.values(require('require-all')(workers)).forEach(worker => worker(client));
   Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
-
-  global.browser = await puppeteer.launch();
 });
 
 client.on('message', message => {
