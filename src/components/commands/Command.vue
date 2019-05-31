@@ -6,14 +6,20 @@
     .command-aliases(v-if='command.aliases && command.aliases.length')
       strong Aliases:
       span.alias(v-for='alias in command.aliases') {{ alias }}
-    vue-markdown.command-description {{ command.description }}
+    .command-description(v-html='description')
     .command-usage(v-if='command.examples && command.examples.length')
       strong Usage/examples:
-      vue-markdown.example(v-for='example, idx in command.examples', :key='idx') {{ example }}
+      .example(
+        v-for='example, idx in command.examples'
+        :key='idx'
+        v-html='parseExample(example)'
+      )
 </template>
 
 <script>
-import VueMarkdown from 'vue-markdown';
+import Markdown from 'markdown-it';
+
+const markdown = new Markdown();
 
 export default {
   name: 'command-layout',
@@ -23,8 +29,15 @@ export default {
       required: true
     }
   },
-  components: {
-    'vue-markdown': VueMarkdown
+  computed: {
+    description: function() {
+      return markdown.render(this.command.description);
+    }
+  },
+  methods: {
+    parseExample: function (example) {
+      return markdown.render(example);
+    }
   }
 };
 </script>

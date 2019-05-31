@@ -19,6 +19,21 @@ a {
   }
 }
 
+input {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 25px;
+  font: 15px 'rubik', sans-serif;
+  outline: none;
+  border: 1px solid $thimble-dark-blue;
+  margin: 10px 0;
+
+  &:focus {
+    background: lighten($thimble-blue, 50%);
+  }
+}
+
 .wrapper {
   width: 1020px;
   margin: 0 auto;
