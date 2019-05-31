@@ -39,6 +39,7 @@
 <script>
 import fetchCommands from '@/lib/fetchCommands';
 import clone from '@/lib/clone';
+import scroll from '@/lib/hashScroll';
 
 import AppTemplate from '@/Template';
 import GroupLayout from '@/components/commands/Group';
@@ -64,6 +65,7 @@ export default {
         this.filteredGroups = data;
         this.areCommandsLoaded = true;
       })
+      .then(scroll)
       .catch(function () {
         this.isErrored = true;
       });
