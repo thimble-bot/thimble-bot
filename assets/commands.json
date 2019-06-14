@@ -82,6 +82,12 @@
         "examples": null
       },
       {
+        "name": "poll",
+        "description": "Create reaction-based polls.",
+        "aliases": [],
+        "examples": null
+      },
+      {
         "name": "randomcolor",
         "description": "Generate a random color.",
         "aliases": [
