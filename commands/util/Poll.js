@@ -8,11 +8,23 @@ class PollCommand extends Command {
       description: 'Create reaction-based polls.',
       group: 'util',
       userPermissions: [ 'ADD_REACTIONS' ],
-      clientPermissions: [ 'ADD_REACTIONS' ]
+      clientPermissions: [ 'ADD_REACTIONS' ],
+      args: [
+        {
+          key: 'poll',
+          type: 'string',
+          prompt: '',
+          default: ''
+        }
+      ]
     });
   }
 
-  async run(message) {
+  async run(message, { poll }) {
+    if (!poll) {
+      return message.say(':warning: Maybe try providing the question of this poll, too...')
+    }
+
     try {
       await message.react('👍');
       await message.react('👎');
