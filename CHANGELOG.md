@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.5 - 2019-06-14
+### Added
+- Custom workers
+- Parameters for the color command
+- Website uptime command
+- Poll command
+
+### Fixed
+- Attachment permission issues
+- Bad condition check in custom command library
+
+### Changed
+- Custom commands refactoring
+- Bumped axios
+- Bumped js-yaml
+
+### Deleted
+- ServerStatus command
+- Movies command
+
 ## 0.3.4 - 2019-05-02
 ### Added
 - Anagram command
