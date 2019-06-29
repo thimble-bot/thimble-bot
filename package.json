@@ -20,6 +20,7 @@
     "dogeify-js": "^1.1.0",
     "emoji-dictionary": "^1.0.10",
     "figlet": "^1.2.1",
+    "flame-game": "^1.0.0",
     "fs-extra": "^7.0.1",
     "git-current-commit": "^1.1.0",
     "inquirer": "^6.2.1",
