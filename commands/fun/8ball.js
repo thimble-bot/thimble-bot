@@ -1,19 +1,23 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: '8ball',
+  description: 'Ask the 8-Ball any question.',
+  args: [
+    {
+      key: 'question',
+      type: 'string',
+      prompt: 'What is your question?'
+    }
+  ]
+};
+
 class EightBallCommand extends Command {
   constructor(client) {
     super(client, {
-      name: '8ball',
+      ...meta,
       group: 'fun',
-      memberName: '8ball',
-      description: 'Ask the 8-Ball any question.',
-      args: [
-        {
-          key: 'question',
-          type: 'string',
-          prompt: 'What is your question?'
-        }
-      ]
+      memberName: '8ball'
     });
 
     this.answers = [
@@ -63,3 +67,4 @@ class EightBallCommand extends Command {
 };
 
 module.exports = EightBallCommand;
+module.exports.meta = meta;

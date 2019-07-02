@@ -1,26 +1,30 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'emojiupload',
+  aliases: [ 'emoteupload', 'emojiup', 'emoteup', 'addemoji', 'addemote' ],
+  description: 'Upload an emoji to the server',
+  examples: [
+    '`addemoji thonk` (+ attached image) - Will upload the attached image as an emoji called "thonk"'
+  ],
+  args: [
+    {
+      key: 'name',
+      prompt: 'What do you want to call this emoji?',
+      type: 'string'
+    }
+  ]
+};
+
 class EmojiUpload extends Command {
   constructor(client) {
     super(client, {
-      name: 'emojiupload',
-      aliases: [ 'emoteupload', 'emojiup', 'emoteup', 'addemoji', 'addemote' ],
+      ...meta,
       group: 'util',
       memberName: 'emojiupload',
       guildOnly: true,
-      description: 'Upload an emoji to the server',
-      examples: [
-        '`addemoji thonk` (+ attached image) - Will upload the attached image as an emoji called "thonk"'
-      ],
       userPermissions: [ 'MANAGE_EMOJIS' ],
-      clientPermissions: [ 'MANAGE_EMOJIS' ],
-      args: [
-        {
-          key: 'name',
-          prompt: 'What do you want to call this emoji?',
-          type: 'string'
-        }
-      ]
+      clientPermissions: [ 'MANAGE_EMOJIS' ]
     });
   }
 
@@ -47,3 +51,4 @@ class EmojiUpload extends Command {
 };
 
 module.exports = EmojiUpload;
+module.exports.meta = meta;

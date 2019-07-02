@@ -1,20 +1,27 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'hyphen',
+  description: 'Place the hyphen one word to the right in every [adjective]-ass [noun] sequence. https://xkcd.com/37/',
+  aliases: [ 'xkcd37' ],
+  args: [
+    {
+      key: 'sentence',
+      type: 'string',
+      prompt: 'Please provide a sentence.'
+    }
+  ],
+  examples: [
+    '`hyphen That is a big-ass cake` - will be turned into "That is a big ass-cake"'
+  ]
+};
+
 class HyphenCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'hyphen',
+      ...meta,
       group: 'fun',
-      memberName: 'hyphen',
-      description: 'Place the hyphen one word to the right in every [adjective]-ass [noun] sequence. https://xkcd.com/37/',
-      aliases: [ 'xkcd37' ],
-      args: [
-        {
-          key: 'sentence',
-          type: 'string',
-          prompt: 'Please provide a sentence.'
-        }
-      ]
+      memberName: 'hyphen'
     });
   }
 
@@ -31,3 +38,4 @@ class HyphenCommand extends Command {
 };
 
 module.exports = HyphenCommand;
+module.exports.meta = meta;

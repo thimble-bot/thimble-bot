@@ -1,19 +1,23 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'lmgtfy',
+  description: 'Generate a "Let Me Google That For You" link.',
+  args: [
+    {
+      key: 'query',
+      type: 'string',
+      prompt: 'What are you searching for?'
+    }
+  ]
+};
+
 class LMGTFYCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'lmgtfy',
+      ...meta,
       group: 'util',
-      memberName: 'lmgtfy',
-      description: 'Generate a "Let Me Google That For You" link.',
-      args: [
-        {
-          key: 'query',
-          type: 'string',
-          prompt: 'What are you searching for?'
-        }
-      ]
+      memberName: 'lmgtfy'
     });
   }
 
@@ -24,3 +28,4 @@ class LMGTFYCommand extends Command {
 };
 
 module.exports = LMGTFYCommand;
+module.exports.meta = meta;

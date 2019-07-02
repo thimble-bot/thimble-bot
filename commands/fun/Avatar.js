@@ -1,25 +1,29 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'avatar',
+  description: 'Get the avatar of a certain user.',
+  examples: [
+    '`avatar @someone#1234` - Get someone\'s avatar based on their DiscordTag',
+    '`avatar someone` - Get someone\'s avatar based on their username/nickname',
+    '`avatar` - Get your own avatar'
+  ],
+  args: [
+    {
+      key: 'user',
+      prompt: 'Please provide a user.',
+      type: 'user',
+      default: ''
+    }
+  ]
+};
+
 class AvatarCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'avatar',
+      ...meta,
       group: 'fun',
       memberName: 'avatar',
-      description: 'Get the avatar of a certain user.',
-      examples: [
-        '`avatar @someone#1234` - Get someone\'s avatar based on their DiscordTag',
-        '`avatar someone` - Get someone\'s avatar based on their username/nickname',
-        '`avatar` - Get your own avatar'
-      ],
-      args: [
-        {
-          key: 'user',
-          prompt: 'Please provide a user.',
-          type: 'user',
-          default: ''
-        }
-      ],
       clientPermissions: [ 'ATTACH_FILES' ],
       userPermissions: [ 'ATTACH_FILES' ]
     });
@@ -56,3 +60,4 @@ class AvatarCommand extends Command {
 };
 
 module.exports = AvatarCommand;
+module.exports.meta = meta;

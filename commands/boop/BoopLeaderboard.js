@@ -2,15 +2,19 @@ const { Command } = require('discord.js-commando');
 const Boop = require('../../db/models/boops/Boop');
 const findIndex = require('lodash.findindex');
 
+const meta = {
+  name: 'boopleaderboard',
+  aliases: [ 'bl', 'boopstats', 'boopstat' ],
+  description: 'Get the boop leaderboard for the current server.'
+};
+
 class BoopLeaderboardCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'boopleaderboard',
+      ...meta,
       group: 'boop',
       memberName: 'boopleaderboard',
-      aliases: [ 'bl', 'boopstats', 'boopstat' ],
-      guildOnly: true,
-      description: 'Get the boop leaderboard for the current server.'
+      guildOnly: true
     });
 
     this.boopers = [];
@@ -111,3 +115,4 @@ class BoopLeaderboardCommand extends Command {
 };
 
 module.exports = BoopLeaderboardCommand;
+module.exports.meta = meta;

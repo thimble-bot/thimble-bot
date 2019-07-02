@@ -1,25 +1,26 @@
-// pretty dumb at the moment, but I do consider
-// improving this in the future
-
 const { Command } = require('discord.js-commando');
+
+const meta = {
+  name: 'ship',
+  description: 'Get the love compatibility of two people. The values must be separated by " x ".',
+  examples: [
+    '`ship Joe x Pizza`'
+  ],
+  args: [
+    {
+      key: 'input',
+      prompt: 'Please provide someone to ship.',
+      type: 'string'
+    }
+  ]
+};
 
 class ShipCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'ship',
+      ...meta,
       group: 'fun',
-      memberName: 'ship',
-      description: 'Get the love compatibility of two people. The values must be separated by " x ".',
-      examples: [
-        '`ship Joe x Pizza`'
-      ],
-      args: [
-        {
-          key: 'input',
-          prompt: 'Please provide someone to ship.',
-          type: 'string'
-        }
-      ]
+      memberName: 'ship'
     });
   }
 
@@ -65,3 +66,4 @@ class ShipCommand extends Command {
 };
 
 module.exports = ShipCommand;
+module.exports.meta = meta;

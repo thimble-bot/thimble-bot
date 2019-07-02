@@ -1,13 +1,5 @@
-const config = require('../config').bot;
 const fs = require('fs-extra');
 const path = require('path');
-const Discord = require('discord.js-commando');
-
-// Yes, I have to initialize a new Discord client because Commando won't
-// let me instantiate a new command class unless I pass a working Discord
-// client to it as a constructor argument.
-
-const client = new Discord.Client();
 
 const COMMANDS_PATH = path.join(__dirname, '..', 'commands');
 
@@ -48,16 +40,14 @@ class CommandListGenerator {
   processCommand(group, commandFileName) {
     console.log(`Processing command "${commandFileName.split('.')[0]}" from group "${group}"...`);
     const commandFile = path.join(COMMANDS_PATH, group, commandFileName);
-    const Command = require(commandFile);
+    const { meta } = require(commandFile);
 
-    const instance = new Command(client);
-    const { name, description, args, aliases, examples } = instance;
+    const { name, description, aliases, examples } = meta;
     return {
       name,
-      description,
-      args,
-      aliases,
-      examples
+      description: description || null,
+      aliases: aliases || [],
+      examples: examples || null
     };
   }
 
@@ -95,11 +85,5 @@ class CommandListGenerator {
   }
 };
 
-client.registry.registerDefaultTypes();
-
-client.on('ready', function () {
-  const generator = new CommandListGenerator();
-  generator.start();
-});
-
-client.login(config.token);
+const generator = new CommandListGenerator();
+generator.start();

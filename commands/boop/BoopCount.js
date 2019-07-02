@@ -2,27 +2,31 @@ const { Command } = require('discord.js-commando');
 const Boop = require('../../db/models/boops/Boop');
 const BoopOptout = require('../../db/models/boops/Optout');
 
+const meta = {
+  name: 'boopcount',
+  description: 'Check your or someone else\'s current boop count.',
+  examples: [
+    '`boopcount @someone#1234` - Get someone\'s boop count based on their DiscordTag)',
+    '`boopcount someone` - Get someone\'s boop count based on their username/nickname',
+    '`boopcount` - Get your own boop count'
+  ],
+  args: [
+    {
+      key: 'user',
+      type: 'user',
+      default: '',
+      prompt: ''
+    }
+  ]
+};
+
 class BoopCountCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'boopcount',
+      ...meta,
       group: 'boop',
       memberName: 'boopcount',
-      guildOnly: true,
-      description: 'Check your or someone else\'s current boop count.',
-      examples: [
-        '`boopcount @someone#1234` - Get someone\'s boop count based on their DiscordTag)',
-        '`boopcount someone` - Get someone\'s boop count based on their username/nickname',
-        '`boopcount` - Get your own boop count'
-      ],
-      args: [
-        {
-          key: 'user',
-          type: 'user',
-          default: '',
-          prompt: ''
-        }
-      ]
+      guildOnly: true
     });
   }
 
@@ -79,3 +83,4 @@ class BoopCountCommand extends Command {
 };
 
 module.exports = BoopCountCommand;
+module.exports.meta = meta;

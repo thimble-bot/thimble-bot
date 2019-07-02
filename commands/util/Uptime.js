@@ -1,13 +1,17 @@
 const { Command } = require('discord.js-commando');
 const prettyMs = require('pretty-ms');
 
+const meta = {
+  name: 'uptime',
+  description: 'Get the bot\'s uptime.'
+};
+
 class Uptime extends Command {
   constructor(client) {
     super(client, {
-      name: 'uptime',
+      ...meta,
       group: 'util',
-      memberName: 'uptime',
-      description: 'Get the bot\'s uptime.'
+      memberName: 'uptime'
     });
   }
 
@@ -19,3 +23,4 @@ class Uptime extends Command {
 };
 
 module.exports = Uptime;
+module.exports.meta = meta;

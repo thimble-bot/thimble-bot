@@ -1,32 +1,36 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'ban',
+  description: 'Ban a member.',
+  examples: [
+    '`ban @someone#1234` - Ban a user',
+    '`ban @someone#1234 reason` - Ban a user with a reason'
+  ],
+  args: [
+    {
+      key: 'user',
+      prompt: 'Who do you want to ban?',
+      type: 'user'
+    },
+    {
+      key: 'reason',
+      prompt: 'Why do you want to ban this member?',
+      default: '',
+      type: 'string'
+    }
+  ]
+};
+
 class Kick extends Command {
   constructor(client) {
     super(client, {
-      name: 'ban',
+      ...meta,
       group: 'moderation',
       memberName: 'ban',
       guildOnly: true,
-      description: 'Ban a member.',
-      examples: [
-        '`ban @someone#1234` - Ban a user',
-        '`ban @someone#1234 reason` - Ban a user with a reason'
-      ],
       userPermissions: [ 'BAN_MEMBERS' ],
-      clientPermissions: [ 'BAN_MEMBERS' ],
-      args: [
-        {
-          key: 'user',
-          prompt: 'Who do you want to ban?',
-          type: 'user'
-        },
-        {
-          key: 'reason',
-          prompt: 'Why do you want to ban this member?',
-          default: '',
-          type: 'string'
-        }
-      ]
+      clientPermissions: [ 'BAN_MEMBERS' ]
     });
   };
 
@@ -54,3 +58,4 @@ class Kick extends Command {
 };
 
 module.exports = Kick;
+module.exports.meta = meta;

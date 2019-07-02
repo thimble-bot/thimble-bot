@@ -1,20 +1,24 @@
 const { Command } = require('discord.js-commando');
 const figlet = require('figlet');
 
+const meta = {
+  name: 'ascii',
+  description: 'Convert text into ASCII.',
+  args: [
+    {
+      key: 'text',
+      type: 'string',
+      prompt: 'Please provide the text you want to ASCII-ify.'
+    }
+  ]
+};
+
 class ASCIICommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'ascii',
+      ...meta,
       group: 'util',
-      memberName: 'ascii',
-      description: 'Convert text into ASCII.',
-      args: [
-        {
-          key: 'text',
-          type: 'string',
-          prompt: 'Please provide the text you want to ASCII-ify.'
-        }
-      ]
+      memberName: 'ascii'
     });
   }
 
@@ -34,3 +38,4 @@ class ASCIICommand extends Command {
 };
 
 module.exports = ASCIICommand;
+module.exports.meta = meta;

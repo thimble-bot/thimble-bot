@@ -1,22 +1,26 @@
 const { Command } = require('discord.js-commando');
 const dinky = require('dinky.js');
 
+const meta = {
+  name: 'randompony',
+  aliases: [ 'pony', 'randommlp', 'mlprandom', 'mlp', 'derpi' ],
+  description: 'Get a random pony picture or GIF. Uses the Derpibooru search syntax: https://derpibooru.org/search/syntax',
+  args: [
+    {
+      key: 'query',
+      type: 'string',
+      default: '',
+      prompt: 'Provide query.'
+    }
+  ]
+};
+
 class RandomPonyCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'randompony',
+      ...meta,
       group: 'fun',
       memberName: 'randompony',
-      aliases: [ 'pony', 'randommlp', 'mlprandom', 'mlp' ],
-      description: 'Get a random pony picture or GIF. Uses the Derpibooru search syntax: https://derpibooru.org/search/syntax',
-      args: [
-        {
-          key: 'query',
-          type: 'string',
-          default: '',
-          prompt: 'Provide query.'
-        }
-      ],
       clientPermissions: [ 'ATTACH_FILES' ],
       userPermissions: [ 'ATTACH_FILES' ]
     });
@@ -100,3 +104,4 @@ class RandomPonyCommand extends Command {
 };
 
 module.exports = RandomPonyCommand;
+module.exports.meta = meta;

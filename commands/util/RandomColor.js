@@ -1,31 +1,33 @@
-// WIP
-
 const { Command } = require('discord.js-commando');
 const color = require('../../lib/Color');
+
+const meta = {
+  name: 'randomcolor',
+  description: 'Generate a random color.',
+  aliases: [ 'color', 'colour', 'colors', 'colours', 'randomcolour' ],
+  args: [
+    {
+      key: 'query',
+      type: 'string',
+      default: '',
+      prompt: 'What color'
+    }
+  ],
+  examples: [
+    '`color` - generates a random color and displays its RGB, hex, HSL, and CMYK values',
+    '`color #3e3e3e` or `color #2e2` - generates color data based on hex string',
+    '`color rgb(201, 29, 11)` or `color 201, 29, 11` - generates color data based on RGB values',
+    '`color hsl(5.68°, 89.62%, 41.57%)` or `color 5.68°, 89.62%, 41.57%` - generates color data based on HSL',
+    '`color cmyk(0.00%, 85.57%, 94.53%, 21.18%)` or `color 0.00%, 85.57%, 94.53%, 21.18%` - generates color data based on CMYK'
+  ]
+};
 
 class RandomColorCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'randomcolor',
+      ...meta,
       group: 'util',
-      memberName: 'randomcolor',
-      description: 'Generate a random color.',
-      aliases: [ 'color', 'colour', 'colors', 'colours', 'randomcolour' ],
-      args: [
-        {
-          key: 'query',
-          type: 'string',
-          default: '',
-          prompt: 'What color'
-        }
-      ],
-      examples: [
-        '`color` - generates a random color and displays its RGB, hex, HSL, and CMYK values',
-        '`color #3e3e3e` or `color #2e2` - generates color data based on hex string',
-        '`color rgb(201, 29, 11)` or `color 201, 29, 11` - generates color data based on RGB values',
-        '`color hsl(5.68°, 89.62%, 41.57%)` or `color 5.68°, 89.62%, 41.57%` - generates color data based on HSL',
-        '`color cmyk(0.00%, 85.57%, 94.53%, 21.18%)` or `color 0.00%, 85.57%, 94.53%, 21.18%` - generates color data based on CMYK'
-      ]
+      memberName: 'randomcolor'
     });
   }
 
@@ -183,3 +185,4 @@ class RandomColorCommand extends Command {
 };
 
 module.exports = RandomColorCommand;
+module.exports.meta = meta;

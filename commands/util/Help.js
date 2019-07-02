@@ -3,25 +3,29 @@ const config = require('../../config').bot;
 const fs = require('fs');
 const path = require('path');
 
+const meta = {
+  name: 'help',
+  description: 'Get more information about the available commands or a specific command.',
+  examples: [
+    '`help` - Get help about all the commands.',
+    '`help [command]` - Get help about a certain command.'
+  ],
+  args: [
+    {
+      key: 'command',
+      prompt: '<none>',
+      type: 'string',
+      default: ''
+    }
+  ]
+};
+
 class HelpCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'help',
+      ...meta,
       memberName: 'help',
-      group: 'util',
-      description: 'Get more information about the available commands or a specific command.',
-      examples: [
-        '`help` - Get help about all the commands.',
-        '`help [command]` - Get help about a certain command.'
-      ],
-      args: [
-        {
-          key: 'command',
-          prompt: '<none>',
-          type: 'string',
-          default: ''
-        }
-      ]
+      group: 'util'
     });
   }
 
@@ -106,3 +110,4 @@ To send a command in a DM, simply use \`command\` without a prefix.`);
 };
 
 module.exports = HelpCommand;
+module.exports.meta = meta;

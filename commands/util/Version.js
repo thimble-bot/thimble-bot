@@ -3,13 +3,17 @@ const { version } = require('../../package');
 const config = require('../../config').bot;
 const currentCommit = require('git-current-commit');
 
+const meta = {
+  name: 'version',
+  description: 'Get ThimbleBot\'s version.'
+};
+
 class Version extends Command {
   constructor(client) {
     super(client, {
-      name: 'version',
+      ...meta,
       group: 'util',
-      memberName: 'version',
-      description: 'Get ThimbleBot\'s version.'
+      memberName: 'version'
     });
   }
 
@@ -23,3 +27,4 @@ class Version extends Command {
 };
 
 module.exports = Version;
+module.exports.meta = meta;

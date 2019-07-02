@@ -2,27 +2,31 @@ const { Command } = require('discord.js-commando');
 const Boop = require('../../db/models/boops/Boop');
 const BoopOptout = require('../../db/models/boops/Optout');
 
+const meta = {
+  name: 'boop',
+  description: 'Boop someone or yourself.',
+  examples: [
+    '`boop @someone#1234` - Boop someone based on their DiscordTag',
+    '`boop someone` - Boop someone based on their username/nickname',
+    '`boop` - Ask the bot to boop you'
+  ],
+  args: [
+    {
+      key: 'user',
+      type: 'user',
+      default: '',
+      prompt: 'Who do you want to boop?'
+    }
+  ]
+};
+
 class BoopCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'boop',
+      ...meta,
       group: 'boop',
       memberName: 'boop',
       guildOnly: true,
-      description: 'Boop someone or yourself.',
-      examples: [
-        '`boop @someone#1234` - Boop someone based on their DiscordTag',
-        '`boop someone` - Boop someone based on their username/nickname',
-        '`boop` - Ask the bot to boop you'
-      ],
-      args: [
-        {
-          key: 'user',
-          type: 'user',
-          default: '',
-          prompt: 'Who do you want to boop?'
-        }
-      ],
       throttling: {
         usages: 10,
         duration: 60
@@ -135,3 +139,4 @@ class BoopCommand extends Command {
 };
 
 module.exports = BoopCommand;
+module.exports.meta = meta;

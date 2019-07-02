@@ -1,28 +1,32 @@
 const { Command } = require('discord.js-commando');
 const dateFormat = require('date-fns').format;
 
+const meta = {
+  name: 'user',
+  aliases: [ 'userinfo', 'profile' ],
+  description: 'Get some basic information about the specified user.',
+  examples: [
+    '`user @someone#1234` - Retrieve the information based on a DiscordTag',
+    '`user someone` - Retrieve the information based on a username/nickname',
+    '`user` - Retrieve information about your own account'
+  ],
+  args: [
+    {
+      key: 'user',
+      type: 'user',
+      default: '',
+      prompt: 'Please provide a user.'
+    }
+  ]
+};
+
 class UserInfo extends Command {
   constructor(client) {
     super(client, {
-      name: 'user',
+      ...meta,
       group: 'fun',
       memberName: 'user',
-      aliases: [ 'userinfo', 'profile' ],
-      guildOnly: true,
-      description: 'Get some basic information about the specified user.',
-      examples: [
-        '`user @someone#1234` - Retrieve the information based on a DiscordTag',
-        '`user someone` - Retrieve the information based on a username/nickname',
-        '`user` - Retrieve information about your own account'
-      ],
-      args: [
-        {
-          key: 'user',
-          type: 'user',
-          default: '',
-          prompt: 'Please provide a user.'
-        }
-      ]
+      guildOnly: true
     });
   }
 
@@ -77,3 +81,4 @@ class UserInfo extends Command {
 };
 
 module.exports = UserInfo;
+module.exports.meta = meta;

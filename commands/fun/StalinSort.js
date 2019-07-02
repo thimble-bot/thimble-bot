@@ -1,20 +1,24 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'stalinsort',
+  description: 'Sort numbers using the O(n) Stalin Sort algorithm. Numbers must be separated by space.',
+  examples: [ '`stalinsort 7 6 2 1 9 2 4`' ],
+  args: [
+    {
+      key: 'numbers',
+      prompt: 'What numbers do you want to sort (separated by space)?',
+      type: 'string'
+    }
+  ]
+};
+
 class StalinSortCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'stalinsort',
+      ...meta,
       group: 'fun',
-      memberName: 'stalinsort',
-      description: 'Sort numbers using the O(n) Stalin Sort algorithm. Numbers must be separated by space.',
-      examples: [ '`stalinsort 7 6 2 1 9 2 4`' ],
-      args: [
-        {
-          key: 'numbers',
-          prompt: 'What numbers do you want to sort (separated by space)?',
-          type: 'string'
-        }
-      ]
+      memberName: 'stalinsort'
     });
   }
 
@@ -64,3 +68,4 @@ class StalinSortCommand extends Command {
 };
 
 module.exports = StalinSortCommand;
+module.exports.meta = meta;

@@ -1,24 +1,28 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'emojidelete',
+  aliases: [ 'emojidel', 'emotedel', 'emotedelete' ],
+  description: 'Delete an emoji.',
+  examples: [ '`emojidel :some_emoji:` - Will delete "some_emoji" from the server' ],
+  args: [
+    {
+      key: 'emote',
+      prompt: 'Which emote do you want to delete?',
+      type: 'string'
+    }
+  ]
+};
+
 class EmojiDelete extends Command {
   constructor(client) {
     super(client, {
-      name: 'emojidelete',
-      aliases: [ 'emojidel', 'emotedel', 'emotedelete' ],
+      ...meta,
       group: 'util',
       memberName: 'emojidelete',
       guildOnly: true,
-      description: 'Delete an emoji.',
-      examples: [ '`emojidel :some_emoji:` - Will delete "some_emoji" from the server' ],
       userPermissions: [ 'MANAGE_EMOJIS' ],
-      clientPermissions: [ 'MANAGE_EMOJIS' ],
-      args: [
-        {
-          key: 'emote',
-          prompt: 'Which emote do you want to delete?',
-          type: 'string'
-        }
-      ]
+      clientPermissions: [ 'MANAGE_EMOJIS' ]
     });
   }
 
@@ -41,3 +45,4 @@ class EmojiDelete extends Command {
 };
 
 module.exports = EmojiDelete;
+module.exports.meta = meta;

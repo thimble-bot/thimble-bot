@@ -4,7 +4,7 @@ class RemoteEchoCommand extends Command {
   constructor(client) {
     super(client, {
       name: 'remoteecho',
-      group: 'util',
+      group: 'maintenance',
       memberName: 'remoteecho',
       description: 'Echo something to a server from a different server.',
       guarded: true,

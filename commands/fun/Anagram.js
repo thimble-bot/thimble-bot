@@ -3,24 +3,28 @@ const { Command } = require('discord.js-commando');
 const axios = require('axios');
 const cheerio = require('cheerio');
 
+const meta = {
+  name: 'anagram',
+  aliases: [ 'anagrams' ],
+  description: 'Get the anagrams of a word or expression.',
+  examples: [
+    '`anagram Curly Brace` - Will display the anagrams of "Curly Brace".'
+  ],
+  args: [
+    {
+      key: 'input',
+      prompt: 'What do you want the anagrams for?',
+      type: 'string'
+    }
+  ]
+};
+
 class AnagramCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'anagram',
+      ...meta,
       group: 'fun',
-      memberName: 'anagram',
-      aliases: [ 'anagrams' ],
-      description: 'Get the anagrams of a word or expression.',
-      examples: [
-        '`anagram Curly Brace` - Will display the anagrams of "Curly Brace".'
-      ],
-      args: [
-        {
-          key: 'input',
-          prompt: 'What do you want the anagrams for?',
-          type: 'string'
-        }
-      ]
+      memberName: 'anagram'
     });
   }
 
@@ -100,3 +104,4 @@ class AnagramCommand extends Command {
 };
 
 module.exports = AnagramCommand;
+module.exports.meta = meta;

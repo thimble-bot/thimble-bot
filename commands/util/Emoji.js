@@ -7,23 +7,27 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
+const meta = {
+  name: 'emoji',
+  aliases: [ 'e', 'getemoji', 'emote', 'getemote' ],
+  description: 'Get the full size version of an emote.',
+  examples: [ '`e :stuck_out_tongue:`' ],
+  args: [
+    {
+      key: 'emote',
+      prompt: 'What emote are you interested in?',
+      type: 'string'
+    }
+  ]
+};
+
 class Emoji extends Command {
   constructor(client) {
     super(client, {
-      name: 'emoji',
-      aliases: [ 'e', 'getemoji', 'emote', 'getemote' ],
+      ...meta,
       group: 'util',
       memberName: 'emoji',
       guildOnly: true,
-      description: 'Get the full size version of an emote.',
-      examples: [ '`e :stuck_out_tongue:`' ],
-      args: [
-        {
-          key: 'emote',
-          prompt: 'What emote are you interested in?',
-          type: 'string'
-        }
-      ],
       clientPermissions: [ 'ATTACH_FILES' ],
       userPermissions: [ 'ATTACH_FILES' ]
     });
@@ -88,3 +92,4 @@ class Emoji extends Command {
 };
 
 module.exports = Emoji;
+module.exports.meta = meta;

@@ -1,23 +1,27 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'purgefrom',
+  description: 'Purge all messages starting from a given message ID.',
+  aliases: [ 'clearfrom', 'deletefrom' ],
+  examples: [ '`purgefrom 123456`' ],
+  args: [
+    {
+      key: 'id',
+      prompt: 'Where should I start?',
+      type: 'string'
+    }
+  ]
+};
+
 class PurgeFrom extends Command {
   constructor(client) {
     super(client, {
-      name: 'purgefrom',
+      ...meta,
       group: 'moderation',
       memberName: 'purgefrom',
       guildOnly: true,
-      description: 'Purge all messages starting from a given message ID.',
-      aliases: [ 'clearfrom', 'deletefrom' ],
-      examples: [ '`purgefrom 123456`' ],
-      userPermissions: [ 'MANAGE_MESSAGES' ],
-      args: [
-        {
-          key: 'id',
-          prompt: 'Where should I start?',
-          type: 'string'
-        }
-      ]
+      userPermissions: [ 'MANAGE_MESSAGES' ]
     });
   }
 
@@ -52,3 +56,4 @@ class PurgeFrom extends Command {
 };
 
 module.exports = PurgeFrom;
+module.exports.meta = meta;

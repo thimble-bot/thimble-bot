@@ -1,21 +1,25 @@
 const { Command } = require('discord.js-commando');
 const axios = require('axios');
 
+const meta = {
+  name: 'siteup',
+  description: 'Checks whether a site is available and working.',
+  aliases: [ 'checksite', 'checkwebsite', 'websitecheck', 'sitecheck', 'issiteup', 'isitup', 'isitdown' ],
+  args: [
+    {
+      key: 'url',
+      type: 'string',
+      prompt: 'Please provide a valid URL.'
+    }
+  ]
+};
+
 class SiteUpCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'siteup',
+      ...meta,
       group: 'util',
-      memberName: 'siteup',
-      description: 'Checks whether a site is available and working.',
-      aliases: [ 'checksite', 'checkwebsite', 'websitecheck', 'sitecheck', 'issiteup', 'isitup', 'isitdown' ],
-      args: [
-        {
-          key: 'url',
-          type: 'string',
-          prompt: 'Please provide a valid URL.'
-        }
-      ]
+      memberName: 'siteup'
     });
   }
 
@@ -51,3 +55,4 @@ class SiteUpCommand extends Command {
 };
 
 module.exports = SiteUpCommand;
+module.exports.meta = meta;

@@ -1,14 +1,18 @@
 const { Command } = require('discord.js-commando');
 const axios = require('axios');
 
+const meta = {
+  name: 'randombunny',
+  description: 'Get a random GIF of a bunny.',
+  aliases: [ 'bunny', 'randomrabbit', 'rabbit' ]
+};
+
 class RandomBunnyCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'randombunny',
+      ...meta,
       group: 'fun',
       memberName: 'randombunny',
-      description: 'Get a random GIF of a bunny.',
-      aliases: [ 'bunny', 'randomrabbit', 'rabbit' ],
       clientPermissions: [ 'ATTACH_FILES' ],
       userPermissions: [ 'ATTACH_FILES' ]
     });
@@ -27,3 +31,4 @@ class RandomBunnyCommand extends Command {
 };
 
 module.exports = RandomBunnyCommand;
+module.exports.meta = meta;

@@ -2,13 +2,17 @@ const { Command } = require('discord.js-commando');
 const fs = require('fs');
 const path = require('path');
 
+const meta = {
+  name: 'beemovie',
+  description: 'Get a random quote from the Bee Movie script.'
+};
+
 class BeeMovieCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'beemovie',
+      ...meta,
       group: 'fun',
-      memberName: 'beemovie',
-      description: 'Get a random sentence from the Bee Movie script.'
+      memberName: 'beemovie'
     });
   }
 
@@ -25,3 +29,4 @@ class BeeMovieCommand extends Command {
 };
 
 module.exports = BeeMovieCommand;
+module.exports.meta = meta;

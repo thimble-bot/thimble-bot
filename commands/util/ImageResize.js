@@ -1,23 +1,27 @@
 const { Command } = require('discord.js-commando');
 const ImageResize = require('../../lib/ImageResize');
 
+const meta = {
+  name: 'imageresize',
+  aliases: [ 'ir' ],
+  description: 'Proportionally resize an image based on a new width (px). Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.',
+  examples: [ '`upscale 700` - proportionally resize an image, new width is 700 pixels' ],
+  args: [
+    {
+      key: 'width',
+      prompt: 'New width of the image:',
+      type: 'integer',
+      min: 2
+    }
+  ]
+};
+
 class ImageResizeCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'imageresize',
+      ...meta,
       group: 'util',
       memberName: 'imageresize',
-      aliases: [ 'ir' ],
-      description: 'Proportionally resize an image based on a new width (px). Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.',
-      examples: [ '`upscale 700` - proportionally resize an image, new width is 700 pixels' ],
-      args: [
-        {
-          key: 'width',
-          prompt: 'New width of the image:',
-          type: 'integer',
-          min: 2
-        }
-      ],
       clientPermissions: [ 'ATTACH_FILES' ],
       userPermissions: [ 'ATTACH_FILES' ]
     });
@@ -45,3 +49,4 @@ class ImageResizeCommand extends Command {
 };
 
 module.exports = ImageResizeCommand;
+module.exports.meta = meta;

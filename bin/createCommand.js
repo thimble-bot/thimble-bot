@@ -6,12 +6,16 @@ const commandsRoot = path.join(__dirname, '..', 'commands');
 
 const COMMAND_TEMPLATE = `const { Command } = require('{{requirePath}}');
 
+const meta = {
+  name: '{{name}}',
+  description: '{{description}}'
+};
+
 class {{className}} extends Command {
   constructor(client) {
     super(client, {
-      name: '{{name}}',
-      memberName: '{{name}}',
-      description: '{{description}}'{{extraOpts}}
+      ...meta
+      memberName: '{{name}}'{{extraOpts}}
     });
   }
 
@@ -21,6 +25,7 @@ class {{className}} extends Command {
 };
 
 module.exports = {{className}};
+module.exports.meta = meta;
 `;
 
 const replaceInTemplate = (template, target, replaceWith) => {

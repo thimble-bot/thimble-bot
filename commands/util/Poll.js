@@ -1,28 +1,32 @@
 const { Command } = require('discord.js-commando');
 
+const meta = {
+  name: 'poll',
+  description: 'Create reaction-based polls.',
+  args: [
+    {
+      key: 'poll',
+      type: 'string',
+      prompt: '',
+      default: ''
+    }
+  ]
+};
+
 class PollCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'poll',
+      ...meta,
       memberName: 'poll',
-      description: 'Create reaction-based polls.',
       group: 'util',
       userPermissions: [ 'ADD_REACTIONS' ],
-      clientPermissions: [ 'ADD_REACTIONS' ],
-      args: [
-        {
-          key: 'poll',
-          type: 'string',
-          prompt: '',
-          default: ''
-        }
-      ]
+      clientPermissions: [ 'ADD_REACTIONS' ]
     });
   }
 
   async run(message, { poll }) {
     if (!poll) {
-      return message.say(':warning: Maybe try providing the question of this poll, too...')
+      return message.say(':warning: Maybe try providing the question of this poll, too...');
     }
 
     try {
@@ -37,3 +41,4 @@ class PollCommand extends Command {
 };
 
 module.exports = PollCommand;
+module.exports.meta = meta;

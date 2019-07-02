@@ -106,12 +106,6 @@
         ]
       },
       {
-        "name": "remoteecho",
-        "description": "Echo something to a server from a different server.",
-        "aliases": [],
-        "examples": null
-      },
-      {
         "name": "serverinfo",
         "description": "Get some information about the current server.",
         "aliases": [
@@ -204,7 +198,7 @@
       },
       {
         "name": "beemovie",
-        "description": "Get a random sentence from the Bee Movie script.",
+        "description": "Get a random quote from the Bee Movie script.",
         "aliases": [],
         "examples": null
       },
@@ -217,12 +211,24 @@
         "examples": null
       },
       {
+        "name": "flame",
+        "description": "Flame game. Game rules: https://www.wikihow.com/Play-%22Flame%22#Playing_FLAME_sub",
+        "aliases": [
+          "flamegame"
+        ],
+        "examples": [
+          "`flame Joe, Missy`"
+        ]
+      },
+      {
         "name": "hyphen",
         "description": "Place the hyphen one word to the right in every [adjective]-ass [noun] sequence. https://xkcd.com/37/",
         "aliases": [
           "xkcd37"
         ],
-        "examples": null
+        "examples": [
+          "`hyphen That is a big-ass cake` - will be turned into \"That is a big ass-cake\""
+        ]
       },
       {
         "name": "minesweeper",
@@ -276,7 +282,8 @@
           "pony",
           "randommlp",
           "mlprandom",
-          "mlp"
+          "mlp",
+          "derpi"
         ],
         "examples": null
       },

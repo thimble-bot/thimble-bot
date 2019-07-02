@@ -1,15 +1,19 @@
 const { Command } = require('discord.js-commando');
 const dateFormat = require('date-fns').format;
 
+const meta = {
+  name: 'serverinfo',
+  aliases: [ 'server', 'guild', 'guildinfo' ],
+  description: 'Get some information about the current server.'
+};
+
 class ServerInfoCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'serverinfo',
+      ...meta,
       group: 'util',
       memberName: 'serverinfo',
-      aliases: [ 'server', 'guild', 'guildinfo' ],
-      guildOnly: true,
-      description: 'Get some information about the current server.'
+      guildOnly: true
     });
   }
 
@@ -74,3 +78,4 @@ class ServerInfoCommand extends Command {
 };
 
 module.exports = ServerInfoCommand;
+module.exports.meta = meta;

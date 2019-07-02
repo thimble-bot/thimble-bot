@@ -1,22 +1,26 @@
 const { Command } = require('discord.js-commando');
 const config = require('../../config');
 
+const meta = {
+  name: 'activity',
+  description: 'Change bot activity.',
+  args: [
+    {
+      key: 'input',
+      prompt: 'What should I play?',
+      type: 'string'
+    }
+  ]
+};
+
 class Activity extends Command {
   constructor(client) {
     super(client, {
-      name: 'activity',
+      ...meta,
       group: 'util',
       memberName: 'activity',
-      description: 'Change bot activity.',
       guarded: true,
-      ownerOnly: true,
-      args: [
-        {
-          key: 'input',
-          prompt: 'What should I play?',
-          type: 'string'
-        }
-      ]
+      ownerOnly: true
     });
   }
 
@@ -38,3 +42,4 @@ class Activity extends Command {
 };
 
 module.exports = Activity;
+module.exports.meta = meta;

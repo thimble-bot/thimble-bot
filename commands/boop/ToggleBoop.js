@@ -1,15 +1,19 @@
 const { Command } = require('discord.js-commando');
 const BoopOptout = require('../../db/models/boops/Optout');
 
+const meta = {
+  name: 'toggleboop',
+  aliases: [ 'toggleboops' ],
+  description: 'Allow or disable getting booped.'
+};
+
 class ToggleBoopCommand extends Command {
   constructor(client) {
     super(client, {
-      name: 'toggleboop',
+      ...meta,
       group: 'boop',
       memberName: 'toggleboop',
-      aliases: [ 'toggleboops' ],
       guildOnly: true,
-      description: 'Allow or disable getting booped.',
       throttling: {
         usages: 2,
         duration: 30 * 60
@@ -69,3 +73,4 @@ class ToggleBoopCommand extends Command {
 };
 
 module.exports = ToggleBoopCommand;
+module.exports.meta = meta;
