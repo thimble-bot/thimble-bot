@@ -26,7 +26,7 @@ client
     [ 'fun', 'Fun commands' ],
     [ 'maintenance', 'Maintenance features' ],
     [ 'moderation', 'Moderation' ],
-    [ 'boop', 'Boop commands' ],
+    [ 'boop', 'User interaction commands' ],
     [ 'custom', 'Custom commands' ]
   ])
   .registerDefaultGroups()

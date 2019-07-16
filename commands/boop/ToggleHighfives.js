@@ -4,17 +4,17 @@ const { Command } = require('discord.js-commando');
 const BoopOptout = require('../../db/models/boops/Optout');
 
 const meta = {
-  name: 'toggleboop',
-  aliases: [ 'toggleboops' ],
-  description: 'Allow or disable getting booped.'
+  name: 'togglehighfive',
+  aliases: [ 'togglehighfives' ],
+  description: 'Allow or disable getting highfives.'
 };
 
-class ToggleBoopCommand extends Command {
+class ToggleHighfiveCommand extends Command {
   constructor(client) {
     super(client, {
       ...meta,
       group: 'boop',
-      memberName: 'toggleboop',
+      memberName: 'togglehighfive',
       guildOnly: true,
       throttling: {
         usages: 2,
@@ -24,15 +24,15 @@ class ToggleBoopCommand extends Command {
   }
 
   getCurrentState(userId, guild) {
-    return BoopOptout.count({ where: { userId, guild, type: 'boop' } });
+    return BoopOptout.count({ where: { userId, guild, type: 'highfive' } });
   }
 
   enableBoops(userId, guild) {
-    return BoopOptout.destroy({ where: { userId, guild, type: 'boop' } });
+    return BoopOptout.destroy({ where: { userId, guild, type: 'highfive' } });
   }
 
   disableBoops(userId, guild) {
-    return BoopOptout.create({ userId, guild, type: 'boop' });
+    return BoopOptout.create({ userId, guild, type: 'highfive' });
   }
 
   async toggle(userId, guild) {
@@ -49,9 +49,9 @@ class ToggleBoopCommand extends Command {
   getMessage(author) {
     switch (this.currentState) {
       case 0: // boops are enabled
-        return `${author.toString()}, boops have been disabled successfully.`;
+        return `${author.toString()}, highfives have been disabled successfully.`;
       case 1: // boops are disabled
-        return `${author.toString()}, boops have been enabled successfully.`;
+        return `${author.toString()}, highfives have been enabled successfully.`;
     }
   }
 
@@ -69,10 +69,10 @@ class ToggleBoopCommand extends Command {
       return message.say(await this.getMessage(message.author));
     } catch (err) {
       console.error(err);
-      return message.say(':x: Failed to toggle boop state.');
+      return message.say(':x: Failed to toggle highfive state.');
     }
   }
 };
 
-module.exports = ToggleBoopCommand;
+module.exports = ToggleHighfiveCommand;
 module.exports.meta = meta;

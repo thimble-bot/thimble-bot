@@ -16,6 +16,10 @@ const Optout = db.define('optouts', {
   userId: {
     type: db.Sequelize.STRING,
     allowNull: false
+  },
+  type: {
+    type: db.Sequelize.STRING,
+    default: 'boop'
   }
 }, {
   tableName: 'boop_optouts',

@@ -73,15 +73,15 @@ class BoopLeaderboardCommand extends Command {
         const booperIdx = findIndex(this.boopers, m => m.id === record.sender);
 
         if (boopedIdx === -1) {
-          this.booped.push({ id: record.receiver, count: 1 });
+          this.booped.push({ id: record.receiver, count: parseInt(record.counts) });
         } else {
-          this.booped[boopedIdx].count++;
+          this.booped[boopedIdx].count += record.counts * 1;
         }
 
         if (booperIdx === -1) {
-          this.boopers.push({ id: record.sender, count: 1 });
+          this.boopers.push({ id: record.sender, count: parseInt(record.counts) });
         } else {
-          this.boopers[booperIdx].count++;
+          this.boopers[booperIdx].count += record.counts * 1;
         }
       }));
   }

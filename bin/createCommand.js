@@ -14,7 +14,7 @@ const meta = {
 class {{className}} extends Command {
   constructor(client) {
     super(client, {
-      ...meta
+      ...meta,
       memberName: '{{name}}'{{extraOpts}}
     });
   }
