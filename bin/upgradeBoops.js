@@ -26,15 +26,13 @@ function processUser(boops, user) {
 function processGuild(boops, guild) {
   boops = boops.filter(b => b.guild === guild);
 
-  boops = boops.sort((a, b) => a.sender < b.sender);
+  const sendersIterable = [...new Set(boops.map(b => b.sender))];
 
   const users = {};
 
-  for (let i = 0; i < boops.length; i++) {
-    const output = processUser(boops, boops[i].sender);
-    users[boops[i].sender] = output.entries;
-
-    i = i + output.count;
+  for (let i = 0; i < sendersIterable.length; i++) {
+    const output = processUser(boops, sendersIterable[i]);
+    users[sendersIterable[i]] = output.entries;
   }
 
   return {
@@ -82,12 +80,11 @@ async function upgrade() {
       });
     });
 
-  boops = boops.sort((a, b) => a.guild < b.guild);
+  const guildsIterable = [...new Set(boops.map(b => b.guild))];
 
-  for (let i = 0; i < boops.length; i++) {
-    const output = processGuild(boops, boops[i].guild);
-    results[boops[i].guild] = output.users;
-    i = i + output.count;
+  for (let i = 0; i < guildsIterable.length; i++) {
+    const output = processGuild(boops, guildsIterable[i]);
+    results[guildsIterable[i]] = output.users;
   }
 
   writeData(results);
