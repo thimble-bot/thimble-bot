@@ -1,3 +1,5 @@
+// Please only use this script if you're upgrading from v0.3.x to v0.4.x
+
 const Boops = require('../db/models/boops/Boop');
 const config = require('../config').db;
 const { format } = require('date-fns');
