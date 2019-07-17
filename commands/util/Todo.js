@@ -80,10 +80,10 @@ class TodoCommand extends Command {
       const emote = todo.completed
         ? ':white_check_mark:'
         : ':negative_squared_cross_mark:';
-      
+
       return `${emote} ${todo.displayId}. ${todo.text}`;
     });
-    
+
     return message.say({
       embed: {
         title: `${message.author.username}'s To-Dos`,
@@ -113,7 +113,7 @@ class TodoCommand extends Command {
       guildId: message.guild ? message.guild.id : null
     };
 
-    return await Todo.count({ where });
+    return Todo.count({ where });
   }
 
   async add(message, args) {
@@ -160,7 +160,7 @@ class TodoCommand extends Command {
           id: r.id,
           displayId: idx + 1,
           text: this.decrypt(r.todo, message.author.id, message.author.createdTimestamp),
-          completed: r.status ? true : false
+          completed: r.status
         };
       })));
 
@@ -175,11 +175,11 @@ class TodoCommand extends Command {
     try {
       const list = await this.list(message);
       const filteredList = list.filter(item => item.displayId === parseInt(args, 10));
-  
+
       if (!filteredList.length) {
         return message.say(':warning: Could not find the to-do.');
       }
-  
+
       await Todo.findOne({
         where: {
           id: filteredList[0].id
@@ -190,11 +190,11 @@ class TodoCommand extends Command {
           return record;
         })
         .then(record => record.save());
-      
+
       const response = newStatus === Todo.STATUS.pending
         ? ':ballot_box_with_check: To-do marked as pending.'
         : `:ballot_box_with_check: To-do marked as done. If you want to delete it, run \`todo delete ${args}\`.`;
-      
+
       return message.say(response);
     } catch (err) {
       return message.say(':x: Failed to change the status of the to-do.');
@@ -234,13 +234,13 @@ class TodoCommand extends Command {
       case 'add':
       case 'new':
       case 'create':
-        return await this.add(message, argument);
+        return this.add(message, argument);
       case 'done':
-        return await this.changeStatus(message, argument, Todo.STATUS.done);
+        return this.changeStatus(message, argument, Todo.STATUS.done);
       case 'undo':
-        return await this.changeStatus(message, argument, Todo.STATUS.pending);
+        return this.changeStatus(message, argument, Todo.STATUS.pending);
       case 'delete':
-        return await this.delete(message, argument);
+        return this.delete(message, argument);
       case 'list':
         const list = await this.list(message);
         return this.generateMessage(message, list);
