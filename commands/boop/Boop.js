@@ -194,7 +194,7 @@ class BoopCommand extends Command {
     }
 
     try {
-      const isInteractionDisabled = await this.isInteractionDisabled(guild, message.author.id, type);
+      const isInteractionDisabled = await this.isInteractionDisabled(guild, receiver.id, type);
 
       if (isInteractionDisabled) {
         return message.say(`:warning: This user has opted out from getting ${lex.thirdPerson}.`);
