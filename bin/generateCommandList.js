@@ -29,8 +29,8 @@ class CommandListGenerator {
       },
       boop: {
         meta: {
-          name: 'Boop',
-          description: 'The boop command and the commands related to it.'
+          name: 'Interaction',
+          description: 'The interaction commands and other commands related to them.'
         },
         commands: []
       }

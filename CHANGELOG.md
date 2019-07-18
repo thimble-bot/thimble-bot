@@ -4,6 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.4.0 - 2019-07-18
+### Added
+- Hug command (alias of Boop/interact)
+- Highfive command (alias of Boop/interact)
+- FLAME command
+- Todo command and database migrations
+- RNG-based "when" command
+
+### Fixed
+- Missing condition on the poll command
+
+### Changed
+- Reworked boop database structure
+- Turned boop command into "interaction", allowing multiple interactions to be added
+- Bumped lodash to v4.17.14
+- Added command metadata for easier command details fetching
+
 ## 0.3.5 - 2019-06-14
 ### Added
 - Custom workers

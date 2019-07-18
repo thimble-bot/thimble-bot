@@ -130,6 +130,18 @@
         "examples": null
       },
       {
+        "name": "todo",
+        "description": "Create and manage your to-dos within the bot. You can have to-dos per server or private to-dos by sending a DM to the bot.",
+        "aliases": [],
+        "examples": [
+          "`todo add|new|create Text of the to-do` - Create a new to-do (up to 20).",
+          "`todo list` - Get a list of your to-dos.",
+          "`todo done id` - Mark a to-do as done (you can get the id from `todo list`)",
+          "`todo undo id` - Mark a to-do as pending/not done.",
+          "`todo delete id` - Delete a to-do from your list."
+        ]
+      },
+      {
         "name": "upscale",
         "description": "Upscale an image by a certain amount. Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.",
         "aliases": [],
@@ -310,6 +322,12 @@
         "examples": [
           "`stalinsort 7 6 2 1 9 2 4`"
         ]
+      },
+      {
+        "name": "when",
+        "description": "When will a certain event happen? (RNG)",
+        "aliases": [],
+        "examples": null
       }
     ]
   },
@@ -363,13 +381,13 @@
   },
   "boop": {
     "meta": {
-      "name": "Boop",
-      "description": "The boop command and the commands related to it."
+      "name": "Interaction",
+      "description": "The interaction commands and other commands related to them."
     },
     "commands": [
       {
-        "name": "boop",
-        "description": "Boop someone or yourself.",
+        "name": "interact",
+        "description": "Interact with someone (by boops, hugs or highfives).",
         "aliases": [],
         "examples": [
           "`boop @someone#1234` - Boop someone based on their DiscordTag",
@@ -379,8 +397,13 @@
       },
       {
         "name": "boopcount",
-        "description": "Check your or someone else's current boop count.",
-        "aliases": [],
+        "description": "Check your or someone else's current boop/hug/highfive count.",
+        "aliases": [
+          "hugcount",
+          "highfivecount",
+          "high5count",
+          "hi5count"
+        ],
         "examples": [
           "`boopcount @someone#1234` - Get someone's boop count based on their DiscordTag)",
           "`boopcount someone` - Get someone's boop count based on their username/nickname",
@@ -402,6 +425,22 @@
         "description": "Allow or disable getting booped.",
         "aliases": [
           "toggleboops"
+        ],
+        "examples": null
+      },
+      {
+        "name": "togglehighfive",
+        "description": "Allow or disable getting highfives.",
+        "aliases": [
+          "togglehighfives"
+        ],
+        "examples": null
+      },
+      {
+        "name": "togglehug",
+        "description": "Allow or disable getting hugged.",
+        "aliases": [
+          "togglehugs"
         ],
         "examples": null
       }
