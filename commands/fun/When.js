@@ -28,7 +28,7 @@ class WhenCommand extends Command {
     const now = new Date();
     const rng = chance.date({
       min: now,
-      max: new Date('3000')
+      max: new Date('2050')
     });
 
     const output = `That will happen on **${format(rng, 'dddd, MMMM D, YYYY h:mm a')}**.`;
