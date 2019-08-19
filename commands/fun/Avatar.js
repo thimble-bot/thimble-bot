@@ -56,7 +56,7 @@ class AvatarCommand extends Command {
     }
 
     if (user && user.id) {
-      const result = this.generateAttachment();
+      const result = this.generateAttachment(user);
 
       if (!result) {
         return message.say(':warning: The specified user does not have an avatar.');
