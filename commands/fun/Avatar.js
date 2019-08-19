@@ -38,6 +38,10 @@ class AvatarCommand extends Command {
   }
 
   generateAttachment(user) {
+    if (!user.avatarURL) {
+      return false;
+    }
+
     return {
       file: {
         attachment: user.avatarURL,
@@ -52,7 +56,13 @@ class AvatarCommand extends Command {
     }
 
     if (user && user.id) {
-      return message.say('', this.generateAttachment(user));
+      const result = this.generateAttachment();
+
+      if (!result) {
+        return message.say(':warning: The specified user does not have an avatar.');
+      }
+
+      return message.say('', result);
     }
 
     return message.say(':x: User not found.');
