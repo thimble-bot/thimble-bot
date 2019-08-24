@@ -2,9 +2,10 @@ const { Command } = require('discord.js-commando');
 
 const meta = {
   name: 'ship',
-  description: 'Get the love compatibility of two people. The values must be separated by " x ".',
+  description: 'Get the love compatibility of two people. The values must be separated by " x " or " and ".',
   examples: [
-    '`ship Joe x Pizza`'
+    '`ship Joe x Pizza`',
+    '`ship Joe and Pizza`'
   ],
   args: [
     {
@@ -24,18 +25,8 @@ class ShipCommand extends Command {
     });
   }
 
-  isValidQuery(input) {
-    const split = input.split(' x ');
-
-    if (split.length !== 2) {
-      return false;
-    }
-
-    if (!split[0].trim() || !split[1].trim()) {
-      return false;
-    }
-
-    return true;
+  parseQuery(input) {
+    return input.match(/ x | and /);
   }
 
   calculate(subjects) {
@@ -53,15 +44,27 @@ class ShipCommand extends Command {
   }
 
   run(message, { input }) {
-    if (!this.isValidQuery(input)) {
-      return message.say(':warning: The arguments you have provided are invalid. The correct form is `person1 x person2`.');
+    const query = this.parseQuery(input);
+
+    if (!query) {
+      return message.say(':warning: The arguments you have provided are invalid. The correct form is `person1 x person2` or `person1 and person2`.');
     }
 
-    const subjects = input.split(' x ').map(s => s.trim());
+    const separator = query[0];
+
+    if (!separator) {
+      return message.say(':warning: Failed to parse your input.');
+    }
+
+    const subjects = input.split(separator).map(s => s.trim());
+
+    if (subjects.length !== 2) {
+      return message.say(':warning: Too many arguments provided. Please enter only two.');
+    }
 
     const compatibility = this.calculate(subjects);
 
-    return message.say(`The ship compatibility between ${subjects[0]} and ${subjects[1]} is ${compatibility}%.`);
+    return message.say(`The ship compatibility of ${subjects[0]} ${separator.trim()} ${subjects[1]} is ${compatibility}%.`);
   }
 };
 
