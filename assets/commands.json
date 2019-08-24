@@ -309,10 +309,11 @@
       },
       {
         "name": "ship",
-        "description": "Get the love compatibility of two people. The values must be separated by \" x \".",
+        "description": "Get the love compatibility of two people. The values must be separated by \" x \" or \" and \".",
         "aliases": [],
         "examples": [
-          "`ship Joe x Pizza`"
+          "`ship Joe x Pizza`",
+          "`ship Joe and Pizza`"
         ]
       },
       {
@@ -417,6 +418,16 @@
           "bl",
           "boopstats",
           "boopstat"
+        ],
+        "examples": null
+      },
+      {
+        "name": "myinteractions",
+        "description": "Get the top 10 people you have interacted with in the server.",
+        "aliases": [
+          "myboops",
+          "myhugs",
+          "myhighfives"
         ],
         "examples": null
       },
