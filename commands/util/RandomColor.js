@@ -32,6 +32,8 @@ class RandomColorCommand extends Command {
   }
 
   generateEmbed(hex, cmyk, hsl, rgb) {
+    const hexWithoutHash = hex.slice(1);
+
     return {
       embed: {
         title: this.isRandomColor ? 'Random Color' : 'Color Stats',
@@ -40,7 +42,7 @@ class RandomColorCommand extends Command {
           icon_url: this.client.user.avatarURL
         },
         thumbnail: {
-          url: `https://sallai.me/api/color/${hex.slice(1)}.png`
+          url: `https://dummyimage.com/100/${hexWithoutHash}/${hexWithoutHash}`
         },
         fields: [
           {
