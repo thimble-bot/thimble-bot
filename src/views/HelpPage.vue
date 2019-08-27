@@ -17,7 +17,11 @@
         li
           | Add me on Discord:
           |
-          strong -Joe-#0001
+          strong joexyz#0001
+        li
+          | ...or Telegram:
+          |
+          a(href='https://t.me/joe_xyz', target='_blank') t.me/joe_xyz
       p Do you have a feature suggestion? Feel free to tell me about it!
       p
         | Are you a developer and want to contribute to the bot's development?
