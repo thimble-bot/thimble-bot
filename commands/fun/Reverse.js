@@ -22,8 +22,18 @@ class Reverse extends Command {
     });
   }
 
+  clean(str) {
+    return str.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '');
+  }
+
   async run(message, { text }) {
-    return message.say(text.split('').reverse().join(''));
+    const reverse = text.split('').reverse().join('');
+
+    if (this.clean(text) === this.clean(reverse)) {
+      return message.say(`*Nice palindrome. Very nice. Here it is reversed, I guess :shrug:*\n${reverse}`)
+    }
+
+    return message.say(reverse);
   }
 };
 
