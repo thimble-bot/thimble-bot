@@ -1,6 +1,7 @@
 {
   "verbose": true,
   "ignore": [
-    "temp/*"
+    "temp/*",
+    "custom/storage/*"
   ]
 }
