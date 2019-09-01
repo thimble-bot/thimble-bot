@@ -1,5 +1,5 @@
 const { Command } = require('discord.js-commando');
-const prettyMs = require('pretty-ms');
+const distanceInWords = require('date-fns/distance_in_words');
 
 const meta = {
   name: 'uptime',
@@ -18,7 +18,7 @@ class Uptime extends Command {
   run(message) {
     const uptime = process.uptime();
 
-    message.say(':stopwatch: `' + prettyMs(uptime) + '`');
+    return message.say(':stopwatch: `' + distanceInWords(0, uptime * 1000, { includeSeconds: true }) + '`');
   }
 };
 
