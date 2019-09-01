@@ -56,7 +56,7 @@ class MinesweeperCommand extends Command {
       ? 'emoji'
       : 'code';
 
-    const minesweeper = new Minesweeper({ rows, columns, mines, returnType });
+    const minesweeper = new Minesweeper({ rows, columns, mines, returnType, revealFirstCell: true });
 
     try {
       const output = `Rows: \`${rows}\`, columns: \`${columns}\` (cells: \`${rows * columns}\`), mines: \`${mines}\`\n\n${minesweeper.start()}`;

@@ -23,8 +23,8 @@ class DogeCommand extends Command {
     });
   }
 
-  run(message, { text }) {
-    return message.say(dogeify(text));
+  async run(message, { text }) {
+    return message.say(await dogeify(text));
   }
 };
 
