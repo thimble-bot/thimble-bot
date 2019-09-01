@@ -29,7 +29,7 @@ class MyBoopsCommand extends Command {
       if (memberData) {
         return `${idx + 1}. ${memberData.user.username} (${member.count})`;
       } else {
-        return `${idx + 1}. ??? (${member.count})`
+        return `${idx + 1}. ??? (${member.count})`;
       }
     }))
       .then(membersMap => membersMap.join('  \n'))
@@ -85,22 +85,22 @@ class MyBoopsCommand extends Command {
 
   async fillBoopers(guild, user, type) {
     return Boop.findAll({ where: { guild: guild.id, receiver: user, type } })
-      .then((records => records.forEach(record => {
+      .then(records => records.forEach(record => {
         this.boopers.push({
           id: record.sender,
           count: record.counts
         });
-      })));
+      }));
   }
 
   async fillBooped(guild, user, type) {
     return Boop.findAll({ where: { guild: guild.id, sender: user, type } })
-      .then((records => records.forEach(record => {
+      .then(records => records.forEach(record => {
         this.booped.push({
           id: record.receiver,
           count: record.counts
         });
-      })));
+      }));
   }
 
   sort(arr) {

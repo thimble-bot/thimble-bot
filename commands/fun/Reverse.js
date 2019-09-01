@@ -30,7 +30,7 @@ class Reverse extends Command {
     const reverse = text.split('').reverse().join('');
 
     if (this.clean(text) === this.clean(reverse)) {
-      return message.say(`*Nice palindrome. Very nice. Here it is reversed, I guess :shrug:*\n${reverse}`)
+      return message.say(`*Nice palindrome. Very nice. Here it is reversed, I guess :shrug:*\n${reverse}`);
     }
 
     return message.say(reverse);
