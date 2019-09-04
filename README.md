@@ -8,7 +8,7 @@ A fast and small general-purpose bot, mainly for my own uses. List of commands c
 
 ## Requirements
 
-At the moment, the only requirements are Node.js (preferably 10.2.x or higher) and MySQL.
+At the moment, the only requirements are Node.js (preferably 10.2.x or higher) and MySQL. Chrome headless is required for puppeteer (the screenshot command).
 
 Before installing the bot, make sure you have a user created for it, which you will configure properly in the config file.
 
