@@ -9,7 +9,7 @@ const meta = {
 
 function stringIncludesAny(str, options) {
   for (let i in options) {
-    if (str.includes(options[i])) {      
+    if (str.includes(options[i])) {
       return true;
     }
   }

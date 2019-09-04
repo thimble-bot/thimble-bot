@@ -51,7 +51,13 @@ client.on('ready', async () => {
   Object.values(require('require-all')(workers)).forEach(worker => worker(client));
   Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
 
-  global.browser = await puppeteer.launch();
+  global.browser = await puppeteer.launch({
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox'
+    ]
+  });
 });
 
 client.on('message', message => {
