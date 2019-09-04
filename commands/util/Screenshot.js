@@ -117,7 +117,9 @@ class ScreenshotCommand extends Command {
     } catch (err) {
       return message.say(':x: Failed to create screenshot.')
         .then(function () {
-          return this.loadingMessage.delete();
+          if (this.loadingMessage) {
+            this.loadingMessage.delete();
+          }
         }.bind(this));
     }
   }
