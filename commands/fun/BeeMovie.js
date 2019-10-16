@@ -4,7 +4,8 @@ const path = require('path');
 
 const meta = {
   name: 'beemovie',
-  description: 'Get a random quote from the Bee Movie script.'
+  description: 'Get a random quote from the Bee Movie script.',
+  aliases: [ 'b' ]
 };
 
 class BeeMovieCommand extends Command {
@@ -12,17 +13,34 @@ class BeeMovieCommand extends Command {
     super(client, {
       ...meta,
       group: 'fun',
-      memberName: 'beemovie'
+      memberName: 'beemovie',
+      args: [
+        {
+          key: 'text',
+          type: 'string',
+          prompt: 'what search',
+          default: ''
+        }
+      ]
     });
   }
 
-  run(message) {
+  run(message, args) {
     const contents = fs.readFileSync(path.join(__dirname, '..', '..', 'assets', 'beemovie.txt'), {
       encoding: 'utf8'
     });
 
-    const paragraphs = contents.split('\n\n');
-    const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
+    let paragraphs = contents.split('\n\n');
+
+    if (args.text && args.text.length) {
+      paragraphs = paragraphs.filter(p => p.includes(args.text));
+    }
+
+    if (!paragraphs.length) {
+      return message.say(':warning: No results found for your query');
+    }
+
+    const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)].replace(/\n/g, ' ');
 
     return message.say(randomParagraph);
   }
