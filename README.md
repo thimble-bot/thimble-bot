@@ -1,10 +1,10 @@
 <img src="assets/avatar.png" align="right" width="180px"> <h1>Thimble Bot</h1>
 
-[![Thimble Bot](https://img.shields.io/badge/thimble-bot-blue.svg)](https://thimblebot.xyz)
+[![Thimble Bot](https://img.shields.io/badge/thimble-bot-blue.svg)](https://bot.thimble.cx)
 [![Build Status](https://travis-ci.org/jozsefsallai/thimble-bot.svg?branch=master)](https://travis-ci.org/jozsefsallai/thimble-bot)
 [![Dependency Status](https://david-dm.org/jozsefsallai/thimble-bot.svg)](https://david-dm.org/jozsefsallai/thimble-bot)
 
-A fast and small general-purpose bot, mainly for my own uses. List of commands can be found [here](https://thimblebot.xyz/commands).
+A fast and small general-purpose bot, mainly for my own uses. List of commands can be found [here](https://bot.thimble.cx/commands).
 
 ## Requirements
 

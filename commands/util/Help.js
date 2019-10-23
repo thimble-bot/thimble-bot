@@ -45,7 +45,7 @@ class HelpCommand extends Command {
     if (!isCustom) {
       fields.push({
         name: 'Direct link to command help',
-        value: `<https://thimblebot.xyz/commands#${data.name}>`
+        value: `<https://bot.thimble.cx/commands#${data.name}>`
       });
     }
 
@@ -72,7 +72,7 @@ class HelpCommand extends Command {
         fields,
         timestamp: new Date(),
         footer: {
-          text: 'All commands: https://thimblebot.xyz/commands'
+          text: 'All commands: https://bot.thimble.cx/commands'
         }
       }
     };
@@ -80,7 +80,7 @@ class HelpCommand extends Command {
 
   async run(message, { command }) {
     if (!command) {
-      return message.say(`:ballot_box_with_check: **A list of all commands is available here: <https://thimblebot.xyz/commands>**
+      return message.say(`:ballot_box_with_check: **A list of all commands is available here: <https://bot.thimble.cx/commands>**
 To send a command in this server, use \`${config.prefix}command\` or \`@${this.client.user.tag} command\`.
 To send a command in a DM, simply use \`command\` without a prefix.`);
     }
