@@ -55,14 +55,14 @@ class InteractNoPingCommand extends Command {
 
   async run(message) {
     const userId = message.author.id;
-    const guild  = message.guild.id;
+    const guild = message.guild.id;
 
     try {
       this.currentState = await this.getCurrentState(userId, guild);
 
       await this.toggle(userId, guild);
 
-      return message.say(this.getMessage(message.author))
+      return message.say(this.getMessage(message.author));
     } catch (err) {
       console.error(err);
       return message.say(':x: Failed to toggle boop state.');
