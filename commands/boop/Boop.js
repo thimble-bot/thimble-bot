@@ -45,6 +45,14 @@ class BoopCommand extends Command {
     } });
   }
 
+  shouldPing(guild, userId) {
+    return BoopOptout.count({ where: {
+      guild,
+      userId,
+      type: 'mute'
+    } });
+  }
+
   getInteractionCount(sender, receiver, guild, type) {
     return new Promise((resolve, reject) => {
       return Boop.findOne({
@@ -86,7 +94,9 @@ class BoopCommand extends Command {
       return `\\*${lex.thirdPerson} ${receiver.toString()}* ≧◡≦ (I ${lex.pastBot} ${count} time${count === 1 ? '' : 's'})`;
     }
 
-    const action = InteractionLex.parse(lex.past, { receiver: receiver.toString() });
+    const r = this.dontping ? receiver.username : receiver.toString();
+
+    const action = InteractionLex.parse(lex.past, { receiver: r });
 
     return count === 1
       ? `**${sender.toString()} ${action} for the first time!**`
@@ -122,7 +132,6 @@ class BoopCommand extends Command {
   }
 
   create(sender, receiver, guild, type) {
-    console.log(sender, receiver, guild, type);
     return new Promise((resolve, reject) => {
       return Boop.create({
         sender,
@@ -142,7 +151,7 @@ class BoopCommand extends Command {
   async interact(sender, receiver, guild, type) {
     try {
       const recordCheck = await this.getInteractionCount(sender, receiver, guild, type);
-      console.log(recordCheck);
+
       const result = recordCheck && recordCheck > 0
         ? await this.update(sender, receiver, guild, type)
         : await this.create(sender, receiver, guild, type);
@@ -195,6 +204,7 @@ class BoopCommand extends Command {
 
     try {
       const isInteractionDisabled = await this.isInteractionDisabled(guild, receiver.id, type);
+      this.dontping = await this.shouldPing(guild, receiver.id);
 
       if (isInteractionDisabled) {
         return message.say(`:warning: This user has opted out from getting ${lex.thirdPerson}.`);
