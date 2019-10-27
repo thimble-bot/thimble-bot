@@ -20,19 +20,18 @@ FLUSH PRIVILEGES;
 
 ## Installation
 
-Clone the repository and install the dependencies using Yarn.
+Clone the repository and install the dependencies.
 
 ```sh
 git clone git@github.com:jozsefsallai/thimble-bot
 cd thimble-bot
-npm i -g yarn
-yarn
+npm i
 ```
 
 Then run the setup script:
 
 ```sh
-yarn setup
+npm run setup
 ```
 
 Create and configure the database:
@@ -58,7 +57,7 @@ node bin/createCommand
 Contribution is welcome, but before opening a PR, make sure that your changes pass linting.
 
 ```
-yarn lint
+npm run lint
 ```
 
 ## License
