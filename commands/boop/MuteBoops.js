@@ -4,7 +4,7 @@ const BoopOptout = require('../../db/models/boops/Optout');
 const meta = {
   name: 'interact-noping',
   aliases: [ 'interact-disable-ping', 'interact-mute', 'mute-interactions' ],
-  description: 'Disable getting pinged by interaction commands. People will still be able to ping/hug/highfive you but you will not get notified by that.'
+  description: 'Disable getting pinged by interaction commands. People will still be able to boop/hug/highfive you but you will not get notified by that.'
 };
 
 class InteractNoPingCommand extends Command {
