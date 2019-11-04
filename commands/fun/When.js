@@ -1,11 +1,10 @@
 const { Command } = require('discord.js-commando');
 const Chance = require('chance');
-const chance = new Chance();
 const { format } = require('date-fns');
 
 const meta = {
   name: 'when',
-  description: 'When will a certain event happen? (RNG)'
+  description: 'When will a certain event happen? (pRNG)'
 };
 
 class WhenCommand extends Command {
@@ -24,7 +23,8 @@ class WhenCommand extends Command {
     });
   }
 
-  run(message) {
+  run(message, { input }) {
+    const chance = new Chance(input); // seed
     const now = new Date();
     const rng = chance.date({
       min: now,

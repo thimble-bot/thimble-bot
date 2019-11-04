@@ -1,4 +1,5 @@
 const { Command } = require('discord.js-commando');
+const seed = require('seedrandom');
 
 const meta = {
   name: '8ball',
@@ -60,8 +61,9 @@ class EightBallCommand extends Command {
   }
 
   run(message, { question }) {
+    const rng = seed(question);
     const length = this.askedIfSomeoneIsCute(question) ? 5 : this.answers.length;
-    const answer = this.answers[Math.floor(Math.random() * length)];
+    const answer = this.answers[Math.floor(rng() * length)];
     return message.say(this.generateAnswer(answer));
   }
 };
