@@ -10,7 +10,8 @@ const meta = {
       type: 'string',
       prompt: 'What is your question?'
     }
-  ]
+  ],
+  aliases: [ '8' ]
 };
 
 class EightBallCommand extends Command {
