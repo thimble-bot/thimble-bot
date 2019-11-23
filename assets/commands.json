@@ -6,14 +6,14 @@
     },
     "commands": [
       {
-        "name": "activity",
-        "description": "Change bot activity.",
+        "name": "ascii",
+        "description": "Convert text into ASCII.",
         "aliases": [],
         "examples": null
       },
       {
-        "name": "ascii",
-        "description": "Convert text into ASCII.",
+        "name": "activity",
+        "description": "Change bot activity.",
         "aliases": [],
         "examples": null
       },
@@ -106,6 +106,12 @@
         ]
       },
       {
+        "name": "screenshot",
+        "description": "Create a screenshot of a website (height is limited to 6000px).",
+        "aliases": [],
+        "examples": null
+      },
+      {
         "name": "serverinfo",
         "description": "Get some information about the current server.",
         "aliases": [
@@ -185,7 +191,9 @@
       {
         "name": "8ball",
         "description": "Ask the 8-Ball any question.",
-        "aliases": [],
+        "aliases": [
+          "8"
+        ],
         "examples": null
       },
       {
@@ -211,7 +219,9 @@
       {
         "name": "beemovie",
         "description": "Get a random quote from the Bee Movie script.",
-        "aliases": [],
+        "aliases": [
+          "b"
+        ],
         "examples": null
       },
       {
@@ -231,6 +241,12 @@
         "examples": [
           "`flame Joe, Missy`"
         ]
+      },
+      {
+        "name": "h",
+        "description": "h",
+        "aliases": [],
+        "examples": null
       },
       {
         "name": "hyphen",
@@ -326,7 +342,7 @@
       },
       {
         "name": "when",
-        "description": "When will a certain event happen? (RNG)",
+        "description": "When will a certain event happen? (pRNG)",
         "aliases": [],
         "examples": null
       }
@@ -418,6 +434,16 @@
           "bl",
           "boopstats",
           "boopstat"
+        ],
+        "examples": null
+      },
+      {
+        "name": "interact-noping",
+        "description": "Disable getting pinged by interaction commands. People will still be able to boop/hug/highfive you but you will not get notified by that.",
+        "aliases": [
+          "interact-disable-ping",
+          "interact-mute",
+          "mute-interactions"
         ],
         "examples": null
       },
