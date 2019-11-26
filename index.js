@@ -44,9 +44,9 @@ client.on('ready', async () => {
     client.setActivity(config.bot.activity);
   }
 
-  // invoking workers
-  const workers = path.join(__dirname, 'workers');
-  const customWorkers = path.join(__dirname, 'custom', 'workers');
+  // invoking workers for "ready" event
+  const workers = path.join(__dirname, 'workers', '_ready');
+  const customWorkers = path.join(__dirname, 'custom', 'workers', '_ready');
 
   Object.values(require('require-all')(workers)).forEach(worker => worker(client));
   Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
@@ -68,16 +68,41 @@ client.on('message', message => {
       log(client, message, command);
     }
   }
+
+  // invoking workers for "message" event
+  const workers = path.join(__dirname, 'workers', '_message');
+  const customWorkers = path.join(__dirname, 'custom', 'workers', '_message');
+
+  Object.values(require('require-all')(workers)).forEach(worker => worker(client));
+  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
 });
 
 client.on('guildCreate', guild => {
+  // invoking workers for "guildCreate" event
+  const workers = path.join(__dirname, 'workers', '_guildCreate');
+  const customWorkers = path.join(__dirname, 'custom', 'workers', '_guildCreate');
+
+  Object.values(require('require-all')(workers)).forEach(worker => worker(client));
+  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
+
   return Guild.create({ guildId: guild.id })
     .catch(err => console.error(err));
 });
 
 client.on('guildDelete', guild => {
+  // invoking workers for "guildDelete" event
+  const workers = path.join(__dirname, 'workers', '_guildDelete');
+  const customWorkers = path.join(__dirname, 'custom', 'workers', '_guildDelete');
+
+  Object.values(require('require-all')(workers)).forEach(worker => worker(client));
+  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
+
   return Guild.destroy({ where: { guildId: guild.id } })
     .catch(err => console.error(err));
 });
+
+// invoking other workers
+require('./workers/setup')(client);
+require('./custom/workers/setup')(client);
 
 client.login(config.bot.token);
