@@ -73,8 +73,8 @@ client.on('message', message => {
   const workers = path.join(__dirname, 'workers', '_message');
   const customWorkers = path.join(__dirname, 'custom', 'workers', '_message');
 
-  Object.values(require('require-all')(workers)).forEach(worker => worker(client));
-  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
+  Object.values(require('require-all')(workers)).forEach(worker => worker(client, message));
+  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client, message));
 });
 
 client.on('guildCreate', guild => {
@@ -82,8 +82,8 @@ client.on('guildCreate', guild => {
   const workers = path.join(__dirname, 'workers', '_guildCreate');
   const customWorkers = path.join(__dirname, 'custom', 'workers', '_guildCreate');
 
-  Object.values(require('require-all')(workers)).forEach(worker => worker(client));
-  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
+  Object.values(require('require-all')(workers)).forEach(worker => worker(client, guild));
+  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client, guild));
 
   return Guild.create({ guildId: guild.id })
     .catch(err => console.error(err));
@@ -94,8 +94,8 @@ client.on('guildDelete', guild => {
   const workers = path.join(__dirname, 'workers', '_guildDelete');
   const customWorkers = path.join(__dirname, 'custom', 'workers', '_guildDelete');
 
-  Object.values(require('require-all')(workers)).forEach(worker => worker(client));
-  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client));
+  Object.values(require('require-all')(workers)).forEach(worker => worker(client, guild));
+  Object.values(require('require-all')(customWorkers)).forEach(worker => worker(client, guild));
 
   return Guild.destroy({ where: { guildId: guild.id } })
     .catch(err => console.error(err));
