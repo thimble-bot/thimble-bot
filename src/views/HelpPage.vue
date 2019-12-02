@@ -17,11 +17,11 @@
         li
           | Add me on Discord:
           |
-          strong joexyz#0001
+          a(href='discord://open/users/245890903133257730') infinitesplits#5293
         li
           | ...or Telegram:
           |
-          a(href='https://t.me/joe_xyz', target='_blank') t.me/joe_xyz
+          a(href='https://t.me/infinitesplits', target='_blank') t.me/infinitesplits
       p Do you have a feature suggestion? Feel free to tell me about it!
       p
         | Are you a developer and want to contribute to the bot's development?

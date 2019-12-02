@@ -3,10 +3,10 @@
     .content
       h1 Invite
       p
-        | Currently, Thimble Bot is not available for public invitation. This will be
-        | changed in the future though.
-        | If you want to use the bot in your server, you should contact me on any
-        | of the mediums described in the
+        | Currently, Thimble Bot is not available for public invitation. This might
+        | change in the future though.
+        | If you want to use the bot in your server, you should contact me through one
+        | of the ways described in the
         |
         router-link(to='/help') Help &amp; Support
         |
