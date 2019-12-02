@@ -33,16 +33,23 @@ class BeeMovieCommand extends Command {
     let paragraphs = contents.split('\n\n');
 
     if (args.text && args.text.length) {
-      paragraphs = paragraphs.filter(p => p.includes(args.text));
+      paragraphs = paragraphs.filter(p => p.toLowerCase().includes(args.text.trim().toLowerCase()));
     }
 
     if (!paragraphs.length) {
       return message.say(':warning: No results found for your query');
     }
 
-    const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)].replace(/\n/g, ' ');
+    const allParagraphsCount = paragraphs.length;
+    const currentParagraphIdx = Math.floor(Math.random() * paragraphs.length);
 
-    return message.say(randomParagraph);
+    const randomParagraph = paragraphs[currentParagraphIdx].replace(/\n/g, ' ');
+
+    if (args.text && args.text.length) {
+      return message.say(`**Result \`${currentParagraphIdx + 1}\` of \`${allParagraphsCount}\`:**\n> ${randomParagraph}`);
+    }
+
+    return message.say(`> ${randomParagraph}`);
   }
 };
 
