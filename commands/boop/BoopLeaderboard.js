@@ -67,7 +67,7 @@ class BoopLeaderboardCommand extends Command {
   }
 
   fill(guild) {
-    return Boop.findAll({ where: { guild } })
+    return Boop.findAll({ where: { guild, type: 'boop' } })
       .then(records => records.forEach(record => {
         const boopedIdx = findIndex(this.booped, m => m.id === record.receiver);
         const booperIdx = findIndex(this.boopers, m => m.id === record.sender);

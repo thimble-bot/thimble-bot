@@ -164,7 +164,7 @@ class BoopCommand extends Command {
   }
 
   getCommand(content) {
-    return content.split(' ')[0].slice(1);
+    return content.split(' ')[0].slice(1).trim().toLowerCase();
   }
 
   async run(message, { user }) {
