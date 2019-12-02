@@ -17,6 +17,7 @@
     "pug-loader": "^2.4.0",
     "pug-plain-loader": "^1.0.0",
     "vue": "^2.6.10",
+    "vue-code-highlight": "^0.7.4",
     "vue-router": "^3.0.3"
   },
   "devDependencies": {

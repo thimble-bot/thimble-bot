@@ -9,7 +9,8 @@
         nav.main-navigation(:class='{ "hamburger-open": hamburgerOpen }')
           router-link(to='/') Home
           router-link(to='/commands') Commands
-          router-link(to='/help') Help &amp; Support
+          router-link(to='/customization') Customization
+          router-link(to='/help') Help
           a(href='https://github.com/jozsefsallai/thimble-bot', target='_blank') GitHub
           router-link(to='/invite').invite-button Invite
         a(href='javascript:;', @click='toggleHamburgerState').hamburger-icon

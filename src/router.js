@@ -50,6 +50,12 @@ export default new Router({
       props: { documentId: 'privacy-policy' }
     },
     {
+      path: '/customization',
+      name: 'customization',
+      component: MarkdownPage,
+      props: { documentId: 'customization' }
+    },
+    {
       path: '*',
       name: 'not-found',
       component: NotFoundPage

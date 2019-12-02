@@ -2,7 +2,7 @@
   app-template
     .content
       .wrapper(v-if='!isErrored')
-        div(v-if='isPageLoaded', v-html='content')
+        vue-code-highlight(v-if='isPageLoaded', v-html='content')
         Loading(v-else)
       .error-message(v-else)
         | Failed to render this page.
@@ -12,11 +12,14 @@
 import AppTemplate from '@/Template';
 import Loading from '@/components/Loading';
 
+import { component as VueCodeHighlight } from 'vue-code-highlight';
+
 import axios from 'axios';
 import Markdown from 'markdown-it';
 
 const markdown = new Markdown({
-  linkify: true
+  linkify: true,
+  html: true
 });
 
 export default {
@@ -46,7 +49,24 @@ export default {
   },
   components: {
     'app-template': AppTemplate,
-    Loading
+    Loading,
+    VueCodeHighlight
   }
 }
 </script>
+
+<style lang="scss">
+@import 'src/styles/colors';
+
+code {
+  padding: 2px 8px;
+  display: inline-block;
+  background: $thimble-dark-blue;
+  border-radius: 3px;
+  color: #fff;
+  font-size: .9rem;
+  margin-bottom: 2px;
+}
+
+@import '~vue-code-highlight/themes/prism-okaidia.css';
+</style>
