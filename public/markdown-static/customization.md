@@ -104,4 +104,4 @@ module.exports = Worker; // this is important
 
 ### Additional Event Handlers
 
-The `custom/setup.js` file allows you to define your own additional event handlers, as long as they haven't been defined already in the bot's main entry point (`index.js`). Please read [this guide](https://anidiots.guide/understanding/events-and-handlers) for reference on how to define bot events.
+The `custom/workers/setup.js` file allows you to define your own additional event handlers, as long as they haven't been defined already in the bot's main entry point (`index.js`). Please read [this guide](https://anidiots.guide/understanding/events-and-handlers) for reference on how to define bot events.
