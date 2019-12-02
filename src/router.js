@@ -5,6 +5,7 @@ import Home from './views/Home';
 import NotFoundPage from './views/NotFoundPage';
 import InvitePage from './views/InvitePage';
 import CommandsPage from './views/CommandsPage';
+import MarkdownPage from './views/MarkdownPage';
 import HelpPage from './views/HelpPage';
 
 Vue.use(Router);
@@ -41,6 +42,12 @@ export default new Router({
       path: '/help',
       name: 'help',
       component: HelpPage
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: MarkdownPage,
+      props: { documentId: 'privacy-policy' }
     },
     {
       path: '*',
