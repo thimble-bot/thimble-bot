@@ -6,14 +6,14 @@
     },
     "commands": [
       {
-        "name": "ascii",
-        "description": "Convert text into ASCII.",
+        "name": "activity",
+        "description": "Change bot activity.",
         "aliases": [],
         "examples": null
       },
       {
-        "name": "activity",
-        "description": "Change bot activity.",
+        "name": "ascii",
+        "description": "Convert text into ASCII.",
         "aliases": [],
         "examples": null
       },
@@ -225,6 +225,17 @@
         "examples": null
       },
       {
+        "name": "dice",
+        "description": "Roll a dice.",
+        "aliases": [
+          "d"
+        ],
+        "examples": [
+          "`dice` - roll a dice with 6 sides",
+          "`dice 10` - roll a dice with 10 sides"
+        ]
+      },
+      {
         "name": "doge",
         "description": "Dogeifies a given string.",
         "aliases": [
@@ -240,6 +251,18 @@
         ],
         "examples": [
           "`flame Joe, Missy`"
+        ]
+      },
+      {
+        "name": "flip",
+        "description": "Flip a coin or just make a choice.",
+        "aliases": [
+          "choice",
+          "coin"
+        ],
+        "examples": [
+          "`flip` - flip a coin",
+          "`choice play games | go outside | watch movie` - pick between 3 things"
         ]
       },
       {
