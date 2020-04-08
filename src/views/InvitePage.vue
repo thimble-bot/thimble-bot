@@ -1,25 +1,21 @@
 <template lang="pug">
   app-template
     .content
-      h1 Invite
-      p
-        | Currently, Thimble Bot is not available for public invitation. This might
-        | change in the future though.
-        | If you want to use the bot in your server, you should contact me through one
-        | of the ways described in the
-        |
-        router-link(to='/help') Help &amp; Support
-        |
-        | page.
+      loading
 </template>
 
 <script>
 import AppTemplate from '@/Template';
+import Loading from '@/components/Loading';
 
 export default {
   name: 'invite-page',
   components: {
-    'app-template': AppTemplate
+    'app-template': AppTemplate,
+    Loading
+  },
+  mounted: function () {
+    window.location = 'https://discordapp.com/oauth2/authorize?client_id=530503314291556372&scope=bot&permissions=8';
   }
 };
 </script>

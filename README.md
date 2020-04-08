@@ -38,4 +38,4 @@ yarn build
 
 ## License
 
-MIT.
+MIT. Thimble (character and design) is the property of József Sallai. You may NOT use the character or its name without the owner's written approval. Discord is the property of Discord, Inc.
