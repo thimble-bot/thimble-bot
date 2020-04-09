@@ -43,7 +43,7 @@ class FlipCommand extends Command {
 
     const choice = answers[Math.floor(Math.random() * answers.length)];
 
-    return message.say(`**I flipped a coin and this is the result:**\n\`\`\`${choice}\`\`\``)
+    return message.say(`**I flipped a coin and this is the result:**\n\`\`\`${choice}\`\`\``);
   }
 }
 
