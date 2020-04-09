@@ -1,0 +1,5 @@
+port: 3000
+tokens: [
+  'a secret token used to access the API',
+  'you can specify multiple'
+]
