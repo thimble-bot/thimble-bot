@@ -17,7 +17,7 @@ class Activity extends Command {
   constructor(client) {
     super(client, {
       ...meta,
-      group: 'maintenantce',
+      group: 'maintenance',
       memberName: 'activity',
       guarded: true,
       ownerOnly: true
