@@ -1,6 +1,6 @@
 {
   "name": "thimble-bot",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "main": "index.js",
   "repository": "https://github.com/jozsefsallai/thimble-bot",
   "author": "József Sallai @jozsefsallai",
@@ -34,10 +34,11 @@
     "raven": "^2.6.4",
     "seedrandom": "^3.0.5",
     "sequelize": "^5.21.1",
-    "sharp": "^0.21.3",
+    "sharp": "^0.25.3",
     "slugify": "^1.3.4",
     "twemoji-parser": "^11.0.2",
-    "umzug": "^2.2.0"
+    "umzug": "^2.2.0",
+    "urban.js": "^2.4.3"
   },
   "devDependencies": {
     "eslint": "^4.19.1",

@@ -10,6 +10,9 @@ const meta = {
       type: 'string',
       prompt: 'Please provide the text you want to ASCII-ify.'
     }
+  ],
+  examples: [
+    '`ascii hello` - will print "hello" using figlet\'s Big font'
   ]
 };
 

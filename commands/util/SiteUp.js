@@ -11,6 +11,9 @@ const meta = {
       type: 'string',
       prompt: 'Please provide a valid URL.'
     }
+  ],
+  examples: [
+    '`siteup https://suu-no-nikki.com`'
   ]
 };
 

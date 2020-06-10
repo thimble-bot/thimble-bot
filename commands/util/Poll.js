@@ -10,6 +10,9 @@ const meta = {
       prompt: '',
       default: ''
     }
+  ],
+  examples: [
+    '`poll Should I sleep?` - will react with 👍, 👎, and 🤷 to your message.'
   ]
 };
 

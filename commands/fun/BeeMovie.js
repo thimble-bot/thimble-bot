@@ -5,7 +5,11 @@ const path = require('path');
 const meta = {
   name: 'beemovie',
   description: 'Get a random quote from the Bee Movie script.',
-  aliases: [ 'b' ]
+  aliases: [ 'b' ],
+  examples: [
+    '`beemovie` - will return a random quote from the movie',
+    '`beemovie honey` - will return a random quote from the movie that contains the word "honey"'
+  ]
 };
 
 class BeeMovieCommand extends Command {

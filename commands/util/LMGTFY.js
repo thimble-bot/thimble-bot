@@ -9,6 +9,9 @@ const meta = {
       type: 'string',
       prompt: 'What are you searching for?'
     }
+  ],
+  examples: [
+    '`lmgtfy dentists` will return https://lmgtfy.com/?q=dentists'
   ]
 };
 

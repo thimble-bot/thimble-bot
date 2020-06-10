@@ -6,16 +6,12 @@
     },
     "commands": [
       {
-        "name": "activity",
-        "description": "Change bot activity.",
-        "aliases": [],
-        "examples": null
-      },
-      {
         "name": "ascii",
         "description": "Convert text into ASCII.",
         "aliases": [],
-        "examples": null
+        "examples": [
+          "`ascii hello` - will print \"hello\" using figlet's Big font"
+        ]
       },
       {
         "name": "emoji",
@@ -79,13 +75,17 @@
         "name": "lmgtfy",
         "description": "Generate a \"Let Me Google That For You\" link.",
         "aliases": [],
-        "examples": null
+        "examples": [
+          "`lmgtfy dentists` will return https://lmgtfy.com/?q=dentists"
+        ]
       },
       {
         "name": "poll",
         "description": "Create reaction-based polls.",
         "aliases": [],
-        "examples": null
+        "examples": [
+          "`poll Should I sleep?` - will react with 👍, 👎, and 🤷 to your message."
+        ]
       },
       {
         "name": "randomcolor",
@@ -109,7 +109,9 @@
         "name": "screenshot",
         "description": "Create a screenshot of a website (height is limited to 6000px).",
         "aliases": [],
-        "examples": null
+        "examples": [
+          "`screenshot https://bot.thimble.cx`"
+        ]
       },
       {
         "name": "serverinfo",
@@ -133,7 +135,9 @@
           "isitup",
           "isitdown"
         ],
-        "examples": null
+        "examples": [
+          "`siteup https://suu-no-nikki.com`"
+        ]
       },
       {
         "name": "todo",
@@ -160,6 +164,14 @@
         "description": "Get the bot's uptime.",
         "aliases": [],
         "examples": null
+      },
+      {
+        "name": "urban",
+        "description": "Find the definition of something in Urban Dictionary.",
+        "aliases": [],
+        "examples": [
+          "`urban owo` - will return the definition of \"owo\""
+        ]
       },
       {
         "name": "user",
@@ -222,7 +234,10 @@
         "aliases": [
           "b"
         ],
-        "examples": null
+        "examples": [
+          "`beemovie` - will return a random quote from the movie",
+          "`beemovie honey` - will return a random quote from the movie that contains the word \"honey\""
+        ]
       },
       {
         "name": "dice",

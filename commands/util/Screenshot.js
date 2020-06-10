@@ -4,7 +4,10 @@ const path = require('path');
 
 const meta = {
   name: 'screenshot',
-  description: 'Create a screenshot of a website (height is limited to 6000px).'
+  description: 'Create a screenshot of a website (height is limited to 6000px).',
+  examples: [
+    '`screenshot https://bot.thimble.cx`'
+  ]
 };
 
 function stringIncludesAny(str, options) {
