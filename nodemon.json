@@ -1,7 +1,7 @@
 {
   "verbose": true,
   "ignore": [
-    "temp/*",
-    "custom/storage/*"
+    "src/*",
+    "assets/*"
   ]
 }

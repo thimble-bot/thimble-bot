@@ -1,7 +1,9 @@
 node_modules
 .vscode
 .DS_Store
-commands/custom
+dist/
+.firebase
+
 custom/*
 !custom/*/
 custom/*/*

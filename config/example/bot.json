@@ -1,16 +1,7 @@
 {
-  "token": "your bot token",
-  "activity": null,
-  "prefix": ".",
-  "guild": "your guild ID",
-  "owner": "owner ID",
-  "logging": {
-    "enabled": true,
-    "channel": "logging channel ID"
-  },
-  "sentry": {
-    "public": null,
-    "secret": null,
-    "id": null
-  }
+  "token": "your Discord bot token",
+  "owners": [ "user ID" ],
+  "activity": "with Discord's API",
+  "defaultPrefix": ".",
+  "expUpdateInterval": 5
 }

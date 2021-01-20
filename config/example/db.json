@@ -1,8 +1,0 @@
-{
-  "host": "localhost",
-  "user": "joe",
-  "password": "joe",
-  "database": "thimblebot",
-  "dialect": "mysql",
-  "logging": true
-}
