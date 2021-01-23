@@ -434,6 +434,16 @@
         "examples": []
       },
       {
+        "name": "imageresize",
+        "description": "Proportionally resize an image based on a new width (px). Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.",
+        "aliases": [
+          "ir"
+        ],
+        "examples": [
+          "`ir 700` - proportionally resize an image, new width is 700 pixels"
+        ]
+      },
+      {
         "name": "lmgtfy",
         "description": "Generate a \"Let Me Google That For You\" link.",
         "aliases": [],
@@ -450,6 +460,14 @@
         "description": "Create reaction-based polls.",
         "aliases": [],
         "examples": []
+      },
+      {
+        "name": "upscale",
+        "description": "Upscale an image by a certain amount. Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.",
+        "aliases": [],
+        "examples": [
+          "`upscale 3` - upscale an image 3 times its original size"
+        ]
       },
       {
         "name": "user",
