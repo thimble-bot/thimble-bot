@@ -41,7 +41,7 @@ class UpscaleCommand extends Command {
     const image = await message.attachments.first();
 
     if (!image) {
-      return
+      return;
     }
 
     const resizer = new ImageResizer({

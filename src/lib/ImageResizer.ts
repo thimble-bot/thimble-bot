@@ -28,8 +28,8 @@ class ImageResizer {
     this.originalHeight = opts.originalHeight;
     this.originalWidth = opts.originalWidth;
     this.width = opts.width;
-    this.height = this.width && this.originalHeight && this.originalWidth
-      && Math.floor(this.originalHeight * this.width / this.originalWidth);
+    this.height = this.width && this.originalHeight && this.originalWidth &&
+      Math.floor(this.originalHeight * this.width / this.originalWidth);
     this.resamplingMethod = opts.resamplingMethod;
 
     this.filename = `rescaled_${Date.now()}${opts.id}.${opts.extension}`;
