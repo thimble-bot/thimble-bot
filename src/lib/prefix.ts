@@ -3,7 +3,7 @@ import config from '../config';
 
 const prefix = (message: Message | null, commandPrefix: string = ''): string => {
   if (message === null) {
-    return `.${commandPrefix}`;
+    return commandPrefix;
   }
 
   if (message.guild) {

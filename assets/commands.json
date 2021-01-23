@@ -342,33 +342,33 @@
     },
     "commands": [
       {
-        "name": ".todo add",
+        "name": "todo add",
         "description": "Add something to your todo list.",
         "aliases": [
-          ".todo new",
-          ".todo create"
+          "todo new",
+          "todo create"
         ],
         "examples": []
       },
       {
-        "name": ".todo delete",
+        "name": "todo delete",
         "description": "Remove todo.",
         "aliases": [
-          ".todo remove"
+          "todo remove"
         ],
         "examples": []
       },
       {
-        "name": ".todo list",
+        "name": "todo list",
         "description": "List all your todos.",
         "aliases": [],
         "examples": []
       },
       {
-        "name": ".todo done",
+        "name": "todo done",
         "description": "Toggle a todo state.",
         "aliases": [
-          ".todo undo"
+          "todo undo"
         ],
         "examples": []
       }
