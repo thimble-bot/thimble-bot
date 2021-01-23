@@ -470,6 +470,12 @@
         ]
       },
       {
+        "name": "uptime",
+        "description": "Get the bot's uptime.",
+        "aliases": [],
+        "examples": []
+      },
+      {
         "name": "user",
         "description": "Get some basic information about the specified user.",
         "aliases": [
