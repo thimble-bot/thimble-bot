@@ -19,7 +19,11 @@ import registerEvents from './lib/registerEvents';
 import { IConfig } from './typings/config';
 import { generateCommandList } from './lib/commandList';
 
-import { partialMemberResolver, partialMembersResolver } from './resolvers';
+import {
+  globalUserResolver,
+  partialMemberResolver,
+  partialMembersResolver
+} from './resolvers';
 
 const CUSTOM_COMMANDS_PATH = path.join(__dirname, '../config/commands');
 
@@ -51,6 +55,7 @@ class ThimbleBot extends AkairoClient implements IThimbleBot {
       loadFilter: f => !f.endsWith('.d.ts')
     });
 
+    this.commandHandler.resolver.addType('globalUser', globalUserResolver(this));
     this.commandHandler.resolver.addType('partialMember', partialMemberResolver);
     this.commandHandler.resolver.addType('partialMembers', partialMembersResolver);
 

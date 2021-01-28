@@ -19,7 +19,7 @@ class UserCommand extends Command {
       args: [
         {
           id: 'user',
-          type: 'user',
+          type: 'globalUser',
           prompt: {
             retry: error('Invalid user provided.'),
             optional: true
