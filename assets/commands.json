@@ -478,6 +478,18 @@
         "examples": []
       },
       {
+        "name": "siteup",
+        "description": "Checks whether a site is available and working.",
+        "aliases": [
+          "checksite",
+          "isitup",
+          "isitdown"
+        ],
+        "examples": [
+          "`siteup https://suu-no-nikki.com`"
+        ]
+      },
+      {
         "name": "upscale",
         "description": "Upscale an image by a certain amount. Works best with pixel art. For anything else, it will be pixelated, but not too noticeably.",
         "aliases": [],

@@ -32,7 +32,7 @@ class UrbanCommand extends Command {
 
       return message.channel.send(result);
     } catch (err) {
-      if (err.code && err.code === 'ERR_WORD_UNDEFINED' || err.name === 'UrbanLookupError') {
+      if ((err.code && err.code === 'ERR_WORD_UNDEFINED') || err.name === 'UrbanLookupError') {
         return message.channel.send(error(err.message));
       }
 

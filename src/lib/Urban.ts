@@ -51,7 +51,7 @@ class Urban {
     embed.setURL(data.permalink);
 
     if (this.user) {
-      embed.setAuthor(this.user.username, this.user.avatarURL() || this.user.defaultAvatarURL)
+      embed.setAuthor(this.user.username, this.user.avatarURL() || this.user.defaultAvatarURL);
     }
 
     return embed;
