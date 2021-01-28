@@ -43,7 +43,7 @@ class MinesweeperCommand extends Command {
         },
         {
           id: 'plaintext',
-          type: (message: Message, phrase: string): boolean | null => {
+          type: (message: Message): boolean | null => {
             // hacky, but works
 
             if (message.content.includes('--plain') || message.content.includes('--plaintext')) {

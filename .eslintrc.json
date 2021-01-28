@@ -9,10 +9,8 @@
     "@typescript-eslint/eslint-plugin"
   ],
   "rules": {
-    "comma-dangle": [
-      "error",
-      "never"
-    ],
+    "comma-dangle": [ "error", "never" ],
+
     "space-before-function-paren": [
       "error",
       {
@@ -20,15 +18,11 @@
         "named": "never"
       }
     ],
-    "semi": [
-      "error",
-      "always"
-    ],
-    "prefer-promise-reject-errors": [
-      "off"
-    ],
-    "array-bracket-spacing": [
-      "off"
-    ]
+
+    "semi": "off",
+    "@typescript-eslint/semi": [ "error" ],
+    "prefer-promise-reject-errors": [ "off" ],
+    "array-bracket-spacing": [ "off" ],
+    "@typescript-eslint/no-unused-vars": [ "error" ]
   }
 }

@@ -7,7 +7,7 @@ import { decrypt } from '../../lib/todo/aes';
 type TodoData = Omit<ITodo, 'todo'> & {
   todo: string | null;
   id: string;
-}
+};
 
 class TodoListCommand extends TodoCommand {
   constructor() {
