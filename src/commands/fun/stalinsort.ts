@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { warn } from '../../lib/serviceMessages';
 
 class StalinSortCommand extends Command {
   constructor() {
@@ -60,13 +59,13 @@ class StalinSortCommand extends Command {
     const rawNumbers = input.match(/\b(\w+)\b/g);
 
     if (!rawNumbers || !this.areAllNumbers(rawNumbers)) {
-      return message.channel.send(warn('Please provide valid numbers.'));
+      return this.warn(message, 'Please provide valid numbers.');
     }
 
     const numbers = rawNumbers.map(n => parseInt(n, 10));
     const result = this.stalinSort(numbers);
 
-    return message.channel.send(`\`${result.join(' ')}\``);
+    return this.say(message, `\`${result.join(' ')}\``);
   }
 }
 

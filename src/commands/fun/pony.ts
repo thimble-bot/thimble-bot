@@ -1,8 +1,7 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, TextChannel, MessageEmbed } from 'discord.js';
 
 import dinky, { responses } from 'dinky.js';
-import { error, warn } from '../../lib/serviceMessages';
 import truncate from '../../lib/truncate';
 
 interface PonyCommandArgs {
@@ -77,7 +76,7 @@ class PonyCommand extends Command {
     }
 
     if (query.trim().length === 0) {
-      return message.channel.send(error('Please provide a search query.'));
+      return this.error(message, 'Please provide a search query.');
     }
 
     const channel = message.channel as TextChannel;
@@ -85,7 +84,7 @@ class PonyCommand extends Command {
     const queryHasNSFW = query && this.queryHasNSFW(query);
 
     if (!isChannelNSFW && queryHasNSFW) {
-      return message.channel.send(error('You cannot ask for NSFW results in an SFW channel.'));
+      return this.error(message, 'You cannot ask for NSFW results in an SFW channel.');
     }
 
     const keywords = query
@@ -99,18 +98,18 @@ class PonyCommand extends Command {
       const random = await search.random().limit(1);
 
       if (!random?.images?.length) {
-        return message.channel.send(warn('No results found for your query.'));
+        return this.warn(message, 'No results found for your query.');
       }
 
       const image = random.images[0];
 
       if (silent) {
-        return message.channel.send(image.representations.full);
+        return this.say(message, image.representations.full);
       }
 
-      return message.channel.send(this.generateEmbed(image));
+      return this.say(message, this.generateEmbed(image));
     } catch (err) {
-      return message.channel.send(error(`Failed to fetch image: \`${err.message}\`.`));
+      return this.error(message, `Failed to fetch image: \`${err.message}\`.`);
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageEmbed } from 'discord.js';
 
 interface Loot {
@@ -169,7 +169,7 @@ class PiglinCommand extends Command {
     const drop = PIGLIN_LOOT_TABLE[Math.floor(Math.random() * PIGLIN_LOOT_TABLE.length)];
     const quantity = Math.floor(Math.random() * (drop.quantity[1] - drop.quantity[0]) + drop.quantity[0]);
     const embed = this.generateEmbed(drop, quantity);
-    return message.channel.send(embed);
+    return this.say(message, embed);
   }
 }
 

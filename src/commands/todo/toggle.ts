@@ -1,6 +1,5 @@
 import TodoCommand from '../../lib/todo/TodoCommand';
 import { Message } from 'discord.js';
-import { error, success } from '../../lib/serviceMessages';
 import { IListOpts, Todo } from '../../models/Todo';
 
 class TodoToggleCommand extends TodoCommand {
@@ -22,7 +21,7 @@ class TodoToggleCommand extends TodoCommand {
 
   async exec(message: Message, { id }: { id: number }) {
     if (id <= 0 || id > 20) {
-      return message.channel.send(error('The ID must be between 1 and 20.'));
+      return this.error(message, 'The ID must be between 1 and 20.');
     }
 
     const query: IListOpts = {
@@ -39,7 +38,7 @@ class TodoToggleCommand extends TodoCommand {
         .sort((a, b) => (a.createTime?.seconds as number) - (b.createTime?.seconds as number));
 
       if (id > todos.length) {
-        return message.channel.send(error('There is no todo with this ID.'));
+        return this.error(message, 'There is no todo with this ID.');
       }
 
       const target = todos[id - 1];
@@ -51,10 +50,10 @@ class TodoToggleCommand extends TodoCommand {
       });
 
       return newState
-        ? message.channel.send(success(`Todo marked as done. To delete it, run \`todo delete ${id}\`.`))
-        : message.channel.send(success('Todo marked as pending.'));
+        ? this.success(message, `Todo marked as done. To delete it, run \`todo delete ${id}\`.`)
+        : this.success(message, 'Todo marked as pending.');
     } catch (err) {
-      return message.channel.send(error('Failed to change the state of the todo.'));
+      return this.error(message, 'Failed to change the state of the todo.');
     }
   }
 }

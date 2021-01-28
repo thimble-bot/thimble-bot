@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 
 interface ShipCommandArgs {
@@ -42,7 +42,7 @@ class ShipCommand extends Command {
 
     if (!query) {
       // TODO: refactor this to use Akairo's regex type
-      return message.channel.send(':warning: The arguments you have provided are invalid. The correct form is `person1 x person2` or `person1 and person2`.');
+      return this.warn(message, 'The arguments you have provided are invalid. The correct form is `person1 x person2` or `person1 and person2`.');
     }
 
     const separator = query[0];
@@ -52,18 +52,18 @@ class ShipCommand extends Command {
       .map(subject => subject.trim());
 
     if (subjects.length < 2) {
-      return message.channel.send(':warning: Too few arguments provided.');
+      this.warn(message, 'Too few arguments provided.');
     }
 
     if (subjects.length > 2) {
-      return message.channel.send(':warning: Too many arguments provided.');
+      this.warn(message, 'Too many arguments provided.');
     }
 
     const compatibility = this.calculate(subjects);
     const emojis = [ ':heart:', ':heart_decoration:', ':heartpulse:', ':heart_exclamation:' ];
     const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
 
-    return message.channel.send(`${randomEmoji} The ship compatibility of ${subjects.join(separator)} is **${compatibility}%**.`);
+    return this.say(message, `${randomEmoji} The ship compatibility of ${subjects.join(separator)} is **${compatibility}%**.`);
   }
 }
 

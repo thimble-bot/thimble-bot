@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { error, success } from '../../lib/serviceMessages';
 import { IThimbleBot } from '../../typings/thimblebot';
 
 interface RepeatCommandArgs {
@@ -38,7 +37,7 @@ class RepeatCommand extends Command {
 
   async exec(message: Message, { mode }: RepeatCommandArgs) {
     if (!message.member?.voice.channel) {
-      return message.channel.send(error('You have to be in a voice channel to use this command.'));
+      return this.error(message, 'You have to be in a voice channel to use this command.');
     }
 
     const repeat = modes[mode];
@@ -46,7 +45,7 @@ class RepeatCommand extends Command {
 
     client.distube.setRepeatMode(message, repeat.id);
 
-    message.channel.send(success(`Set repeat mode to \`${repeat.label}\`!`));
+    this.success(message, `Set repeat mode to \`${repeat.label}\`!`);
   }
 }
 

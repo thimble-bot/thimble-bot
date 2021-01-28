@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageEmbed, User } from 'discord.js';
 
 import { format as dateFormat } from 'date-fns';
@@ -45,7 +45,7 @@ class UserCommand extends Command {
     embed.setTimestamp(new Date());
     embed.setFooter('<3');
 
-    return message.channel.send(embed);
+    return this.say(message, embed);
   }
 }
 

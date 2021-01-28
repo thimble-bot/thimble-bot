@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, GuildMember } from 'discord.js';
-import { error, success } from '../../lib/serviceMessages';
 
 interface BanCommandArgs {
   member: GuildMember;
@@ -33,16 +32,16 @@ class BanCommand extends Command {
 
   exec(message: Message, { member, reason }: BanCommandArgs) {
     if (member.user === this.client.user) {
-      return message.channel.send('Nice try, you can\'t ban me though!');
+      return this.info(message, 'Nice try, you can\'t ban me though!');
     }
 
     if (member.user === message.author) {
-      return message.channel.send('You don\'t just ban yourself from the server...');
+      return this.info(message, 'You don\'t just ban yourself from the server...');
     }
 
     return member.ban({ reason })
-      .then(() => message.channel.send(success(`${member} banned successfully!`)))
-      .catch(() => message.channel.send(error(`Failed to ban ${member}.`)));
+      .then(() => this.success(message, `${member} banned successfully!`))
+      .catch(() => this.error(message, `Failed to ban ${member}.`));
   }
 }
 

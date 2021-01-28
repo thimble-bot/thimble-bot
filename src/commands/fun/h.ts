@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 
 class HCommand extends Command {
@@ -10,7 +10,7 @@ class HCommand extends Command {
   }
 
   exec(message: Message) {
-    return message.channel.send('h');
+    return this.say(message, 'h');
   }
 }
 

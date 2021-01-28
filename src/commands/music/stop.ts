@@ -1,7 +1,6 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 import isDJ from '../../lib/isDJ';
-import { error, info, success } from '../../lib/serviceMessages';
 import { IThimbleBot } from '../../typings/thimblebot';
 
 class StopCommand extends Command {
@@ -13,21 +12,21 @@ class StopCommand extends Command {
 
   async exec(message: Message) {
     if (!message.member?.voice.channel) {
-      return message.channel.send(error('You have to be in a voice channel to use this command.'));
+      return this.error(message, 'You have to be in a voice channel to use this command.');
     }
 
     const client = this.client as IThimbleBot;
 
     if (!client.distube.isPlaying(message) && !client.distube.isPaused(message)) {
-      return message.channel.send(info('There is nothing playing!'));
+      return this.info(message, 'There is nothing playing!');
     }
 
     if (!isDJ(message.member)) {
-      return message.channel.send(error('You are not a DJ in the server. Please use `votestop` instead.'));
+      return this.error(message, 'You are not a DJ in the server. Please use `votestop` instead.');
     }
 
     client.distube.stop(message);
-    message.channel.send(success('Stopped successfully!'));
+    this.success(message, 'Stopped successfully!');
   }
 }
 

@@ -1,8 +1,8 @@
-import { Command, CommandOptions } from 'discord-akairo';
+import { Command } from '../../command';
+import { CommandOptions } from 'discord-akairo';
 import { Message } from 'discord.js';
 import { InteractionType } from '../../models/Interaction';
 import { toggleInteractable } from '../interaction';
-import { error, success } from '../serviceMessages';
 import fmt from '../fmt';
 
 class ToggleInteractionCommand extends Command {
@@ -26,12 +26,12 @@ class ToggleInteractionCommand extends Command {
 
       const newState = await toggleInteractable(user, guild, this.type);
 
-      return message.channel.send(success(
+      return this.success(
+        message,
         fmt(this.successMessage, newState ? 'enabled' : 'disabled')
-      ));
+      );
     } catch (err) {
-      console.error(err);
-      return message.channel.send(error(`Failed to toggle ${this.type} state.`));
+      return this.error(message, `Failed to toggle ${this.type} state.`);
     }
   }
 }

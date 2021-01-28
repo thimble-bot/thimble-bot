@@ -1,7 +1,6 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 import axios from 'axios';
-import { error } from '../../lib/serviceMessages';
 
 class DogCommand extends Command {
   constructor() {
@@ -18,8 +17,8 @@ class DogCommand extends Command {
         Accept: 'application/json'
       }
     })
-      .then(({ data }) => message.channel.send(data.url))
-      .catch(() => message.channel.send(error('Failed to fetch doggo. :frowning:')));
+      .then(({ data }) => this.say(message, data.url))
+      .catch(() => this.error(message, 'Failed to fetch doggo. :frowning:'));
   }
 }
 

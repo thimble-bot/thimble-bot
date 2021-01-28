@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, TextChannel } from 'discord.js';
-import { error, success, warn } from '../../lib/serviceMessages';
 
 interface PurgeCommandArgs {
   qty: number;
@@ -28,18 +27,17 @@ class PurgeCommand extends Command {
 
   async exec(message: Message, { qty }: PurgeCommandArgs) {
     if (qty < 2 || qty > 100) {
-      return message.channel.send(warn('Quantity should be more than 2 and less than 100.'));
+      return this.warn(message, 'Quantity should be more than 2 and less than 100.');
     }
 
     const channel = message.channel as TextChannel;
 
     try {
       await channel.bulkDelete(qty);
-      const successMessage = await message.channel.send(success(`:recycle: Successfully deleted up to ${qty} messages.`));
+      const successMessage = await this.success(message, `:recycle: Successfully deleted up to ${qty} messages.`);
       setTimeout(() => successMessage.delete(), 2000);
     } catch (err) {
-      console.error(err);
-      message.channel.send(error('Failed to purge messages.'));
+      this.error(message, 'Failed to purge messages.');
     }
   }
 }

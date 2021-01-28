@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageEmbed } from 'discord.js';
 import seed from 'seedrandom';
 
@@ -50,7 +50,7 @@ class EightBallCommand extends Command {
   exec(message: Message, { input }: EightBallCommandArgs) {
     const rng = seed(input.toLowerCase());
     const answer = this.answers[Math.floor(rng() * this.answers.length)];
-    return message.channel.send(this.generateMessage(answer));
+    return this.say(message, this.generateMessage(answer));
   }
 }
 

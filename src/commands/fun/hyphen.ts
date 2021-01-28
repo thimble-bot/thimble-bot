@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { error } from '../../lib/serviceMessages';
 
 class HyphenCommand extends Command {
   constructor() {
@@ -28,11 +27,11 @@ class HyphenCommand extends Command {
     const components = sentence.split('-ass');
 
     if (!sentence.includes('-ass') || components.length !== 2 || !components.join('')) {
-      return message.channel.send(error('Please provide a valid `[adjective]-ass [noun]` sequence.'));
+      return this.error(message, 'Please provide a valid `[adjective]-ass [noun]` sequence.');
     }
 
     components[1] = components[1].replace(' ', '-');
-    return message.channel.send(components.join(' ass'));
+    return this.say(message, components.join(' ass'));
   }
 }
 

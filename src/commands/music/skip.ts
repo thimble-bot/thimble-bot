@@ -1,8 +1,7 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 import isDJ from '../../lib/isDJ';
 import queueEmbed from '../../lib/music/queue';
-import { error, info } from '../../lib/serviceMessages';
 import { IThimbleBot } from '../../typings/thimblebot';
 
 class SkipCommand extends Command {
@@ -14,17 +13,17 @@ class SkipCommand extends Command {
 
   async exec(message: Message) {
     if (!message.member?.voice.channel) {
-      return message.channel.send(error('You have to be in a voice channel to use this command.'));
+      return this.error(message, 'You have to be in a voice channel to use this command.');
     }
 
     const client = this.client as IThimbleBot;
 
     if (!client.distube.isPlaying(message)) {
-      return message.channel.send(info('There is nothing playing!'));
+      return this.info(message, 'There is nothing playing!');
     }
 
     if (!isDJ(message.member)) {
-      return message.channel.send(error('You are not a DJ in the server. Please use `voteskip` instead.'));
+      return this.error(message, 'You are not a DJ in the server. Please use `voteskip` instead.');
     }
 
     const queue = client.distube.skip(message);
@@ -32,7 +31,7 @@ class SkipCommand extends Command {
 
     const title = `Skipped! Now playing: ${current.name}`;
     const embed = queueEmbed(title, queue.songs.slice(1), current.url);
-    message.channel.send(embed);
+    this.say(message, embed);
   }
 }
 

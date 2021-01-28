@@ -1,7 +1,6 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 import axios from 'axios';
-import { error } from '../../lib/serviceMessages';
 
 class CatCommand extends Command {
   constructor() {
@@ -18,8 +17,8 @@ class CatCommand extends Command {
         Accept: 'application/json'
       }
     })
-      .then(({ data }) => message.channel.send(data[0]))
-      .catch(() => message.channel.send(error('Failed to fetch kitty. :frowning:')));
+      .then(({ data }) => this.say(message, data[0]))
+      .catch(() => this.error(message, 'Failed to fetch kitty. :frowning:'));
   }
 }
 

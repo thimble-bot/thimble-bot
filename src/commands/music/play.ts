@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { error } from '../../lib/serviceMessages';
 import { IThimbleBot } from '../../typings/thimblebot';
 
 interface PlayCommandArgs {
@@ -25,7 +24,7 @@ class PlayCommand extends Command {
 
   async exec(message: Message, { query }: PlayCommandArgs) {
     if (!message.member?.voice.channel) {
-      return message.channel.send(error('You have to be in a voice channel to use this command.'));
+      return this.error(message, 'You have to be in a voice channel to use this command.');
     }
 
     (this.client as IThimbleBot).distube.play(message, query);

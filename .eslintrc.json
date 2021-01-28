@@ -21,8 +21,11 @@
 
     "semi": "off",
     "@typescript-eslint/semi": [ "error" ],
+
     "prefer-promise-reject-errors": [ "off" ],
     "array-bracket-spacing": [ "off" ],
+
+    "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [ "error" ]
   }
 }

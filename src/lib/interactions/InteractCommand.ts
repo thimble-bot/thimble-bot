@@ -1,10 +1,10 @@
-import { Command, CommandOptions } from 'discord-akairo';
+import { Command } from '../../command';
+import { CommandOptions } from 'discord-akairo';
 import { Message, Guild, GuildMember, User } from 'discord.js';
 import { InteractionType } from '../../models/Interaction';
 import { getOptouts, interact } from '../interaction';
 import ordinal from '../ordinal';
 import fmt from '../fmt';
-import { error } from '../serviceMessages';
 
 class InteractCommand extends Command {
   type: InteractionType;
@@ -42,11 +42,11 @@ class InteractCommand extends Command {
     let ping = true;
 
     if (receiver.id === this.client.user?.id) {
-      return message.channel.send(this.botReceiver);
+      return this.say(message, this.botReceiver);
     }
 
     if (receiver.id === sender.id) {
-      return message.channel.send(this.self);
+      return this.say(message, this.self);
     }
 
     try {
@@ -55,7 +55,7 @@ class InteractCommand extends Command {
         .map(doc => doc.data().type);
 
       if (optouts.includes(this.type)) {
-        return message.channel.send(error(this.optedOut));
+        return this.error(message, this.optedOut);
       }
 
       if (optouts.includes('mute')) {
@@ -75,7 +75,7 @@ class InteractCommand extends Command {
 
       if (sender.id === this.client.user?.id) {
         // FIXME
-        return message.channel.send(
+        return this.say(message,
           [
             fmt(this.botInteracted, receiverString),
             `${fmt(this.botInteractedTwo, newCount)} time${newCount === 1 ? '' : 's'}.`
@@ -87,9 +87,9 @@ class InteractCommand extends Command {
         ? `**${fmt(this.interactionDone, sender.toString(), receiverString)} for the first time!**`
         : `**${fmt(this.interactionDone, sender.toString(), receiverString)}!** That's the **${ordinal(newCount)}** time already!`;
 
-      return message.channel.send(response);
+      return this.say(message, response);
     } catch (err) {
-      return message.channel.send(error(`Failed to interact with "${this.type}".`));
+      return this.error(message, `Failed to interact with "${this.type}".`);
     }
   }
 }

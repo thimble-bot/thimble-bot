@@ -1,8 +1,8 @@
-import { Command, CommandOptions } from 'discord-akairo';
+import { Command } from '../../command';
+import { CommandOptions } from 'discord-akairo';
 import { Message, MessageEmbed, Guild } from 'discord.js';
 import { InteractionType } from '../../models/Interaction';
 import { generateLeaderboard, getGuildInteractions } from '../interaction';
-import { error } from '../serviceMessages';
 import fmt from '../fmt';
 
 class InteractionLeaderboardCommand extends Command {
@@ -41,16 +41,15 @@ class InteractionLeaderboardCommand extends Command {
       const interactions = await getGuildInteractions(guild, this.type);
 
       if (!interactions.length) {
-        return message.channel.send(this.emptyListString);
+        return this.say(message, this.emptyListString);
       }
 
       const { receivers, senders } = generateLeaderboard(message, interactions);
       const embed = this.generateEmbed(message.guild as Guild, receivers, senders);
 
-      return message.channel.send(embed);
+      return this.say(message, embed);
     } catch (err) {
-      console.error(err);
-      return message.channel.send(error('Failed to fetch the leaderboard.'));
+      return this.error(message, 'Failed to fetch the leaderboard.');
     }
   }
 }

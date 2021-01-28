@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { error, success, warn } from '../../lib/serviceMessages';
 
 class EmoteAddCommand extends Command {
   constructor() {
@@ -30,19 +29,19 @@ class EmoteAddCommand extends Command {
     const image = await message.attachments.first();
 
     if (!image) {
-      return message.channel.send(warn('You need to provide an image to upload as an emote.'));
+      return this.warn(message, 'You need to provide an image to upload as an emote.');
     }
 
     const existing = await message.guild?.emojis.cache.find(e => e.name === name);
     if (existing) {
-      return message.channel.send(warn('An emote with that name already exists!'));
+      return this.warn(message, 'An emote with that name already exists!');
     }
 
     try {
       const emote = await message.guild?.emojis.create(image.url, name);
-      return message.channel.send(success(`${emote} \`${name}\` added successfully!`));
+      return this.success(message, `${emote} \`${name}\` added successfully!`);
     } catch (err) {
-      return message.channel.send(error('Failed to upload the emote to the guild.'));
+      return this.error(message, 'Failed to upload the emote to the guild.');
     }
   }
 }

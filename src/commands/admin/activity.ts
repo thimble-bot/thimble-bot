@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { success } from '../../lib/serviceMessages';
 
 class ActivityCommand extends Command {
   constructor() {
@@ -22,7 +21,7 @@ class ActivityCommand extends Command {
 
   async exec(message: Message, { activity }: { activity: string }) {
     await this.client.user?.setActivity(activity);
-    return message.channel.send(success('Done!'));
+    return this.success(message, 'Done!');
   }
 }
 

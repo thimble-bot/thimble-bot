@@ -1,7 +1,6 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 import { toggleInteractable } from '../../lib/interaction';
-import { error, success } from '../../lib/serviceMessages';
 
 class MuteInteractionsCommand extends Command {
   constructor() {
@@ -19,12 +18,12 @@ class MuteInteractionsCommand extends Command {
 
       const newState = await toggleInteractable(user, guild, 'mute');
 
-      return message.channel.send(success(
+      return this.success(
+        message,
         `Interactions have been ${newState ? 'unmuted' : 'muted'} successfully!`
-      ));
+      );
     } catch (err) {
-      console.error(err);
-      return message.channel.send(error('Failed to toggle mute state.'));
+      return this.error(message, 'Failed to toggle mute state.');
     }
   }
 }

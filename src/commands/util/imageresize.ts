@@ -1,8 +1,7 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageAttachment } from 'discord.js';
 
 import ImageResizer from '../../lib/ImageResizer';
-import { error } from '../../lib/serviceMessages';
 
 class ImageResizeCommand extends Command {
   constructor() {
@@ -31,11 +30,11 @@ class ImageResizeCommand extends Command {
 
   async exec(message: Message, { width }: { width: number }) {
     if (!message.attachments.size) {
-      return message.channel.send(error('Please provide an image to rescale.'));
+      return this.error(message, 'Please provide an image to rescale.');
     }
 
     if (width < 2) {
-      return message.channel.send(error('Minimum new width must be 2px.'));
+      return this.error(message, 'Minimum new width must be 2px.');
     }
 
     const image = await message.attachments.first();
@@ -59,9 +58,9 @@ class ImageResizeCommand extends Command {
       const filename = resizer.getFilename();
 
       const attachment = new MessageAttachment(resized, filename);
-      return message.channel.send(attachment);
+      return this.say(message, attachment);
     } catch (err) {
-      return message.channel.send(error(`Command failed with the following error:\n \`\`\`${err}\`\`\``));
+      return this.error(message, `Command failed with the following error:\n \`\`\`${err}\`\`\``);
     }
   }
 }

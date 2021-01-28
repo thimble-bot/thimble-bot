@@ -1,6 +1,5 @@
 import TodoCommand from '../../lib/todo/TodoCommand';
 import { Message } from 'discord.js';
-import { error, success, warn } from '../../lib/serviceMessages';
 import { IListOpts, Todo } from '../../models/Todo';
 import { encrypt } from '../../lib/todo/aes';
 
@@ -27,7 +26,7 @@ class TodoAddCommand extends TodoCommand {
 
   async exec(message: Message, { input }: TodoAddCommandArgs) {
     if (input.length > 100) {
-      return message.channel.send(warn('Todo needs to be less than 100 characters.'));
+      return this.warn(message, 'Todo needs to be less than 100 characters.');
     }
 
     const query: IListOpts = {
@@ -36,7 +35,7 @@ class TodoAddCommand extends TodoCommand {
     };
 
     if (await Todo.count(query) === 20) {
-      return message.channel.send(error('You may not have more than 20 todos.'));
+      return this.error(message, 'You may not have more than 20 todos.');
     }
 
     const encryptedTodo = encrypt(input, message.author.id, message.author.createdTimestamp);
@@ -49,9 +48,9 @@ class TodoAddCommand extends TodoCommand {
 
     try {
       await todo.create();
-      return message.channel.send(success('Todo created successfully! Use `todo list` to view the list of your todos.'));
+      return this.success(message, 'Todo created successfully! Use `todo list` to view the list of your todos.');
     } catch (err) {
-      return message.channel.send(error('Something bad happened while trying to create the todo.'));
+      return this.error(message, 'Something bad happened while trying to create the todo.');
     }
   }
 }

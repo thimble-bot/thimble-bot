@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 
-import { success, warn, error } from '../../lib/serviceMessages';
+import { warn, error } from '../../lib/serviceMessages';
 
 enum Response {
   OK,
@@ -51,11 +51,11 @@ export default class SiteupCommand extends Command {
 
     switch (status) {
       case Response.OK:
-        return message.channel.send(success('The requested website is available.'));
+        return this.success(message, 'The requested website is available.');
       case Response.BAD_RESPONSE:
-        return message.channel.send(warn('The website is available, but it is returning a bad status code.'));
+        return this.warn(message, 'The website is available, but it is returning a bad status code.');
       case Response.UNAVAILABLE:
-        return message.channel.send(error('The provided website is not available.'));
+        return this.error(message, 'The provided website is not available.');
     }
   }
 }

@@ -1,13 +1,11 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, Util, MessageAttachment } from 'discord.js';
 
 import { parse as parseTwemoji } from 'twemoji-parser';
 import { getName as getEmojiName } from 'emoji-dictionary';
 
 import sharp from 'sharp';
-
 import axios from 'axios';
-import { error, warn } from '../../lib/serviceMessages';
 
 class EmojiCommand extends Command {
   constructor() {
@@ -37,20 +35,20 @@ class EmojiCommand extends Command {
     const target = Util.parseEmoji(emoji);
 
     if (!target) {
-      return message.channel.send(warn('Please provide a valid emoji/emote.'));
+      return this.warn(message, 'Please provide a valid emoji/emote.');
     }
 
     if (target.id) {
       const extension = target.animated ? 'gif' : 'png';
       const attachment = new MessageAttachment(`https://cdn.discordapp.com/emojis/${target.id}.${extension}`, `${target.name}.${extension}`);
-      return message.channel.send(attachment);
+      return this.say(message, attachment);
     }
 
     const twemoji = parseTwemoji(emoji)[0];
     const emojiName = getEmojiName(emoji);
 
     if (!emojiName) {
-      return message.channel.send(warn('Please provide a valid emoji/emote.'));
+      return this.warn(message, 'Please provide a valid emoji/emote.');
     }
 
     try {
@@ -65,9 +63,9 @@ class EmojiCommand extends Command {
         .toBuffer();
 
       const attachment = new MessageAttachment(buffer, `${emojiName}.png`);
-      return message.channel.send(attachment);
+      return this.say(message, attachment);
     } catch (err) {
-      return message.channel.send(error('Something bad happened while fetching the emote/emoji.'));
+      return this.error(message, 'Something bad happened while fetching the emote/emoji.');
     }
   }
 }

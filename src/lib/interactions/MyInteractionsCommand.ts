@@ -1,7 +1,7 @@
-import { Command, CommandOptions } from 'discord-akairo';
+import { Command } from '../../command';
+import { CommandOptions } from 'discord-akairo';
 import { Message, MessageEmbed, Guild, User } from 'discord.js';
 import { generateLeaderboard, getInteractionsForMember, getMemberInteractions } from '../interaction';
-import { error } from '../serviceMessages';
 import fmt from '../fmt';
 import { InteractionType } from '../../models/Interaction';
 
@@ -56,10 +56,10 @@ class MyInteractionsCommand extends Command {
       const { receivers } = generateLeaderboard(message, to, { ignoreSenders: true });
 
       const embed = this.generateEmbed(guild, message.author, senders, receivers);
-      return message.channel.send(embed);
+      return this.say(message, embed);
     } catch (err) {
       console.error(err);
-      return message.channel.send(error('Failed to fetch the leaderboard.'));
+      return this.error(message, 'Failed to fetch the leaderboard.');
     }
   }
 }

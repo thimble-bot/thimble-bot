@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageReaction } from 'discord.js';
-import { error, info, success } from '../../lib/serviceMessages';
 import { IThimbleBot } from '../../typings/thimblebot';
 
 class VotestopCommand extends Command {
@@ -12,13 +11,13 @@ class VotestopCommand extends Command {
 
   async exec(message: Message) {
     if (!message.member?.voice.channel) {
-      return message.channel.send(error('You have to be in a voice channel to use this command.'));
+      return this.error(message, 'You have to be in a voice channel to use this command.');
     }
 
     const client = this.client as IThimbleBot;
 
     if (!client.distube.isPlaying(message) && !client.distube.isPaused(message)) {
-      return message.channel.send(info('There is nothing playing!'));
+      return this.info(message, 'There is nothing playing!');
     }
 
     const targetCount = message.member.voice.channel.members.size < 5
@@ -27,8 +26,9 @@ class VotestopCommand extends Command {
 
     const time = targetCount * 5;
 
-    const reply = await message.channel.send(
-      info(`If this message reaches ${targetCount} :white_check_mark: reactions in ${time} seconds, I will stop this queue.`)
+    const reply = await this.info(
+      message,
+      `If this message reaches ${targetCount} :white_check_mark: reactions in ${time} seconds, I will stop this queue.`
     );
     await reply.react('✅');
 
@@ -45,7 +45,7 @@ class VotestopCommand extends Command {
 
         client.distube.stop(message);
 
-        await message.channel.send(success('Stopped successfully!'));
+        await this.success(message, 'Stopped successfully!');
       }
     });
 
@@ -56,7 +56,7 @@ class VotestopCommand extends Command {
         return;
       }
 
-      return message.channel.send(error('Not enough reactions, not stopping.'));
+      return this.error(message, 'Not enough reactions, not stopping.');
     });
   }
 }

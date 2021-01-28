@@ -1,7 +1,6 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageReaction } from 'discord.js';
 import queueEmbed from '../../lib/music/queue';
-import { error, info } from '../../lib/serviceMessages';
 import { IThimbleBot } from '../../typings/thimblebot';
 
 class VoteskipCommand extends Command {
@@ -13,13 +12,13 @@ class VoteskipCommand extends Command {
 
   async exec(message: Message) {
     if (!message.member?.voice.channel) {
-      return message.channel.send(error('You have to be in a voice channel to use this command.'));
+      return this.error(message, 'You have to be in a voice channel to use this command.');
     }
 
     const client = this.client as IThimbleBot;
 
     if (!client.distube.isPlaying(message)) {
-      return message.channel.send(info('There is nothing playing!'));
+      return this.info(message, 'There is nothing playing!');
     }
 
     const targetCount = message.member.voice.channel.members.size < 5
@@ -28,8 +27,9 @@ class VoteskipCommand extends Command {
 
     const time = targetCount * 5;
 
-    const reply = await message.channel.send(
-      info(`If this message reaches ${targetCount} :white_check_mark: reactions in ${time} seconds, I will skip the song.`)
+    const reply = await this.info(
+      message,
+      `If this message reaches ${targetCount} :white_check_mark: reactions in ${time} seconds, I will skip the song.`
     );
     await reply.react('✅');
 
@@ -49,7 +49,7 @@ class VoteskipCommand extends Command {
 
         const title = `Skipped! Now playing: ${current.name}`;
         const embed = queueEmbed(title, queue.songs.slice(1), current.url);
-        await message.channel.send(embed);
+        await this.say(message, embed);
       }
     });
 
@@ -60,7 +60,7 @@ class VoteskipCommand extends Command {
         return;
       }
 
-      return message.channel.send(error('Not enough reactions, not skipping.'));
+      return this.error(message, 'Not enough reactions, not skipping.');
     });
   }
 }

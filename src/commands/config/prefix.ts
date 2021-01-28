@@ -1,7 +1,6 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, Guild } from 'discord.js';
 import { updateGuildConfig } from '../../lib/guildConfig';
-import { error, success } from '../../lib/serviceMessages';
 import { GuildData } from '../../models/GuildData';
 
 interface PrefixCommandArgs {
@@ -35,9 +34,9 @@ class PrefixCommand extends Command {
       const data = new GuildData(guild.id);
       await data.updateConfig();
 
-      return message.channel.send(success(`Prefix successfully changed to \`${prefix}\`.`));
+      return this.success(message, `Prefix successfully changed to \`${prefix}\`.`);
     } catch (err) {
-      return message.channel.send(error('Failed to fully update the prefix of this guild.'));
+      return this.error(message, 'Failed to fully update the prefix of this guild.');
     }
   }
 }

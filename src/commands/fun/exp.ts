@@ -1,7 +1,6 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, Guild, User, MessageEmbed } from 'discord.js';
 import config from '../../config';
-import { error } from '../../lib/serviceMessages';
 import { Experience } from '../../models/Experience';
 
 class EXPCommand extends Command {
@@ -35,7 +34,7 @@ class EXPCommand extends Command {
     const guildExpConfig = config.guilds[guild.id]?.exp;
 
     if (!guildExpConfig) {
-      return message.channel.send(error('Experience system is not enabled for this server.'));
+      return this.error(message, 'Experience system is not enabled for this server.');
     }
 
     const member = message.author;
@@ -56,9 +55,9 @@ class EXPCommand extends Command {
         .find(required => parseInt(required) > exp);
 
       const embed = this.generateEmbed(member, exp, nextLevelExp ? parseInt(nextLevelExp) : undefined);
-      return message.channel.send(embed);
+      return this.say(message, embed);
     } catch (err) {
-      return message.channel.send(error('Failed to fetch experience data.'));
+      return this.error(message, 'Failed to fetch experience data.');
     }
   }
 }

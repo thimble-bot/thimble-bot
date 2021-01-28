@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, GuildMember } from 'discord.js';
-import { error, success } from '../../lib/serviceMessages';
 
 interface KickCommandArgs {
   member: GuildMember;
@@ -33,16 +32,16 @@ class KickCommand extends Command {
 
   exec(message: Message, { member, reason }: KickCommandArgs) {
     if (member.user === this.client.user) {
-      return message.channel.send('Nice try, you can\'t kick me though!');
+      return this.info(message, 'Nice try, you can\'t kick me though!');
     }
 
     if (member.user === message.author) {
-      return message.channel.send('You don\'t just kick yourself from the server...');
+      return this.info(message, 'You don\'t just kick yourself from the server...');
     }
 
     return member.kick(reason)
-      .then(() => message.channel.send(success(`${member} kicked successfully!`)))
-      .catch(() => message.channel.send(error(`Failed to kick ${member}.`)));
+      .then(() => this.success(message, `${member} kicked successfully!`))
+      .catch(() => this.error(message, `Failed to kick ${member}.`));
   }
 }
 

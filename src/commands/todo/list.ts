@@ -1,6 +1,5 @@
 import TodoCommand from '../../lib/todo/TodoCommand';
 import { Message, MessageEmbed } from 'discord.js';
-import { error } from '../../lib/serviceMessages';
 import { IListOpts, ITodo, Todo } from '../../models/Todo';
 import { decrypt } from '../../lib/todo/aes';
 
@@ -69,10 +68,10 @@ class TodoListCommand extends TodoCommand {
       const embeds = this.generateEmbed(todos);
 
       for await (const embed of embeds) {
-        await message.channel.send(embed);
+        await this.say(message, embed);
       }
     } catch (err) {
-      return message.channel.send(error('Something bad happened while displaying your todo list.'));
+      return this.error(message, 'Something bad happened while displaying your todo list.');
     }
   }
 }

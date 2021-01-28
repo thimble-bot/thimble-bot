@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, TextChannel } from 'discord.js';
-import { error, success } from '../../lib/serviceMessages';
 
 interface PurgeFromCommandArgs {
   targetMessage: Message;
@@ -31,23 +30,22 @@ class PurgeFromCommand extends Command {
       .then(results => results.filter(r => r.createdTimestamp >= targetMessage.createdTimestamp));
 
     if (messages.size < 2) {
-      return message.channel.send(error('Cannot delete less than 2 messages.'));
+      return this.error(message, 'Cannot delete less than 2 messages.');
     }
 
     if (messages.size > 100) {
-      return message.channel.send(error('Cannot delete more than 100 messages.'));
+      return this.error(message, 'Cannot delete more than 100 messages.');
     }
 
     try {
       (message.channel as TextChannel).bulkDelete(messages);
-      const successMessage = await message.channel.send(success(`:recycle: Successfully deleted ${messages.size} messages!`));
+      const successMessage = await this.success(message, `:recycle: Successfully deleted ${messages.size} messages!`);
 
       setTimeout(() => successMessage.delete(), 2000);
 
       return null;
     } catch (err) {
-      console.error(err);
-      return message.channel.send(error('Failed to delete messages.'));
+      return this.error(message, 'Failed to delete messages.');
     }
   }
 }

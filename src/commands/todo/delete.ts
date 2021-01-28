@@ -1,6 +1,5 @@
 import TodoCommand from '../../lib/todo/TodoCommand';
 import { Message } from 'discord.js';
-import { error, success } from '../../lib/serviceMessages';
 import { IListOpts, Todo } from '../../models/Todo';
 
 class TodoDeleteCommand extends TodoCommand {
@@ -22,7 +21,7 @@ class TodoDeleteCommand extends TodoCommand {
 
   async exec(message: Message, { id }: { id: number }) {
     if (id <= 0 || id > 20) {
-      return message.channel.send(error('The ID must be between 1 and 20.'));
+      return this.error(message, 'The ID must be between 1 and 20.');
     }
 
     const query: IListOpts = {
@@ -35,15 +34,15 @@ class TodoDeleteCommand extends TodoCommand {
         .sort((a, b) => (a.createTime?.seconds as number) - (b.createTime?.seconds as number));
 
       if (id > todos.length) {
-        return message.channel.send(error('There is no todo with this ID.'));
+        return this.error(message, 'There is no todo with this ID.');
       }
 
       const target = todos[id - 1];
       await target.ref.delete();
 
-      return message.channel.send(success('Todo deleted successfully!'));
+      return this.success(message, 'Todo deleted successfully!');
     } catch (err) {
-      return message.channel.send(error('Failed to change the state of the todo.'));
+      return this.error(message, 'Failed to change the state of the todo.');
     }
   }
 }

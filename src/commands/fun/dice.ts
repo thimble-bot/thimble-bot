@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageEmbed } from 'discord.js';
 
 class DiceCommand extends Command {
@@ -28,7 +28,7 @@ class DiceCommand extends Command {
     const embed = new MessageEmbed();
     embed.setTitle(':game_die: Dice Roll');
     embed.setDescription(`I rolled a die and it landed on **${result}**.`);
-    return message.channel.send(embed);
+    return this.say(message, embed);
   }
 }
 

@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { error } from '../../lib/serviceMessages';
 import Urban from '../../lib/Urban';
 
 class UrbanCommand extends Command {
@@ -30,13 +29,13 @@ class UrbanCommand extends Command {
       const urban = new Urban({ word, user: this.client.user });
       const result = await urban.get();
 
-      return message.channel.send(result);
+      return this.say(message, result);
     } catch (err) {
       if ((err.code && err.code === 'ERR_WORD_UNDEFINED') || err.name === 'UrbanLookupError') {
-        return message.channel.send(error(err.message));
+        return this.error(message, err.message);
       }
 
-      return message.channel.send(error('An unexpected error happened.'));
+      return this.error(message, 'An unexpected error happened.');
     }
   }
 }

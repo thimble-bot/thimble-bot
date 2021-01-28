@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../../command';
 import { Message } from 'discord.js';
 import { toggleInteractable } from '../../../lib/interaction';
 import { error, success } from '../../../lib/serviceMessages';
@@ -23,7 +23,6 @@ class ToggleBoopCommand extends Command {
         `Boops have been ${newState ? 'enabled' : 'disabled'} successfully!`
       ));
     } catch (err) {
-      console.error(err);
       return message.channel.send(error('Failed to toggle boop state.'));
     }
   }

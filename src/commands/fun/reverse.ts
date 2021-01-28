@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 
 class ReverseCommand extends Command {
@@ -29,10 +29,10 @@ class ReverseCommand extends Command {
     const reversed = input.split('').reverse().join('');
 
     if (this.clean(input) === this.clean(reversed)) {
-      return message.channel.send(`*Nice palindrome. Very nice. Here it is reversed, I guess :shrug:*\n${reversed}`);
+      return this.say(message, `*Nice palindrome. Very nice. Here it is reversed, I guess :shrug:*\n${reversed}`);
     }
 
-    return message.channel.send(reversed);
+    return this.say(message, reversed);
   }
 }
 

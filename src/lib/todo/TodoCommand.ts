@@ -1,4 +1,5 @@
-import { Command, CommandOptions } from 'discord-akairo';
+import { Command } from '../../command';
+import { CommandOptions } from 'discord-akairo';
 import prefix from '../prefix';
 
 class TodoCommand extends Command {

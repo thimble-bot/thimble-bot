@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, GuildMember, User, MessageAttachment } from 'discord.js';
 import { error, success, warn } from '../../lib/serviceMessages';
 
@@ -66,19 +66,17 @@ class AvatarCommand extends Command {
 
   exec(message: Message, { members }: { members: GuildMember[] }) {
     if (members.length > 1) {
-      return message.channel.send(
-        warn('Too many users have been found for your input. Please try running the command again, but this time be more specific!')
-      );
+      return this.warn(message, 'Too many users have been found for your input. Please try running the command again, but this time be more specific!');
     }
 
     const member = members[0];
 
     const attachment = this.generateAttachment(member.user);
     if (!attachment) {
-      return message.channel.send(warn('The specified user does not have an avatar.'));
+      return this.warn(message, 'The specified user does not have an avatar.');
     }
 
-    return message.channel.send(attachment);
+    return this.say(message, attachment);
   }
 }
 

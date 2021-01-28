@@ -1,7 +1,7 @@
-import { Command, CommandOptions } from 'discord-akairo';
+import { Command } from '../../command';
+import { CommandOptions } from 'discord-akairo';
 import { Message, User } from 'discord.js';
 import { countMemberInteractions } from '../interaction';
-import { error, info } from '../serviceMessages';
 import fmt from '../fmt';
 import { InteractionType } from '../../models/Interaction';
 
@@ -41,10 +41,10 @@ class InteractionCountCommand extends Command {
       const count = await countMemberInteractions(guild, user, this.type);
       const response = this.generateMessage(message.author, count);
 
-      return message.channel.send(info(response));
+      return this.info(message, response);
     } catch (err) {
       console.error(err);
-      return message.channel.send(error(`Failed to fetch ${this.type} count.`));
+      return this.error(message, `Failed to fetch ${this.type} count.`);
     }
   }
 }

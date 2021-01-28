@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageEmbed } from 'discord.js';
-import { warn } from '../../lib/serviceMessages';
 
 class FlipCommand extends Command {
   constructor() {
@@ -30,7 +29,7 @@ class FlipCommand extends Command {
     const isCoinflip = !!input.length;
 
     if (choices.length < 2) {
-      return message.channel.send(warn('Too few items to choose from!'));
+      return this.warn(message, 'Too few items to choose from!');
     }
 
     const choice = choices[Math.floor(Math.random() * choices.length)];
@@ -39,7 +38,7 @@ class FlipCommand extends Command {
     embed.setTitle(isCoinflip ? ':game_die: Random Choice' : ':coin: Coin Flip');
     embed.setDescription(choice);
 
-    return message.channel.send(embed);
+    return this.say(message, embed);
   }
 }
 

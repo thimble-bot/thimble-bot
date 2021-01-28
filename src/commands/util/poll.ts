@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
-import { error } from '../../lib/serviceMessages';
 
 class PollCommand extends Command {
   constructor() {
@@ -27,8 +26,7 @@ class PollCommand extends Command {
       await message.react('👎');
       await message.react('🤷');
     } catch (err) {
-      console.error(err);
-      message.channel.send(error('Failed to add reaction.'));
+      this.error(message, 'Failed to add reaction.');
     }
   }
 }

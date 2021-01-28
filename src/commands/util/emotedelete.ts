@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, GuildEmoji } from 'discord.js';
-import { success, warn } from '../../lib/serviceMessages';
 
 class EmoteDeleteCommand extends Command {
   constructor() {
@@ -37,9 +36,9 @@ class EmoteDeleteCommand extends Command {
       }
 
       await target.delete();
-      return message.channel.send(success('Emote deleted successfully.'));
+      return this.success(message, 'Emote deleted successfully.');
     } catch (err) {
-      return message.channel.send(warn('Failed to delete the emote.'));
+      return this.warn(message, 'Failed to delete the emote.');
     }
   }
 }

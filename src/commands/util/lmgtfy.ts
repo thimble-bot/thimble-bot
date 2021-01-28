@@ -1,4 +1,4 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message } from 'discord.js';
 
 interface LMGTFYCommandArgs {
@@ -24,7 +24,7 @@ class LMGTFYCommand extends Command {
 
   exec(message: Message, { query }: LMGTFYCommandArgs) {
     query = encodeURIComponent(query);
-    return message.channel.send(`https://lmgtfy.com/?q=${query}`);
+    return this.say(message, `https://lmgtfy.com/?q=${query}`);
   }
 }
 

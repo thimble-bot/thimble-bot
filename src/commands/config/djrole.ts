@@ -1,6 +1,5 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, Role, Guild } from 'discord.js';
-import { error, success } from '../../lib/serviceMessages';
 import { GuildData } from '../../models/GuildData';
 import { updateGuildConfig } from '../../lib/guildConfig';
 
@@ -36,9 +35,9 @@ class DJRoleCommand extends Command {
       const data = new GuildData(guild.id);
       await data.updateConfig();
 
-      return message.channel.send(success(`DJ role changed successfully to \`${role.name}\`.`));
+      return this.success(message, `DJ role changed successfully to \`${role.name}\`.`);
     } catch (err) {
-      return message.channel.send(error('Failed to fully update the DJ role of this guild.' + err));
+      return this.error(message, 'Failed to fully update the DJ role of this guild.' + err);
     }
   }
 }

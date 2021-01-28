@@ -1,9 +1,8 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageEmbed } from 'discord.js';
 
 import * as fs from 'fs';
 import * as path from 'path';
-import { warn } from '../../lib/serviceMessages';
 
 const SCRIPT_PARAGRAPHS = fs.readFileSync(
   path.join(__dirname, '../../..', 'assets/beemovie.txt'),
@@ -51,13 +50,13 @@ class BeeMovieCommand extends Command {
     const allCount = paragraphs.length;
 
     if (!allCount) {
-      return message.channel.send(warn('No results found for your query.'));
+      return this.warn(message, 'No results found for your query.');
     }
 
     const currentIdx = Math.floor(Math.random() * allCount);
 
     const result = paragraphs[currentIdx].replace(/\n/g, ' ');
-    return message.channel.send(this.generateEmbed(result, allCount, currentIdx, !!phrase.length));
+    return this.say(message, this.generateEmbed(result, allCount, currentIdx, !!phrase.length));
   }
 }
 

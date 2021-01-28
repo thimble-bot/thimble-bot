@@ -1,8 +1,7 @@
-import { Command } from 'discord-akairo';
+import { Command } from '../../command';
 import { Message, MessageEmbed } from 'discord.js';
 
 import color from 'color';
-import { error } from '../../lib/serviceMessages';
 
 interface RGB {
   r: number;
@@ -265,16 +264,16 @@ export default class ColorCommand extends Command {
 
     if (this.isRandom) {
       const result = color(input);
-      return message.channel.send(this.generateEmbed(result));
+      return this.say(message, this.generateEmbed(result));
     }
 
     const data = this.parseInput(query);
 
     try {
       const result = color(data.value);
-      return message.channel.send(this.generateEmbed(result));
+      return this.say(message, this.generateEmbed(result));
     } catch (err) {
-      return message.channel.send(error('You have provided an invalid color value.'));
+      return this.error(message, 'You have provided an invalid color value.');
     }
   }
 };
