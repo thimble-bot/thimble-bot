@@ -389,6 +389,22 @@
         ]
       },
       {
+        "name": "color",
+        "description": "Generate a random color.",
+        "aliases": [
+          "colour",
+          "colors",
+          "colours"
+        ],
+        "examples": [
+          "`color` - generates a random color and displays its RGB, hex, HSL, and CMYK values",
+          "`color #3e3e3e` or `color #2e2` - generates color data based on hex string",
+          "`color rgb(201, 29, 11)` or `color 201, 29, 11` - generates color data based on RGB values",
+          "`color hsl(5.68°, 89.62%, 41.57%)` or `color 5.68°, 89.62%, 41.57%` - generates color data based on HSL",
+          "`color cmyk(0.00%, 85.57%, 94.53%, 21.18%)` or `color 0.00%, 85.57%, 94.53%, 21.18%` - generates color data based on CMYK"
+        ]
+      },
+      {
         "name": "emoji",
         "description": "Get the full-size version of an emoji/emote.",
         "aliases": [
@@ -474,6 +490,16 @@
         "description": "Get the bot's uptime.",
         "aliases": [],
         "examples": []
+      },
+      {
+        "name": "urban",
+        "description": "Find the definition of something in Urban Dictionary.",
+        "aliases": [
+          "define"
+        ],
+        "examples": [
+          "`urban owo` - will return the definition of \"owo\""
+        ]
       },
       {
         "name": "user",

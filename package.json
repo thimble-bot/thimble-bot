@@ -27,6 +27,7 @@
     "aes-js": "^3.1.2",
     "axios": "^0.21.1",
     "chance": "^1.1.7",
+    "color": "^3.1.3",
     "date-fns": "^2.16.1",
     "dinky.js": "^1.1.0",
     "discord-akairo": "^8.1.0",
@@ -42,11 +43,13 @@
     "require-all": "^3.0.0",
     "seedrandom": "^3.0.5",
     "sharp": "^0.27.0",
-    "twemoji-parser": "^13.0.0"
+    "twemoji-parser": "^13.0.0",
+    "urban-dictionary": "^2.2.1"
   },
   "devDependencies": {
     "@types/aes-js": "^3.1.1",
     "@types/chance": "^1.1.1",
+    "@types/color": "^3.0.1",
     "@types/figlet": "^1.2.1",
     "@types/lodash.findindex": "^4.6.6",
     "@types/lodash.omit": "^4.5.6",
@@ -55,6 +58,7 @@
     "@types/seedrandom": "^2.4.28",
     "@types/sharp": "^0.27.1",
     "@types/twemoji-parser": "^12.1.0",
+    "@types/urban-dictionary": "^2.2.0",
     "@types/ws": "^7.4.0",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
     "@typescript-eslint/parser": "^4.13.0",
