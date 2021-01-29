@@ -35,9 +35,14 @@ nvim config/development/firebase.json
 npm run dev
 ```
 
+## Migration from Thimble Bot v0.1.x
+
+See the [migration guide](https://github.com/thimble-bot/thimble-bot/blob/master/docs/migration-guide.md)
+
 ## Before committing
 
-Contribution is welcome, but before opening a PR, make sure that your changes pass linting.
+Contribution is welcome, but before opening a PR, make sure that your changes
+pass linting.
 
 ```
 npm run lint
@@ -45,6 +50,8 @@ npm run lint
 
 ## License
 
-MIT. Thimble (character and design) is the property of József Sallai. You may NOT use the character or its name without the owner's written approval. Discord is the property of Discord, Inc.
+MIT. Thimble (character and design) is the property of József Sallai. You may
+NOT use the character or its name without the owner's written approval. Discord
+is the property of Discord, Inc.
 
 *(avatar by [Ch-Chau](https://www.deviantart.com/ch-chau/))*

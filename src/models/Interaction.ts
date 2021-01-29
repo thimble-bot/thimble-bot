@@ -27,6 +27,7 @@ export class Interaction {
   private receiver: string = '';
   private guild: string = '';
   private type: InteractionType = 'boop';
+  private counts: number = 1;
 
   private static collection = firebase.db.collection('interactions');
 
@@ -36,17 +37,18 @@ export class Interaction {
       this.receiver = opts.receiver;
       this.guild = opts.guild;
       this.type = opts.type;
+      this.counts = opts.counts || this.counts;
     }
   }
 
   create(): Promise<DocumentReference> {
-    const { sender, receiver, guild, type } = this;
+    const { sender, receiver, guild, type, counts } = this;
     return Interaction.collection.add({
       sender,
       receiver,
       guild,
       type,
-      counts: 1
+      counts
     });
   }
 

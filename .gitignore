@@ -9,3 +9,5 @@ custom/*
 custom/*/*
 !custom/*/.gitkeep
 !custom/*/setup.js
+
+/old

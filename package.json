@@ -8,6 +8,7 @@
     "dev": "concurrently \"tsc -w\" \"nodemon dist/index.js\"",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint src --ext .ts --fix",
+    "migrate": "node dist/scripts/migrate",
     "start": "node dist/index",
     "watch": "tsc -w"
   },
