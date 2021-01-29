@@ -2,14 +2,13 @@
 
 A fast, small, and highly extensible general-purpose bot built using
 [discord-akairo](https://github.com/discord-akairo/discord-akairo) and
-TypeScript. Currently WIP.
+TypeScript.
 
 ## Requirements
 
 - Node.js (v12 or higher)
 - ffmpeg
 - a Firebase project
-- Chrome headless for puppeteer (screenshot command)
 
 ## Installation
 

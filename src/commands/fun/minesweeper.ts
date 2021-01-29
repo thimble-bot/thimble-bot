@@ -15,10 +15,17 @@ class MinesweeperCommand extends Command {
     super('minesweeper', {
       aliases: [ 'minesweeper' ],
       description: {
-        detail: 'Play Minesweeper using Discord spoiler tags.',
+        detail: [
+          'Play Minesweeper using Discord spoiler tags.',
+          '**Flags:**',
+          '  • `--rows n`: set row count to `n` (default: 9)',
+          '  • `--columns n`: set column count to `n` (default: 9)',
+          '  • `--mines n`: set mine count to `n` (default: 10)',
+          '  • `--plaintext`: return the result as a code block instead'
+        ].join('\n'),
         examples: [
-          '`minesweeper 8 8 20` - Generate an 8x8 Minesweeper field with 20 mines',
-          '`minesweeper 8 8 20 1` - Generate the code for an 8x8 Minesweeper field with 20 mines'
+          '`minesweeper --rows 8 --columns 8 --mines 20` - Generate an 8x8 Minesweeper field with 20 mines',
+          '`minesweeper --plaintext` - Generate the code for a 9x9 Minesweeper field with 10 mines'
         ]
       },
       args: [
