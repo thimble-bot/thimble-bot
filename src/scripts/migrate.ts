@@ -50,7 +50,7 @@ const MIGRATIONS = [
   {
     name: 'Interaction Optout',
     data: interactionOptoutData,
-    callback: migrateInteractionOptout,
+    callback: migrateInteractionOptout
   },
   {
     name: 'Todo',

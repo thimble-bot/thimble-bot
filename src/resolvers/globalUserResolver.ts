@@ -1,4 +1,4 @@
-import { User, Message, SnowflakeUtil } from 'discord.js';
+import { User, Message } from 'discord.js';
 import { IThimbleBot } from '../typings/thimblebot';
 
 import partialMemberResolver from './partialMemberResolver';
