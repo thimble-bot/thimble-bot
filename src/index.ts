@@ -8,4 +8,4 @@ import { initGuildConfigs } from './lib/guildConfig';
 
   const client = new ThimbleBot();
   client.login(config.bot.token);
-})();
+})().catch(console.error);

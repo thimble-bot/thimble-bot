@@ -32,6 +32,7 @@ export interface GuildConfig {
 export interface IConfig {
   bot: BotConfig;
   firebase: FirebaseConfig;
+  custom?: any;
 
   guilds: {
     [guild: string]: GuildConfig;

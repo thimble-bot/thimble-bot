@@ -25,7 +25,7 @@ import {
   partialMembersResolver
 } from './resolvers';
 
-const CUSTOM_COMMANDS_PATH = path.join(__dirname, '../config/commands');
+const CUSTOM_COMMANDS_PATH = path.join(__dirname, '../custom/commands');
 
 class ThimbleBot extends AkairoClient implements IThimbleBot {
   commandHandler: CommandHandler;
