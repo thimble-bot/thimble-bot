@@ -27,6 +27,11 @@ if (env !== 'production') {
   }
 
   config = require(secretsConfigFile);
+
+  const secretsCustomConfigFile = '/var/secrets/thimble-bot.custom.json';
+  if (fs.existsSync(secretsCustomConfigFile)) {
+    config.custom = require(secretsCustomConfigFile);
+  }
 }
 
 export default config;
