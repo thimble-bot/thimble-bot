@@ -26,7 +26,10 @@ if (env !== 'production') {
     throw new Error('Could not find secrets config file. The bot could not be started.');
   }
 
-  config = require(secretsConfigFile);
+  config = {
+    ...config,
+    ...require(secretsConfigFile)
+  }
 
   const secretsCustomConfigFile = '/var/secrets/thimble-bot.custom.json';
   if (fs.existsSync(secretsCustomConfigFile)) {
