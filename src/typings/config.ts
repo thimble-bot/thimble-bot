@@ -13,13 +13,14 @@ export interface FirebaseConfig {
   bucket?: string;
 };
 
+export interface EXPLevel {
+  amount: number;
+  roleId: string;
+}
+
 interface EXPConfig {
   range: [ from: number, to: number ];
-
-  levels: {
-    [exp: string]: string;
-  };
-
+  levels: EXPLevel[];
   ignoreChannels?: string[];
 };
 

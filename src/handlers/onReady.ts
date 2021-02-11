@@ -46,8 +46,8 @@ const onReady = (client: IThimbleBot): Handler => {
         const amount = client.experienceMap[guild][member];
         const newAmount = await updateExperience({ guild, member, amount });
 
-        for await (const level of Object.keys(guildExpConfig.levels)) {
-          const targetRole = targetGuild.roles.cache.find(role => role.name === guildExpConfig.levels[level]);
+        for await (const level of guildExpConfig.levels) {
+          const targetRole = targetGuild.roles.cache.find(role => role.name === level.roleId);
 
           if (!targetRole) {
             // bot couldn't find this role
@@ -56,7 +56,7 @@ const onReady = (client: IThimbleBot): Handler => {
 
           const memberHasRole = targetMember.roles.cache.has(targetRole.id);
 
-          if (newAmount < parseInt(level) && memberHasRole) {
+          if (newAmount < level.amount && memberHasRole) {
             // member's exp count became smaller, remove the role
             await targetMember.roles.remove(targetRole);
             continue;
@@ -67,7 +67,7 @@ const onReady = (client: IThimbleBot): Handler => {
             continue;
           }
 
-          if (newAmount >= parseInt(level)) {
+          if (newAmount >= level.amount) {
             // member has enough exp to get the role, give it to them
             await targetMember.roles.add(targetRole);
           }

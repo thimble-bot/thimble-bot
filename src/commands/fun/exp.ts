@@ -51,10 +51,10 @@ class EXPCommand extends Command {
         exp = experienceSnapshot.data().amount;
       }
 
-      const nextLevelExp = Object.keys(guildExpConfig.levels)
-        .find(required => parseInt(required) > exp);
+      const nextLevelExp = guildExpConfig.levels
+        .find(level => level.amount > exp)?.amount;
 
-      const embed = this.generateEmbed(member, exp, nextLevelExp ? parseInt(nextLevelExp) : undefined);
+      const embed = this.generateEmbed(member, exp, nextLevelExp);
       return this.say(message, embed);
     } catch (err) {
       return this.error(message, 'Failed to fetch experience data.');
