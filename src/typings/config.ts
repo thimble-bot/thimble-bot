@@ -6,6 +6,7 @@ export interface BotConfig {
   owners?: string[];
   defaultPrefix?: string;
   expUpdateInterval?: number;
+  guildConfigUpdateInterval?: number;
 };
 
 export interface FirebaseConfig {

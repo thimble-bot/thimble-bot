@@ -16,6 +16,8 @@ const updateGuildConfig = (guildId: string, key: GuildConfigKey, value: any) => 
 };
 
 const initGuildConfigs = async () => {
+  config.guilds = {};
+
   const guildConfigs = await GuildData.all();
   if (guildConfigs?.length) {
     guildConfigs.forEach(snapshot => {

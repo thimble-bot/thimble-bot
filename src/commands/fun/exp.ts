@@ -24,7 +24,7 @@ class EXPCommand extends Command {
 
     embed.addField('Total', exp, true);
     embed.addField('Next At', nextLevelExp || 'N/A', true);
-    embed.setFooter(`Experience data updates every ${config.bot.expUpdateInterval} minutes.`);
+    embed.setFooter(`Experience data updates every ${config.bot.expUpdateInterval || 5} minutes.`);
 
     return embed;
   }

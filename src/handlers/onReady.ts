@@ -1,6 +1,7 @@
 import config from '../config';
 
 import { updateExperience } from '../lib/experience';
+import { initGuildConfigs } from '../lib/guildConfig';
 import { IThimbleBot } from '../typings/thimblebot';
 
 type Handler = () => void;
@@ -77,6 +78,10 @@ const onReady = (client: IThimbleBot): Handler => {
       client.experienceMap[guild] = {};
     }
   }, (config.bot.expUpdateInterval || 5) * 1000 * 60);
+
+  setInterval(async () => {
+    await initGuildConfigs();
+  }, (config.bot.guildConfigUpdateInterval || 5) * 1000 * 60);
 
   return handler;
 };
