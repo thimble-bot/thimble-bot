@@ -48,7 +48,7 @@ const onReady = (client: IThimbleBot): Handler => {
         const newAmount = await updateExperience({ guild, member, amount });
 
         for await (const level of guildExpConfig.levels) {
-          const targetRole = targetGuild.roles.cache.find(role => role.name === level.roleId);
+          const targetRole = targetGuild.roles.cache.find(role => role.id === level.roleId);
 
           if (!targetRole) {
             // bot couldn't find this role
