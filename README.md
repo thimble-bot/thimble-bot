@@ -1,3 +1,5 @@
+# The Thimble Bot project has been discontinued.
+
 <img src="assets/avatar.png" align="right" width="180px"> <h1>Thimble Bot</h1>
 
 A fast, small, and highly extensible general-purpose bot built using
